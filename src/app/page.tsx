@@ -1,6 +1,7 @@
 import NavigationBar from "@/components/layout/NavigationBar";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
 import Footer from "@/components/layout/Footer";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <NavigationBar />
       <HeroSection />
       <AboutSection />
+      <ProjectsSection />
       <Footer />
     </main>
   );
