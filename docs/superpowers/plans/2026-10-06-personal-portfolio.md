@@ -550,24 +550,24 @@ git commit -m "feat: implement chapter 05 certifications ledger"
 - Create: `src/components/sections/ContactSection.tsx`
 - Modify: `src/app/page.tsx`
 
-- [ ] **Step 1: Implement `CopyEmailButton.tsx`**
+- [x] **Step 1: Implement `CopyEmailButton.tsx`**
   - Interactive email pill with copy-to-clipboard functionality via `navigator.clipboard`.
   - Toast visual state (*"Copied to clipboard ✓"* with glowing purple ring).
   - Fallback prompt if clipboard permission is restricted.
 
-- [ ] **Step 2: Implement `ContactSection.tsx`**
+- [x] **Step 2: Implement `ContactSection.tsx`**
   - Editorial header: *"Initiate Transmission"*.
   - Prominent quick-copy email action pill.
   - **Social Channels Matrix:** Frosted glass cards for **GitHub**, **LinkedIn**, **Instagram**, and **Facebook**, each with platform icon, handle, description, and outbound arrow (`↗`).
 
-- [ ] **Step 3: Mount ContactSection in `src/app/page.tsx`**
+- [x] **Step 3: Mount ContactSection in `src/app/page.tsx`**
 
-- [ ] **Step 4: Verify build**
+- [x] **Step 4: Verify build**
 
 Run: `npx next build`
 Expected: Passes without errors.
 
-- [ ] **Step 5: Commit contact section**
+- [x] **Step 5: Commit contact section**
 
 ```bash
 git add src/components/ui/CopyEmailButton.tsx src/components/sections/ContactSection.tsx src/app/page.tsx
@@ -581,30 +581,31 @@ git commit -m "feat: implement chapter 06 contact section and social channels ma
 **Files:**
 - Audit & Verify: all components in `src/`
 
-- [ ] **Step 1: Type check entire project**
+- [x] **Step 1: Type check entire project**
 
 Run: `npx tsc --noEmit`
 Expected: 0 errors.
 
-- [ ] **Step 2: Run production Next.js build**
+- [x] **Step 2: Run production Next.js build**
 
 Run: `npm run build`
 Expected: Successful static compilation of all routes.
 
-- [ ] **Step 3: Responsive audit across breakpoints**
+- [x] **Step 3: Responsive audit across breakpoints**
   - Mobile (<640px): verify single-column stacking, mobile navigation drawer, and touch targets.
   - Tablet (768px): verify 2-column bento grids.
   - Desktop (1280px): verify full editorial magazine spread and sticky chapter navigation.
 
-- [ ] **Step 4: Test user interactions**
+- [x] **Step 4: Test user interactions**
   - Verify smooth chapter navigation clicking jumps to correct sections.
   - Test Project Modal open, close with Esc, and backdrop click.
   - Test Copy Email button triggers feedback toast.
   - Confirm all external social links open with `rel="noopener noreferrer"`.
 
-- [ ] **Step 5: Final git commit**
+- [x] **Step 5: Final git commit**
 
 ```bash
 git add .
 git commit -m "feat: complete ethereal editorial portfolio implementation"
 ```
+
