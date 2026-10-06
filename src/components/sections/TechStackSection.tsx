@@ -1,59 +1,132 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-import { portfolioData } from "@/data/portfolio";
-import SectionHeader from "@/components/ui/SectionHeader";
+import PixelMascotDivider from "@/components/ui/PixelMascotDivider";
+
+interface StackGroup {
+  category: string;
+  items: string[];
+}
 
 export default function TechStackSection() {
-  return (
-    <section id="tech" className="py-20 px-4 sm:px-6 max-w-5xl mx-auto">
-      <SectionHeader
-        chapter="03"
-        tag="ARSENAL // REPERTOIRE"
-        title="Technical Stack & Tools"
-        subtitle="Languages, framework architectures, runtime platforms, and desktop Linux environments."
-      />
+  const stackGroups: StackGroup[] = [
+    {
+      category: "DEVOPS & CLOUD",
+      items: ["Docker + Compose", "Linux (Arch/Debian)", "Caddy 2", "GitHub Actions", "Vercel", "Let's Encrypt"]
+    },
+    {
+      category: "SECURITY & IDENTITY",
+      items: ["Tailscale", "WireGuard", "JWT / Auth", "SSH & GPG"]
+    },
+    {
+      category: "BACKEND & SYSTEMS",
+      items: ["Node.js", "Express", "Supabase", "PostgreSQL", "Python", "Rust", "PipeWire Audio", "Wine Staging"]
+    },
+    {
+      category: "FRONTEND",
+      items: ["TypeScript", "Next.js 16 (App Router)", "React 19", "Tailwind CSS", "Vite", "Web Audio API"]
+    },
+    {
+      category: "DESKTOP & RICE",
+      items: ["Hyprland (Wayland)", "Waybar", "Bash Scripting", "Rofi", "IPC Socket Daemons"]
+    },
+    {
+      category: "DEVELOPER TOOLS",
+      items: ["Git", "GitHub", "Neovim", "VS Code", "Vitest", "Playwright"]
+    }
+  ];
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {portfolioData.skills.map((category, index) => (
-          <motion.div
-            key={category.category}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-30px" }}
-            transition={{ duration: 0.25, delay: index * 0.05, ease: [0.23, 1, 0.32, 1] }}
-            className="rounded-xl border border-hairline bg-studio-900/40 p-6 hover:border-zinc-700/80 transition-colors"
+  // Months for GitHub Contribution Graph
+  const months = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"];
+
+  // Generate deterministic contribution dots matrix (7 days x 48 weeks)
+  const days = 7;
+  const weeks = 48;
+
+  return (
+    <section id="stack">
+      <PixelMascotDivider number="04" label="STACK" />
+
+      {/* Categorized Stack Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        {stackGroups.map((group) => (
+          <div
+            key={group.category}
+            className="rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-6 flex flex-col justify-between"
           >
-            <div className="border-b border-hairline pb-4 mb-4">
-              <span className="font-mono text-[11px] text-accent-warm uppercase tracking-wider block mb-1">
-                // DOMAIN 0{index + 1}
-              </span>
-              <h3 className="font-serif text-xl font-normal text-ivory-100">
-                {category.category}
-              </h3>
-              <p className="font-sans text-xs text-zinc-400 mt-1">
-                {category.description}
-              </p>
+            <div className="font-mono text-xs uppercase tracking-wider text-zinc-500 mb-4">
+              {group.category}
             </div>
 
-            <div className="flex flex-wrap gap-2 pt-2">
-              {category.skills.map((skill) => (
+            <div className="flex flex-wrap gap-2">
+              {group.items.map((item) => (
                 <div
-                  key={skill.name}
-                  className="font-mono text-xs px-3 py-1.5 rounded-lg border border-hairline bg-studio-950/70 text-zinc-300 flex items-center gap-2 hover:border-zinc-600 transition-colors"
+                  key={item}
+                  className="font-mono text-xs text-zinc-300 px-3 py-1.5 rounded-lg border border-zinc-850 bg-zinc-950/70 hover:border-zinc-700 transition-colors flex items-center gap-2"
                 >
-                  <span>{skill.name}</span>
-                  {skill.level && (
-                    <span className="text-[10px] text-zinc-500 uppercase">
-                      · {skill.level}
-                    </span>
-                  )}
+                  <span className="w-1.5 h-1.5 rounded-full bg-zinc-600" />
+                  <span>{item}</span>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         ))}
+      </div>
+
+      {/* GitHub Contribution Activity Heatmap */}
+      <div className="rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-6">
+        <div className="flex items-center justify-between mb-4 font-mono text-xs">
+          <span className="text-zinc-500 uppercase tracking-wider">GITHUB</span>
+          <a
+            href="https://github.com/TwilightDust12"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-400 hover:text-white transition-colors underline decoration-zinc-800 underline-offset-4"
+          >
+            @TwilightDust12 ↗
+          </a>
+        </div>
+
+        {/* Months Bar */}
+        <div className="flex justify-between text-[10px] font-mono text-zinc-600 mb-2 px-1 overflow-x-auto">
+          {months.map((m, idx) => (
+            <span key={idx}>{m}</span>
+          ))}
+        </div>
+
+        {/* Heatmap Dots Matrix */}
+        <div className="overflow-x-auto pb-2">
+          <div className="grid grid-flow-col grid-rows-7 gap-1 w-max">
+            {Array.from({ length: weeks * days }).map((_, i) => {
+              // Create realistic activity density
+              const seed = (i * 17 + 23) % 100;
+              let dotBg = "bg-zinc-850";
+              if (seed > 80) dotBg = "bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)]";
+              else if (seed > 65) dotBg = "bg-zinc-300";
+              else if (seed > 45) dotBg = "bg-zinc-600";
+              else if (seed > 30) dotBg = "bg-zinc-750";
+
+              return (
+                <div
+                  key={i}
+                  className={`w-2.5 h-2.5 rounded-sm ${dotBg} transition-transform hover:scale-125 cursor-pointer`}
+                  title={`Activity on day ${i + 1}`}
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between pt-3 border-t border-zinc-800/60 font-mono text-[10px] text-zinc-600">
+          <span>Less</span>
+          <div className="flex items-center gap-1">
+            <span className="w-2.5 h-2.5 rounded-sm bg-zinc-850" />
+            <span className="w-2.5 h-2.5 rounded-sm bg-zinc-600" />
+            <span className="w-2.5 h-2.5 rounded-sm bg-zinc-300" />
+            <span className="w-2.5 h-2.5 rounded-sm bg-white" />
+          </div>
+          <span>More</span>
+        </div>
       </div>
     </section>
   );

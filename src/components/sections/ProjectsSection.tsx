@@ -1,111 +1,118 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { GithubIcon } from "@/components/ui/Icons";
+import React from "react";
+import PixelMascotDivider from "@/components/ui/PixelMascotDivider";
 import { portfolioData } from "@/data/portfolio";
-import { Project } from "@/types/portfolio";
-import SectionHeader from "@/components/ui/SectionHeader";
-import ProjectModal from "@/components/ui/ProjectModal";
 
 export default function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 max-w-5xl mx-auto">
-      <SectionHeader
-        chapter="01"
-        tag="SELECTED WORKS"
-        title="Featured Systems & Projects"
-        subtitle="A catalog of low-latency desktop runners, Wayland window environments, and responsive web archives."
-      />
+    <section id="projects">
+      <PixelMascotDivider number="03" label="PROJECTS" />
 
-      {/* Editorial Catalog List / Grid */}
-      <div className="space-y-6">
+      <div className="space-y-8">
         {portfolioData.projects.map((project, index) => (
-          <motion.article
+          <div
             key={project.id}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.28, delay: index * 0.05, ease: [0.23, 1, 0.32, 1] }}
-            className="group relative rounded-xl border border-hairline bg-studio-900/40 p-6 sm:p-8 hover:border-zinc-700/80 transition-colors duration-200"
+            className="rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-6 sm:p-8 flex flex-col lg:flex-row gap-8 items-center justify-between"
           >
-            <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-              {/* Left Column: Number, Title, Description */}
-              <div className="flex-1 max-w-2xl">
-                <div className="flex items-center gap-3 font-mono text-xs text-zinc-500 mb-2">
-                  <span className="text-accent-warm font-semibold">0{index + 1}</span>
-                  <span>/</span>
-                  <span className="uppercase tracking-wider">{project.subtitle}</span>
-                </div>
-
-                <h3 className="font-serif text-2xl sm:text-3xl font-normal text-ivory-100 group-hover:text-white transition-colors mb-3">
-                  {project.title}
+            {/* Left Content */}
+            <div className="flex-1 space-y-4">
+              <div className="flex items-center justify-between gap-4">
+                <h3 className="font-mono text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                  <span className="text-zinc-500">&gt;</span>
+                  <span>{project.title}</span>
                 </h3>
 
-                <p className="font-sans text-sm sm:text-base text-zinc-400 leading-relaxed mb-6">
-                  {project.description}
-                </p>
-
-                {/* Tech Pills */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-mono text-xs text-zinc-400 px-2.5 py-1 rounded-md border border-hairline bg-studio-950/60"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <span className="font-mono text-[11px] text-zinc-400 px-3 py-1 rounded-full border border-dashed border-zinc-700 uppercase tracking-wider">
+                  {index === 0 ? "IN PROGRESS" : index === 1 ? "2026" : "ARCHIVED"}
+                </span>
               </div>
 
-              {/* Right Column: Actions */}
-              <div className="flex items-center md:flex-col md:items-end gap-3 flex-shrink-0 pt-2 md:pt-0">
-                <button
-                  onClick={() => setSelectedProject(project)}
-                  className="btn-press inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-700/80 bg-studio-900 text-xs font-mono text-zinc-200 hover:text-white hover:border-zinc-500 transition-colors"
-                >
-                  <span>Case Study</span>
-                  <span className="text-zinc-500">→</span>
-                </button>
+              <p className="font-sans text-sm text-zinc-300 leading-relaxed max-w-xl">
+                {project.description}
+              </p>
 
-                {project.demoUrl && (
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 text-zinc-400 hover:text-white rounded-full border border-hairline hover:border-zinc-600 transition-colors btn-press"
-                    aria-label={`Visit ${project.title}`}
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2 pt-2">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="font-mono text-xs text-zinc-300 px-3 py-1 rounded-full bg-zinc-800/80 border border-zinc-700/60"
                   >
-                    <ArrowUpRight className="w-4 h-4" />
-                  </a>
-                )}
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
+              {/* Action Links */}
+              <div className="flex items-center gap-4 pt-4 font-mono text-xs">
                 {project.githubUrl && (
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-zinc-400 hover:text-white rounded-full border border-hairline hover:border-zinc-600 transition-colors btn-press"
-                    aria-label={`Source code for ${project.title}`}
+                    className="text-zinc-400 hover:text-white underline decoration-zinc-700 underline-offset-4 transition-colors"
                   >
-                    <GithubIcon className="w-4 h-4" />
+                    source ↗
+                  </a>
+                )}
+                {project.demoUrl && (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-zinc-400 hover:text-white underline decoration-zinc-700 underline-offset-4 transition-colors"
+                  >
+                    live ↗
                   </a>
                 )}
               </div>
             </div>
-          </motion.article>
+
+            {/* Right: Device & Browser Window Mockup */}
+            <div className="w-full lg:w-[380px] h-[210px] rounded-xl border border-zinc-800 bg-[#0d0d12] p-3 shadow-2xl relative flex-shrink-0 overflow-hidden group">
+              {/* Browser Chrome Bar */}
+              <div className="flex items-center gap-1.5 pb-2 border-b border-zinc-800/80 mb-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
+                <span className="ml-2 font-mono text-[9px] text-zinc-600 truncate">
+                  localhost:3000/{project.id}
+                </span>
+              </div>
+
+              {/* Mockup Canvas Screen */}
+              <div className="rounded-lg bg-zinc-950 p-3 h-[155px] border border-zinc-900 flex flex-col justify-between">
+                <div className="space-y-1.5">
+                  <div className="h-3 w-28 bg-zinc-800 rounded" />
+                  <div className="h-2 w-44 bg-zinc-900 rounded" />
+                  <div className="grid grid-cols-3 gap-1.5 pt-2">
+                    <div className="h-10 bg-zinc-900/80 rounded border border-zinc-850" />
+                    <div className="h-10 bg-zinc-900/80 rounded border border-zinc-850" />
+                    <div className="h-10 bg-zinc-900/80 rounded border border-zinc-850" />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between font-mono text-[9px] text-zinc-600 pt-1">
+                  <span>● PIPELINE ACTIVE</span>
+                  <span>v2.4.0</span>
+                </div>
+              </div>
+
+              {/* Floating Mobile Phone Mockup Overlay */}
+              <div className="absolute -bottom-2 -right-1 w-28 h-36 rounded-xl border-2 border-zinc-700 bg-black p-1.5 shadow-2xl flex flex-col justify-between transform rotate-3 group-hover:rotate-0 transition-transform duration-300">
+                <div className="w-8 h-1 bg-zinc-800 rounded-full mx-auto mb-1" />
+                <div className="rounded bg-zinc-900 flex-1 p-1.5 space-y-1">
+                  <div className="h-2 w-12 bg-zinc-700 rounded" />
+                  <div className="h-1.5 w-16 bg-zinc-800 rounded" />
+                  <div className="h-8 bg-zinc-800/60 rounded mt-2" />
+                </div>
+                <div className="w-4 h-0.5 bg-zinc-800 rounded-full mx-auto mt-1" />
+              </div>
+            </div>
+          </div>
         ))}
       </div>
-
-      {/* Case Study Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
     </section>
   );
 }

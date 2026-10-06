@@ -1,130 +1,117 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import PixelMascotDivider from "@/components/ui/PixelMascotDivider";
 import { portfolioData } from "@/data/portfolio";
-import SectionHeader from "@/components/ui/SectionHeader";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 max-w-5xl mx-auto">
-      <SectionHeader
-        chapter="02"
-        tag="BIOGRAPHY & TRAJECTORY"
-        title="About & Background"
-        subtitle="Engineering focus, open source explorations, and professional history."
-      />
+    <section id="about">
+      <PixelMascotDivider number="02" label="ABOUT" />
 
-      {/* Narrative Profile Spread */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 border-b border-hairline pb-16 mb-16">
-        <div className="lg:col-span-5">
-          <h3 className="font-serif text-2xl sm:text-3xl text-ivory-100 font-normal leading-snug">
-            Building software with structural clarity, performance, and visual restraint.
-          </h3>
-          <div className="mt-6 flex flex-col gap-2 font-mono text-xs text-zinc-500">
-            <div>
-              <span className="text-zinc-400">LOCATION:</span> {portfolioData.personal.location}
-            </div>
-            <div>
-              <span className="text-zinc-400">FOCUS:</span> Web Systems & Linux Environments
-            </div>
-            <div>
-              <span className="text-zinc-400">AVAILABILITY:</span> {portfolioData.personal.availability}
-            </div>
+      {/* Intro Bio */}
+      <div className="space-y-4 font-sans text-sm sm:text-base text-zinc-300 leading-relaxed max-w-3xl mb-10">
+        <p>
+          I&apos;m a software engineer and Linux enthusiast with a deep passion for building practical, high-performance systems. I got into software engineering because I love figuring out how low-level environments fit together and crafting interfaces that feel tactile and responsive.
+        </p>
+        <p>
+          Right now, I spend my time engineering side projects, configuring Wayland window managers, and tuning audio pipelines for competitive rhythm gaming. I take genuine joy in turning rough ideas into tools that people can actually use every day.
+        </p>
+      </div>
+
+      {/* Side-by-side Experience & Education Cards */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Experience Card */}
+        <div className="rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-6 sm:p-7">
+          <div className="font-mono text-xs uppercase tracking-wider text-zinc-500 mb-6">
+            EXPERIENCE
+          </div>
+
+          <div className="space-y-6">
+            {portfolioData.experience.map((item) => (
+              <div key={item.id} className="space-y-2">
+                <div className="flex items-baseline justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                    <span className="font-sans font-semibold text-sm text-zinc-100">
+                      {item.role}
+                    </span>
+                  </div>
+                  <span className="font-mono text-xs text-zinc-500">{item.period}</span>
+                </div>
+
+                <div className="font-mono text-xs text-zinc-400 pl-4">
+                  {item.company} · {item.location}
+                </div>
+
+                <div className="space-y-1 pl-4 pt-1">
+                  {item.description.map((desc, dIndex) => (
+                    <div key={dIndex} className="font-mono text-xs text-zinc-400 flex items-start gap-2">
+                      <span className="text-zinc-600">&gt;</span>
+                      <span>{desc}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="lg:col-span-7 space-y-5 text-sm sm:text-base text-zinc-300 leading-relaxed font-sans">
-          {portfolioData.personal.bioParagraphs.map((para, index) => (
-            <p key={index}>{para}</p>
-          ))}
-        </div>
-      </div>
+        {/* Education Card */}
+        <div className="rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-6 sm:p-7">
+          <div className="font-mono text-xs uppercase tracking-wider text-zinc-500 mb-6">
+            EDUCATION
+          </div>
 
-      {/* Experience Ledger */}
-      <div className="mb-16">
-        <div className="font-mono text-xs tracking-wider text-accent-warm uppercase mb-6 flex items-center gap-2">
-          <span>// 02.1</span>
-          <span>EXPERIENCE LEDGER</span>
-        </div>
-
-        <div className="divide-y divide-hairline border-y border-hairline">
-          {portfolioData.experience.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.25, delay: index * 0.05, ease: [0.23, 1, 0.32, 1] }}
-              className="py-8 grid grid-cols-1 md:grid-cols-12 gap-6"
-            >
-              {/* Period & Company */}
-              <div className="md:col-span-4">
-                <span className="font-mono text-xs text-zinc-500 block mb-1">{item.period}</span>
-                <h4 className="font-serif text-lg text-ivory-100 font-normal">{item.role}</h4>
-                <p className="font-sans text-xs text-zinc-400 mt-0.5">{item.company} · {item.location}</p>
-              </div>
-
-              {/* Achievements & Technologies */}
-              <div className="md:col-span-8 space-y-4">
-                <ul className="space-y-2">
-                  {item.description.map((bullet, bIndex) => (
-                    <li key={bIndex} className="text-xs sm:text-sm text-zinc-300 leading-relaxed flex items-start gap-2">
-                      <span className="text-zinc-500 font-mono mt-0.5">•</span>
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex flex-wrap gap-1.5 pt-2">
-                  {item.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="font-mono text-[11px] text-zinc-400 px-2 py-0.5 rounded border border-hairline bg-studio-900"
-                    >
-                      {tech}
+          <div className="space-y-6">
+            {portfolioData.education.map((edu) => (
+              <div key={edu.id} className="space-y-2">
+                <div className="flex items-baseline justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                    <span className="font-sans font-semibold text-sm text-zinc-100">
+                      {edu.institution}
                     </span>
-                  ))}
+                  </div>
+                  <span className="font-mono text-xs text-zinc-500">{edu.period}</span>
                 </div>
+
+                <div className="font-mono text-xs text-zinc-400 pl-4">
+                  {edu.degree}
+                </div>
+
+                {edu.details && (
+                  <div className="space-y-1 pl-4 pt-1">
+                    {edu.details.map((detail, dIndex) => (
+                      <div key={dIndex} className="font-mono text-xs text-zinc-400 flex items-start gap-2">
+                        <span className="text-zinc-600">&gt;</span>
+                        <span>{detail}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+            ))}
 
-      {/* Academic Foundations */}
-      <div>
-        <div className="font-mono text-xs tracking-wider text-accent-warm uppercase mb-6 flex items-center gap-2">
-          <span>// 02.2</span>
-          <span>ACADEMIC FOUNDATIONS</span>
-        </div>
-
-        <div className="border border-hairline rounded-xl bg-studio-900/40 p-6 sm:p-8">
-          {portfolioData.education.map((edu) => (
-            <div key={edu.id} className="space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-hairline pb-4">
+            {/* Previous institutions */}
+            <div className="pt-4 border-t border-zinc-800/80 space-y-4">
+              <div className="flex items-baseline justify-between">
                 <div>
-                  <h4 className="font-serif text-xl text-ivory-100 font-normal">{edu.degree}</h4>
-                  <p className="font-sans text-xs text-zinc-400 mt-1">{edu.institution} · {edu.location}</p>
+                  <div className="font-sans text-sm text-zinc-300">Senior High School — STEM</div>
+                  <div className="font-mono text-xs text-zinc-500">Science, Technology, Engineering & Mathematics</div>
                 </div>
-                <div className="flex items-center gap-3 font-mono text-xs">
-                  {edu.honors && <span className="text-accent-warm font-medium">{edu.honors}</span>}
-                  <span className="text-zinc-500">{edu.period}</span>
-                </div>
+                <span className="font-mono text-xs text-zinc-600">2019 — 2021</span>
               </div>
 
-              {edu.details && (
-                <ul className="space-y-1.5 pt-2">
-                  {edu.details.map((detail, dIndex) => (
-                    <li key={dIndex} className="text-xs sm:text-sm text-zinc-400 flex items-start gap-2">
-                      <span className="text-zinc-600 font-mono mt-0.5">•</span>
-                      <span>{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <div className="flex items-baseline justify-between">
+                <div>
+                  <div className="font-sans text-sm text-zinc-400">Junior High School</div>
+                  <div className="font-mono text-xs text-zinc-500">Secondary Education</div>
+                </div>
+                <span className="font-mono text-xs text-zinc-600">2015 — 2019</span>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

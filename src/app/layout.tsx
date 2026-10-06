@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Newsreader, Space_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { Silkscreen, Space_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const newsreader = Newsreader({
+const silkscreen = Silkscreen({
+  weight: ["400", "700"],
   subsets: ["latin"],
-  variable: "--font-serif",
+  variable: "--font-pixel",
   display: "swap",
-  style: ["normal", "italic"],
 });
 
 const spaceMono = Space_Mono({
@@ -23,19 +23,19 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Twilight — Software Engineer & Systems Tinkerer",
-  description: "Personal portfolio, Linux environment rices, low-latency audio tooling, and responsive web systems.",
+  title: "Twilight — Building. Learning. Shipping.",
+  description: "Personal portfolio, Linux desktop suites, low-latency audio tooling, and responsive web systems.",
   authors: [{ name: "Twilight", url: "https://github.com/TwilightDust12" }],
-  keywords: ["Software Engineer", "Systems", "Linux", "Hyprland", "osu!", "TypeScript", "Next.js", "Web Development"],
+  keywords: ["Software Engineer", "Systems", "Linux", "Hyprland", "osu!", "TypeScript", "Next.js", "DevOps"],
   openGraph: {
     title: "Twilight — Software Engineer & Systems Tinkerer",
-    description: "Curated archive of web architectures, Linux suites, and low-latency systems.",
+    description: "Building. Learning. Shipping. Personal portfolio & systems showcase.",
     type: "website",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#09090b",
+  themeColor: "#08080a",
   width: "device-width",
   initialScale: 1,
 };
@@ -46,10 +46,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${newsreader.variable} ${spaceMono.variable} ${plusJakarta.variable}`}>
-      <body className="bg-studio-950 text-ivory-100 antialiased relative min-h-screen">
-        <div className="film-grain" aria-hidden="true" />
-        <div className="lens-vignette" aria-hidden="true" />
+    <html lang="en" className={`${silkscreen.variable} ${spaceMono.variable} ${plusJakarta.variable}`}>
+      <body className="bg-[#08080a] text-zinc-100 antialiased relative min-h-screen selection:bg-zinc-800 selection:text-white">
         {children}
       </body>
     </html>
