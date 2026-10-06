@@ -1,34 +1,43 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
-import AmbientBackground from "@/components/layout/AmbientBackground";
+import { Newsreader, Space_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const playfairDisplay = Playfair_Display({
+const newsreader = Newsreader({
   subsets: ["latin"],
   variable: "--font-serif",
   display: "swap",
+  style: ["normal", "italic"],
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
 });
 
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Twilight | Fullstack Engineer & Systems Enthusiast",
-  description:
-    "Architecting ethereal digital experiences, linux environments, and performant web systems.",
+  title: "Twilight — Software Engineer & Systems Tinkerer",
+  description: "Personal portfolio, Linux environment rices, low-latency audio tooling, and responsive web systems.",
+  authors: [{ name: "Twilight", url: "https://github.com/TwilightDust12" }],
+  keywords: ["Software Engineer", "Systems", "Linux", "Hyprland", "osu!", "TypeScript", "Next.js", "Web Development"],
+  openGraph: {
+    title: "Twilight — Software Engineer & Systems Tinkerer",
+    description: "Curated archive of web architectures, Linux suites, and low-latency systems.",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#090A0F",
+  themeColor: "#09090b",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -37,12 +46,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${playfairDisplay.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}
-    >
-      <body className="antialiased min-h-screen bg-[#090A0F] text-slate-100">
-        <AmbientBackground />
+    <html lang="en" className={`${newsreader.variable} ${spaceMono.variable} ${plusJakarta.variable}`}>
+      <body className="bg-studio-950 text-ivory-100 antialiased relative min-h-screen">
+        <div className="film-grain" aria-hidden="true" />
+        <div className="lens-vignette" aria-hidden="true" />
         {children}
       </body>
     </html>

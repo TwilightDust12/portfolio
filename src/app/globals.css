@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #090A0F;
-  --foreground: #F8FAFC;
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 body {
@@ -12,26 +15,56 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   overflow-x: hidden;
-  selection-background-color: rgba(168, 85, 247, 0.3);
-  selection-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-.glass-panel {
-  background: rgba(18, 20, 29, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+::selection {
+  background-color: #27272a;
+  color: #fafafa;
 }
 
-.glass-panel-hover {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.glass-panel-hover:hover {
-  background: rgba(22, 25, 37, 0.75);
-  border-color: rgba(168, 85, 247, 0.35);
-  box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.15);
+/* Hairline rule utility */
+.border-hairline {
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
-.noise-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+/* Tactile button press feedback following Emil Kowalski guidelines */
+.btn-press {
+  transition: transform 140ms var(--ease-out), background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+/* 35mm optical grain & texture */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Subtle optical lens vignette */
+.lens-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -5;
+  background: radial-gradient(circle at 50% 30%, transparent 60%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

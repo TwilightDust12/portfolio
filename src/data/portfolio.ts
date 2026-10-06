@@ -1,18 +1,19 @@
-import { PortfolioConfig } from '@/types/portfolio';
+import { PortfolioConfig } from "@/types/portfolio";
 
 export const portfolioData: PortfolioConfig = {
   personal: {
     name: "Twilight",
-    title: "Fullstack Engineer & Systems Enthusiast",
-    tagline: "Architecting ethereal digital experiences, linux environments, and performant web systems.",
+    title: "Software Engineer & Systems Tinkerer",
+    tagline: "Building responsive web systems, tailored Linux desktop suites, and low-latency audio tooling with clean editorial discipline.",
     bioParagraphs: [
-      "Crafting software at the crossroads of ethereal aesthetics and robust systems engineering. Specializing in responsive modern web applications, low-latency tooling, and expressive user interfaces.",
-      "Beyond the browser, deeply immersed in the Linux ecosystem, crafting custom window manager rices (Hyprland), Wine prefix optimization for rhythm games, and minimal terminal utilities."
+      "I am a software engineer focused on building clean, high-performance web applications and exploring the Linux desktop ecosystem. My work pairs deep technical care with a strong respect for layout, typography, and tactile interface craft.",
+      "Beyond modern web stacks, I spend substantial time configuring Wayland window managers, writing automation tools in Shell and Rust, and optimizing audio pipelines for rhythm games on Linux."
     ],
-    location: "Manila / Remote",
-    email: "twilight@example.com",
-    availability: "Available for select opportunities"
+    location: "Manila, PH / Remote",
+    email: "jyrum12@gmail.com",
+    availability: "Available for select projects & full-time engineering roles",
   },
+
   socials: [
     {
       platform: "github",
@@ -39,158 +40,167 @@ export const portfolioData: PortfolioConfig = {
       username: "Twilight"
     }
   ],
+
   experience: [
     {
-      id: "oss-lead",
-      role: "Lead Systems & Web Tinkerer",
-      company: "Open Source Projects",
-      period: "2023 - Present",
-      location: "Remote",
+      id: "exp-1",
+      role: "Open Source Creator & Systems Engineer",
+      company: "Independent Projects",
+      period: "2023 — Present",
+      location: "Manila, PH",
       description: [
-        "Engineered osu-winello to streamline Wine audio latency and beatmap sync on Wayland/Linux.",
-        "Designed HyprNova, an aesthetic desktop rice with custom IPC daemons and status bars."
+        "Created osu-winello to resolve audio sync discrepancies and input latency for competitive rhythm gaming across Wine and PipeWire.",
+        "Engineered the HyprNova suite, an aesthetic Wayland desktop environment with dynamic IPC socket listeners and status daemons.",
+        "Authored modular shell scripts and configuration architectures adopted by desktop Linux enthusiasts."
       ],
-      technologies: ["Linux", "Rust", "Bash", "Wayland", "Next.js", "TypeScript"]
+      technologies: ["Linux", "Bash", "Rust", "Wayland", "PipeWire", "Git"]
     },
     {
-      id: "freelance-frontend",
-      role: "Fullstack Frontend Developer",
-      company: "Freelance / Web Projects",
-      period: "2022 - 2024",
+      id: "exp-2",
+      role: "Fullstack Web Developer",
+      company: "Freelance & Collaborative Work",
+      period: "2022 — 2024",
       location: "Remote",
       description: [
-        "Built responsive, high-performance web applications using React, Next.js, Tailwind CSS, and Supabase.",
-        "Implemented fluid micro-interactions, accessible design systems, and SEO best practices."
+        "Architected and deployed responsive single-page applications and marketing frontends using Next.js, React, and TypeScript.",
+        "Integrated Supabase backends with row-level security and relational PostgreSQL schemas.",
+        "Refined accessibility, performance budgets, and typography hierarchies across diverse client web projects."
       ],
-      technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Framer Motion"]
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL"]
     }
   ],
+
   education: [
     {
-      id: "bs-it",
+      id: "edu-1",
       degree: "Bachelor of Science in Information Technology",
-      institution: "University / Institute of Technology",
-      period: "2021 - 2025",
-      location: "Manila, Philippines",
+      institution: "College of Computer Studies",
+      period: "2021 — 2025",
+      location: "Philippines",
       honors: "Dean's Honor List",
       details: [
-        "Focused on Web Architectures, Database Systems, Linux OS, and Software Engineering."
+        "Specialized in Systems Analysis, Modern Web Architectures, and Relational Database Systems.",
+        "Completed capstone engineering projects emphasizing secure REST API design and responsive frontends."
       ]
     }
   ],
+
   projects: [
     {
       id: "osu-winello",
       title: "osu-winello",
       subtitle: "Linux & Wine Runner Suite",
-      tags: ["Shell", "Wine", "Linux", "Audio"],
+      tags: ["Shell", "Wine", "Linux", "PipeWire"],
       featured: true,
-      description: "A high-performance runner and prefix manager optimizing low-latency audio and beatmap synchronizations for rhythm gamers on Wayland.",
-      longDescription: "Designed to solve audio crackling and input latency on Linux desktop environments, osu-winello automates Wine staging configurations, PulseAudio/PipeWire latency tuning, and fast asset mounting.",
+      description: "A specialized Wine runner and prefix manager optimizing low-latency audio pipelines and beatmap synchronization for rhythm gaming on Linux.",
+      longDescription: "Built to overcome audio crackling and micro-stutters on modern Wayland desktop sessions. Automates Wine staging prefixes, PipeWire buffer configurations, and seamless beatmap storage mounting.",
       highlights: [
-        "Sub-5ms audio latency tuning with PipeWire",
-        "Automated prefix isolation & wine-tkg integration",
-        "Seamless beatmap directory symlinking"
+        "Low-latency audio tuning with PipeWire buffer management",
+        "Automated Wine prefix configuration and DLL overrides",
+        "Symlink management for seamless song library migration"
       ],
-      githubUrl: "https://github.com/TwilightDust12/osu-winello"
+      githubUrl: "https://github.com/TwilightDust12/osu-winello",
+      demoUrl: "https://github.com/TwilightDust12/osu-winello"
     },
     {
       id: "hyprnova",
-      title: "HyprNova Rice",
-      subtitle: "Ethereal Wayland Desktop Suite",
+      title: "HyprNova Desktop Suite",
+      subtitle: "Minimalist Wayland Environment",
       tags: ["Hyprland", "Wayland", "Rust", "CSS"],
       featured: true,
-      description: "An ethereal cyberpunk aesthetic environment for Hyprland featuring custom glass status bars, dynamic wallpaper palette extraction, and quick launchers.",
-      longDescription: "HyprNova transforms the Linux desktop into an ambient workstation inspired by Serial Experiments Lain and ambient aesthetics. Includes customized IPC hooks, rofi launchers, and audio visualizers.",
+      description: "A cohesive desktop suite for Hyprland featuring custom status bars, dynamic wallpaper palette extraction, and keyboard-centric productivity flows.",
+      longDescription: "HyprNova focuses on visual restraint, rapid keyboard navigation, and lightweight resource utilization. Designed with custom IPC listeners, rofi application pickers, and minimal CPU overhead.",
       highlights: [
-        "Real-time ambient color palette switching",
-        "Custom Waybar glassmorphism styling",
-        "Low resource consumption (< 1% CPU idle)"
+        "Dynamic palette synchronization across terminal and UI",
+        "Custom status bar layouts with hardware monitoring",
+        "Sub-1% idle CPU consumption on modern systems"
       ],
-      githubUrl: "https://github.com/TwilightDust12/hyprnova"
+      githubUrl: "https://github.com/TwilightDust12",
+      demoUrl: "https://github.com/TwilightDust12"
     },
     {
       id: "lily-chou-chou-portfolio",
-      title: "Lily Chou-Chou Space",
-      subtitle: "Atmospheric Web Archive",
-      tags: ["Next.js", "Tailwind CSS", "Web Audio"],
+      title: "The Ether / Lily Archive",
+      subtitle: "Cinematic Web Experience",
+      tags: ["Next.js", "Web Audio", "Tailwind CSS", "Typography"],
       featured: true,
-      description: "An experimental, atmospheric web portfolio immersing visitors in an ethereal ether of ambient sound, retro typography, and filmic grain.",
-      longDescription: "A creative homage exploring digital loneliness and ethereal connection. Features Web Audio API synthesis, scanline shaders, and responsive typographic columns.",
+      description: "A creative web archive inspired by Shunji Iwai's All About Lily Chou-Chou, pairing 35mm optical grain with interactive Web Audio sound design.",
+      longDescription: "An exploration of early internet nostalgia and film cinematography. Incorporates interactive synthesized soundscapes, custom typeface pairings, and balanced editorial columns.",
       highlights: [
-        "Web Audio ambient generator",
-        "Custom CSS scanline & noise textures",
-        "Zero-dependency responsive layout"
+        "Web Audio API ambient sound generator",
+        "Optical lens vignette and custom grain shaders",
+        "Responsive editorial typography and zero layout shift"
       ],
-      demoUrl: "https://lily-chou-chou.example.com",
-      githubUrl: "https://github.com/TwilightDust12/lily-chou-chou-portfolio"
+      githubUrl: "https://github.com/TwilightDust12/lily-chou-chou-themed-portfolio",
+      demoUrl: "https://twilightdust12.github.io/lily-chou-chou-themed-portfolio/"
     },
     {
       id: "accela-wired-cli",
-      title: "Accela CLI",
-      subtitle: "Fast Terminal Scratchpad & Vault",
-      tags: ["Rust", "CLI", "Linux"],
+      title: "Accela CLI Notes",
+      subtitle: "Terminal Scratchpad & Vault",
+      tags: ["Rust", "CLI", "TUI", "Linux"],
       featured: false,
-      description: "A terminal user interface for instant fuzzy notes, code snippets, and workspace bookmarks with encryption.",
-      longDescription: "Built with Rust and ratatui for instant startup times under 10ms. Allows quick keyboard-only tagging and export to markdown.",
+      description: "A fast terminal scratchpad for snippets, notes, and workspace bookmarks with fuzzy finding and local file storage.",
+      longDescription: "Engineered in Rust for instantaneous startup under 10 milliseconds. Provides keyboard-only workflows, tagging, and direct markdown export.",
       highlights: [
-        "Sub-10ms instant startup",
-        "Fuzzy-finding across thousands of notes",
-        "Vim-style keybindings"
+        "Instant startup under 10ms with zero runtime overhead",
+        "Fuzzy search across local markdown vaults",
+        "Vim-inspired navigation bindings"
       ],
-      githubUrl: "https://github.com/TwilightDust12/accela-wired-cli"
+      githubUrl: "https://github.com/TwilightDust12",
+      demoUrl: "https://github.com/TwilightDust12"
     }
   ],
+
   skills: [
     {
       category: "Languages & Core",
-      description: "Core programming languages and web fundamentals",
+      description: "Core programming languages and foundational web technologies.",
       skills: [
-        { name: "TypeScript", level: "Proficient" },
-        { name: "JavaScript", level: "Proficient" },
-        { name: "Python", level: "Advanced" },
-        { name: "Rust", level: "Advanced" },
-        { name: "Bash / Shell", level: "Proficient" },
-        { name: "HTML5 & CSS3", level: "Proficient" }
+        { name: "TypeScript", level: "Advanced" },
+        { name: "JavaScript (ESNext)", level: "Advanced" },
+        { name: "Rust", level: "Proficient" },
+        { name: "Python", level: "Proficient" },
+        { name: "Bash / Shell", level: "Advanced" },
+        { name: "HTML5 & CSS3", level: "Advanced" }
       ]
     },
     {
-      category: "Frontend & UI",
-      description: "Modern frameworks and interactive interface development",
+      category: "Frontend Architecture",
+      description: "Modern component-driven frameworks and UI engineering.",
       skills: [
-        { name: "Next.js 15", level: "Proficient" },
-        { name: "React 19", level: "Proficient" },
-        { name: "Tailwind CSS", level: "Proficient" },
-        { name: "Framer Motion", level: "Advanced" },
-        { name: "Responsive UX", level: "Proficient" },
-        { name: "Web Audio", level: "Familiar" }
+        { name: "Next.js (App Router)", level: "Advanced" },
+        { name: "React 19", level: "Advanced" },
+        { name: "Tailwind CSS", level: "Advanced" },
+        { name: "Framer Motion", level: "Proficient" },
+        { name: "Responsive Layouts", level: "Advanced" },
+        { name: "Web Audio API", level: "Familiar" }
       ]
     },
     {
-      category: "Backend & Storage",
-      description: "Server-side services, APIs, and data layers",
+      category: "Backend & Systems",
+      description: "Data persistence, cloud services, and runtime platforms.",
       skills: [
         { name: "Node.js", level: "Proficient" },
-        { name: "Express", level: "Advanced" },
         { name: "Supabase", level: "Proficient" },
-        { name: "PostgreSQL", level: "Advanced" },
-        { name: "REST APIs", level: "Proficient" },
-        { name: "JSON-RPC", level: "Familiar" }
+        { name: "PostgreSQL", level: "Proficient" },
+        { name: "RESTful APIs", level: "Advanced" },
+        { name: "Git & Version Control", level: "Advanced" }
       ]
     },
     {
-      category: "Systems & DevOps",
-      description: "Linux environments, desktop orchestration, and container tooling",
+      category: "Linux & Desktop",
+      description: "Operating system tailoring, window managers, and tooling.",
       skills: [
-        { name: "Linux (Arch / Debian)", level: "Proficient" },
-        { name: "Hyprland / Wayland", level: "Proficient" },
-        { name: "Git & GitHub", level: "Proficient" },
-        { name: "Docker", level: "Advanced" },
-        { name: "Wine / Proton", level: "Proficient" },
-        { name: "Vercel", level: "Proficient" }
+        { name: "Linux (Arch / Debian)", level: "Advanced" },
+        { name: "Hyprland & Wayland", level: "Advanced" },
+        { name: "Wine & Proton Staging", level: "Advanced" },
+        { name: "PipeWire Audio", level: "Proficient" },
+        { name: "Docker", level: "Familiar" }
       ]
     }
   ],
+
   certifications: [
     {
       id: "meta-frontend",
@@ -210,7 +220,7 @@ export const portfolioData: PortfolioConfig = {
     },
     {
       id: "linux-sysadmin",
-      title: "Linux Systems & Shell Administration",
+      title: "Linux Systems Administration & Scripting",
       issuer: "Linux Professional Institute",
       issueDate: "2023",
       credentialId: "LPI-SYS-1029",

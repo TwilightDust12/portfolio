@@ -1,7 +1,7 @@
 import NavigationBar from "@/components/layout/NavigationBar";
 import HeroSection from "@/components/sections/HeroSection";
-import AboutSection from "@/components/sections/AboutSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
+import AboutSection from "@/components/sections/AboutSection";
 import TechStackSection from "@/components/sections/TechStackSection";
 import CertificationsSection from "@/components/sections/CertificationsSection";
 import ContactSection from "@/components/sections/ContactSection";
@@ -9,11 +9,11 @@ import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-slate-100 selection:bg-ethereal-violet/30">
+    <main className="min-h-screen text-ivory-100 selection:bg-zinc-800 selection:text-white">
       <NavigationBar />
       <HeroSection />
-      <AboutSection />
       <ProjectsSection />
+      <AboutSection />
       <TechStackSection />
       <CertificationsSection />
       <ContactSection />
@@ -21,4 +21,3 @@ export default function Home() {
     </main>
   );
 }
-

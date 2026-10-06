@@ -9,39 +9,37 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        obsidian: {
-          950: "#050608",
-          900: "#090A0F",
-          850: "#0D0F17",
-          800: "#12141D",
+        studio: {
+          950: "#09090b",
+          900: "#101014",
+          850: "#16161a",
+          800: "#202024",
+          700: "#2b2b32",
+          600: "#3f3f46",
         },
-        ethereal: {
-          violet: "#A855F7",
-          cyan: "#38BDF8",
-          lilac: "#C084FC",
-          rose: "#F43F5E",
+        ivory: {
+          50: "#fafafa",
+          100: "#f4f4f5",
+          200: "#e4e4e7",
+          300: "#d4d4d8",
+          400: "#a1a1aa",
+        },
+        accent: {
+          warm: "#d4a359",
+          amber: "#e2b876",
+          silver: "#e4e4e7",
         },
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Playfair Display", "Georgia", "serif"],
+        serif: ["var(--font-serif)", "Newsreader", "Shippori Mincho", "Georgia", "serif"],
         sans: ["var(--font-sans)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
+        mono: ["var(--font-mono)", "Space Mono", "JetBrains Mono", "monospace"],
       },
-      animation: {
-        "aura-slow": "auraDrift 16s ease-in-out infinite alternate",
-        "aura-reverse": "auraReverse 20s ease-in-out infinite alternate",
-      },
-      keyframes: {
-        auraDrift: {
-          "0%": { transform: "translate(0, 0) scale(1)", opacity: "0.14" },
-          "50%": { transform: "translate(40px, -30px) scale(1.1)", opacity: "0.22" },
-          "100%": { transform: "translate(-30px, 20px) scale(0.95)", opacity: "0.16" },
-        },
-        auraReverse: {
-          "0%": { transform: "translate(0, 0) scale(1)", opacity: "0.12" },
-          "50%": { transform: "translate(-40px, 35px) scale(1.15)", opacity: "0.18" },
-          "100%": { transform: "translate(25px, -20px) scale(1)", opacity: "0.14" },
-        },
+      transitionTimingFunction: {
+        "out-ui": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "in-out-ui": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "spring": "cubic-bezier(0.175, 0.885, 0.32, 1.1)",
       },
     },
   },
