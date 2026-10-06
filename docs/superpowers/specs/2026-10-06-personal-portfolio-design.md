@@ -107,11 +107,18 @@ The portfolio features a single-page smooth scroll architecture with chapter tra
   * Secondary Button: *"Initiate Transmission ✦"* (smooth scrolls to `#contact`)
 * **Micro-manifesto:** Concise personal statement establishing identity and focus.
 
-### 3. Chapter 02: About Me (`AboutSection.tsx`)
-* Two-column editorial spread:
-  * Left Column: Large stylized pull-quote, profile image/avatar with subtle glow ring, and location/status metadata.
-  * Right Column: Narrative paragraphs detailing engineering philosophy, passions, and systems work.
-* Highlight metric cards: e.g. *"Fullstack & Systems"*, *"Open Source Focus"*, *"Modern Web & Linux Architect"*.
+### 3. Chapter 02: About Me, Experience & Education (`AboutSection.tsx`)
+* **Editorial Layout:** Multi-part magazine spread structured into three harmonious facets:
+  * **02.1 Profile & Philosophy:**
+    * Two-column split: Left features large stylized pull-quote, avatar glow ring, location (`Manila / Remote`), and status badge; Right features narrative biography detailing engineering mindset and passion for elegant systems.
+    * Highlight metric cards: e.g. *"Fullstack & Systems"*, *"Open Source Focus"*, *"Modern Web & Linux Architect"*.
+  * **02.2 Experience Ledger (Timeline):**
+    * Editorial timeline/ledger showcasing career milestones, developer roles, internships, and key project lead experience.
+    * Displays role/title, company or organization, active date range, impact bullet points, and core technologies leveraged.
+  * **02.3 Education & Academia:**
+    * Academic background cards with degree/program, institution/university, honors/awards, and coursework focus.
+    * Sleek frosted glass cards with subtle graduation/academic iconography.
+
 
 ### 4. Chapter 03: Projects Showcase (`ProjectsSection.tsx` & `ProjectModal.tsx`)
 * Asymmetric responsive grid showcasing curated projects.
@@ -208,6 +215,26 @@ export interface Certification {
   credentialUrl?: string;
 }
 
+export interface Experience {
+  id: string;
+  role: string;
+  company: string;
+  location?: string;
+  period: string; // e.g. "2024 - Present"
+  description: string[];
+  technologies: string[];
+}
+
+export interface Education {
+  id: string;
+  degree: string;
+  institution: string;
+  period: string;
+  location?: string;
+  honors?: string;
+  details?: string[];
+}
+
 export interface PortfolioConfig {
   personal: {
     name: string;
@@ -219,6 +246,8 @@ export interface PortfolioConfig {
     availability: string;
   };
   socials: SocialLink[];
+  experience: Experience[];
+  education: Education[];
   projects: Project[];
   skills: SkillCategory[];
   certifications: Certification[];
