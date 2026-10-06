@@ -1,5 +1,6 @@
 import NavigationBar from "@/components/layout/NavigationBar";
 import HeroSection from "@/components/sections/HeroSection";
+import AboutSection from "@/components/sections/AboutSection";
 import Footer from "@/components/layout/Footer";
 
 export default function Home() {
@@ -7,7 +8,9 @@ export default function Home() {
     <main className="min-h-screen text-slate-100 selection:bg-ethereal-violet/30">
       <NavigationBar />
       <HeroSection />
+      <AboutSection />
       <Footer />
     </main>
   );
 }
+
