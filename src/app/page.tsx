@@ -4,6 +4,7 @@ import AboutSection from "@/components/sections/AboutSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import TechStackSection from "@/components/sections/TechStackSection";
 import CertificationsSection from "@/components/sections/CertificationsSection";
+import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/layout/Footer";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <ProjectsSection />
       <TechStackSection />
       <CertificationsSection />
+      <ContactSection />
       <Footer />
     </main>
   );
