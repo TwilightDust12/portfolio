@@ -1,7 +1,13 @@
+import NavigationBar from "@/components/layout/NavigationBar";
+import HeroSection from "@/components/sections/HeroSection";
+import Footer from "@/components/layout/Footer";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-serif text-ethereal-violet">Ethereal Editorial Portfolio</h1>
+    <main className="min-h-screen text-slate-100 selection:bg-ethereal-violet/30">
+      <NavigationBar />
+      <HeroSection />
+      <Footer />
     </main>
   );
 }
