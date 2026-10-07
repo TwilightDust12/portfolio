@@ -67,7 +67,7 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
         <button
           type="button"
           onClick={handleCopy}
-          className={`btn-press px-4 py-2 rounded-xl text-xs font-mono font-medium transition-[background-color,border-color,color,transform] duration-150 ease-out inline-flex items-center gap-2 border select-none ${
+          className={`btn-press px-4 py-2.5 sm:py-2 rounded-xl text-xs font-mono font-medium transition-[background-color,border-color,color,transform] duration-150 ease-out inline-flex items-center gap-2 border select-none touch-manipulation ${
             copied
               ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-600 dark:text-emerald-400"
               : "bg-accent-text/10 border-accent-text/25 text-accent-text hover:bg-accent-text/20"
@@ -90,7 +90,7 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
         {/* Direct Mailto Secondary Action */}
         <a
           href={`mailto:${email}`}
-          className="btn-press px-4 py-2 rounded-xl text-xs font-mono font-medium transition-[background-color,border-color,color,transform] duration-150 ease-out inline-flex items-center gap-1.5 border border-ink/15 bg-ink/5 hover:bg-ink/10 text-ink"
+          className="btn-press px-4 py-2.5 sm:py-2 rounded-xl text-xs font-mono font-medium transition-[background-color,border-color,color,transform] duration-150 ease-out inline-flex items-center gap-1.5 border border-ink/15 bg-ink/5 hover:bg-ink/10 text-ink touch-manipulation"
           aria-label="Compose email via mailto link"
         >
           <span>Direct Mail</span>

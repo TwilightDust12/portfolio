@@ -153,7 +153,7 @@ export function ContactSection() {
                       <button
                         type="button"
                         onClick={(e) => handleCopyDiscord(e, social.username)}
-                        className="text-ink/40 group-hover:text-accent-text hover:opacity-100 transition-opacity p-1 rounded hover:bg-ink/5"
+                        className="relative after:absolute after:-inset-2 min-w-[32px] min-h-[32px] flex items-center justify-center text-ink/40 group-hover:text-accent-text hover:opacity-100 transition-opacity p-1.5 rounded hover:bg-ink/5 touch-manipulation"
                         title="Copy Discord username"
                         aria-label="Copy Discord username"
                       >
@@ -168,7 +168,7 @@ export function ContactSection() {
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-ink/40 group-hover:text-accent-text group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all p-1"
+                        className="relative after:absolute after:-inset-2 min-w-[32px] min-h-[32px] flex items-center justify-center text-ink/40 group-hover:text-accent-text group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all p-1.5 touch-manipulation"
                         aria-label={`Open ${social.label}`}
                       >
                         <ArrowUpRight className="w-4 h-4" />
@@ -189,7 +189,7 @@ export function ContactSection() {
                     <button
                       type="button"
                       onClick={(e) => handleCopyDiscord(e, social.username)}
-                      className="font-mono text-[10px] text-accent-text hover:underline flex items-center gap-1"
+                      className="font-mono text-[10px] text-accent-text hover:underline flex items-center gap-1 py-1 touch-manipulation"
                     >
                       <span>{discordCopied ? "Copied tag ✓" : "Copy tag"}</span>
                     </button>
@@ -198,7 +198,7 @@ export function ContactSection() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-[10px] text-accent-text hover:underline flex items-center gap-1 group-hover:text-accent-text"
+                      className="font-mono text-[10px] text-accent-text hover:underline flex items-center gap-1 group-hover:text-accent-text py-1 touch-manipulation"
                     >
                       <span>Connect</span>
                       <ArrowUpRight className="w-3 h-3" />

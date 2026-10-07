@@ -103,9 +103,12 @@ export default function HeroSection() {
             <a
               href="/cv.pdf"
               download
-              className="btn-press px-6 py-3 rounded-xl bg-accent-text text-white font-medium text-sm flex items-center gap-2 shadow-lg shadow-accent-text/20 hover:opacity-95"
+              className="btn-press px-6 py-3 rounded-xl bg-accent-text text-white dark:text-[#11111b] font-semibold text-sm flex items-center gap-2.5 shadow-lg shadow-accent-text/20 hover:opacity-95"
             >
               <span>Download CV ↓</span>
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-black/15 dark:bg-black/25 select-none">
+                PDF
+              </span>
             </a>
             <a
               href="#works"
@@ -128,7 +131,7 @@ export default function HeroSection() {
                 rel="noopener noreferrer"
                 aria-label={social.label}
                 title={`${social.label} (${social.username})`}
-                className="btn-press p-2 rounded-lg border border-ink/15 bg-ink/5 hover:bg-ink/10 hover:border-accent-text/40 text-ink/70 hover:text-accent-text transition-colors flex items-center justify-center"
+                className="btn-press relative after:absolute after:-inset-1 min-w-[38px] min-h-[38px] sm:min-w-[36px] sm:min-h-[36px] p-2 rounded-lg border border-ink/15 bg-ink/5 hover:bg-ink/10 hover:border-accent-text/40 text-ink/70 hover:text-accent-text transition-colors flex items-center justify-center touch-manipulation"
               >
                 {socialIconMap[social.platform] ?? (
                   <span className="font-mono text-xs uppercase">

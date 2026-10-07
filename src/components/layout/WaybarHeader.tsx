@@ -131,15 +131,22 @@ export function WaybarHeader() {
                   e.preventDefault();
                   handleScroll(ws.id);
                 }}
-                className={`btn-press font-mono text-xs w-9 h-9 rounded-xl flex items-center justify-center transition-[color,background-color,border-color,transform] duration-150 ease-out ${
+                className={`btn-press relative after:absolute after:-inset-1.5 font-mono text-xs rounded-xl flex items-center justify-center transition-all duration-200 ease-out touch-manipulation ${
                   isActive
-                    ? "text-accent-text bg-accent-text/15 border border-accent-text/40 font-bold shadow-sm"
-                    : "text-ink/70 hover:text-ink bg-ink/5 border border-ink/5"
+                    ? "px-2.5 h-9 text-accent-text bg-accent-text/15 border border-accent-text/40 font-bold shadow-sm"
+                    : "w-9 h-9 text-ink/70 hover:text-ink bg-ink/5 border border-ink/5"
                 }`}
                 aria-label={`Jump to ${ws.label} section`}
                 aria-current={isActive ? "true" : undefined}
               >
-                <span>{ws.num}</span>
+                <span className="flex items-center gap-1.5">
+                  <span>{ws.num}</span>
+                  {isActive && (
+                    <span className="text-[10px] tracking-tight uppercase">
+                      {ws.label}
+                    </span>
+                  )}
+                </span>
               </a>
             );
           })}

@@ -43,7 +43,7 @@ export function ProjectModal({
                 </div>
                 <Dialog.Close asChild>
                   <button
-                    className="p-1.5 text-ink/60 hover:text-ink rounded-lg border border-ink/15 hover:border-ink/40 transition-colors btn-press ml-auto"
+                    className="relative after:absolute after:-inset-2 min-w-[36px] min-h-[36px] p-2 text-ink/60 hover:text-ink rounded-lg border border-ink/15 hover:border-ink/40 transition-colors btn-press ml-auto flex items-center justify-center touch-manipulation"
                     aria-label="Close dialog"
                   >
                     <X className="w-4 h-4" />
@@ -160,7 +160,7 @@ export function ProjectModal({
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-press inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-text text-white hover:bg-accent-text/90 transition-colors font-mono text-xs font-medium shadow-sm"
+                      className="btn-press inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-text text-white dark:text-[#11111b] hover:bg-accent-text/90 transition-colors font-mono text-xs font-semibold shadow-sm"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       <span>Live Demo ↗</span>

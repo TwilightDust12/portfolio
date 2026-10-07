@@ -30,7 +30,7 @@ export function ColophonFooter() {
   ];
 
   return (
-    <footer className="border-t border-ink/10 mt-20 pt-12 pb-16 px-4 max-w-5xl mx-auto">
+    <footer className="border-t border-ink/10 mt-20 pt-12 pb-28 sm:pb-16 px-4 max-w-5xl mx-auto">
       {/* Colophon Grid (3 columns on desktop) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-10 border-b border-ink/10">
         {/* Column 1: System Telemetry & Signature */}

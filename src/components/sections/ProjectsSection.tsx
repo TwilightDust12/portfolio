@@ -142,7 +142,7 @@ export function ProjectsSection() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 text-ink/60 hover:text-ink rounded-lg border border-ink/10 hover:border-ink/30 transition-[color,border-color,transform] duration-150 ease-out btn-press"
+                    className="relative after:absolute after:-inset-2 min-w-[36px] min-h-[36px] p-2 text-ink/60 hover:text-ink rounded-lg border border-ink/10 hover:border-ink/30 transition-[color,border-color,transform] duration-150 ease-out btn-press flex items-center justify-center touch-manipulation"
                     aria-label={`${project.title} GitHub repository`}
                   >
                     <Github className="w-4 h-4" />
@@ -153,7 +153,7 @@ export function ProjectsSection() {
                     href={project.demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 text-ink/60 hover:text-ink rounded-lg border border-ink/10 hover:border-ink/30 transition-[color,border-color,transform] duration-150 ease-out btn-press"
+                    className="relative after:absolute after:-inset-2 min-w-[36px] min-h-[36px] p-2 text-ink/60 hover:text-ink rounded-lg border border-ink/10 hover:border-ink/30 transition-[color,border-color,transform] duration-150 ease-out btn-press flex items-center justify-center touch-manipulation"
                     aria-label={`${project.title} live demo`}
                   >
                     <ExternalLink className="w-4 h-4" />
