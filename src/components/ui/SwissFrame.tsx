@@ -36,35 +36,6 @@ export function SwissFrame({
     <div
       className={`border border-black/15 dark:border-white/12 relative bg-white/85 dark:bg-[#181825]/65 backdrop-blur-md shadow-[0_2px_12px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] transition-[transform,border-color,box-shadow,background-color] duration-200 ease-out ${accentBorderClass} ${safeClassName}`}
     >
-      {/* Precision Calipers at 4 Corners */}
-      {showCalipers && (
-        <>
-          <span
-            className="absolute -top-1 -left-1 text-accent-text font-mono text-xs font-bold select-none pointer-events-none leading-none z-10"
-            aria-hidden="true"
-          >
-            ┌
-          </span>
-          <span
-            className="absolute -top-1 -right-1 text-accent-text font-mono text-xs font-bold select-none pointer-events-none leading-none z-10"
-            aria-hidden="true"
-          >
-            ┐
-          </span>
-          <span
-            className="absolute -bottom-1 -left-1 text-accent-text font-mono text-xs font-bold select-none pointer-events-none leading-none z-10"
-            aria-hidden="true"
-          >
-            └
-          </span>
-          <span
-            className="absolute -bottom-1 -right-1 text-accent-text font-mono text-xs font-bold select-none pointer-events-none leading-none z-10"
-            aria-hidden="true"
-          >
-            ┘
-          </span>
-        </>
-      )}
 
       {/* Monospace Tag Label */}
       {tag && (

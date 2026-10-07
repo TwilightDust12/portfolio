@@ -52,7 +52,6 @@ export function ChronicleSection() {
           <SwissFrame
             tag="ACADEMIC DOSSIER // STI COLLEGE"
             accentBorder="green"
-            showCalipers={true}
             className="p-6 sm:p-8 rounded-2xl h-full flex flex-col justify-between"
           >
             <div>
@@ -171,7 +170,6 @@ export function ChronicleSection() {
           <SwissFrame
             tag="CULTURE &amp; IDENTITY"
             accentBorder="pink"
-            showCalipers={true}
             className="p-6 sm:p-7 rounded-2xl h-full flex flex-col justify-between"
           >
             <div className="space-y-6">

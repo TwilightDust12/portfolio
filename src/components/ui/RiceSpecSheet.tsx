@@ -70,7 +70,6 @@ export function RiceSpecSheet({ className = "" }: { className?: string }) {
     <SwissFrame
       tag="DOTFILES &amp; ENVIRONMENT"
       accentBorder="mauve"
-      showCalipers={true}
       className={`p-6 sm:p-8 rounded-2xl ${className}`}
     >
       {/* Header with Fastfetch-style terminal prompt */}

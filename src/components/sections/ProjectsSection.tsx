@@ -53,7 +53,6 @@ export function ProjectsSection() {
                 key={flagship.id}
                 tag="FLAGSHIP CAPSTONE THESIS // STI COLLEGE LUCENA"
                 accentBorder="sky"
-                showCalipers={true}
                 className="p-6 sm:p-8 rounded-2xl border-black/20 dark:border-white/15 hover:border-accent-sky/50 transition-[transform,border-color,box-shadow] duration-200 ease-out shadow-md hover:shadow-xl"
               >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -204,7 +203,6 @@ export function ProjectsSection() {
                   <SwissFrame
                     tag={domainTag}
                     accentBorder={borderAccent}
-                    showCalipers={true}
                     className="p-6 rounded-2xl flex flex-col justify-between hover:border-accent-text/40 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:shadow-lg dark:hover:shadow-black/40 hover:-translate-y-1 h-full"
                   >
                     <div className="flex flex-col space-y-4">

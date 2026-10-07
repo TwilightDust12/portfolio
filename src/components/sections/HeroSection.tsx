@@ -198,7 +198,6 @@ export default function HeroSection() {
               tag="PORTRAIT // 01"
               accentBorder="mauve"
               showCrosshairs={true}
-              showCalipers={true}
               className="p-3 sm:p-4 rounded-2xl relative shadow-lg hover:shadow-2xl transition-[transform,border-color,box-shadow] duration-200 ease-out"
             >
               {/* Clickable Image Container */}

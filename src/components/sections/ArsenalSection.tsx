@@ -120,7 +120,6 @@ export function ArsenalSection() {
               <SwissFrame
                 tag={meta.tag}
                 accentBorder={meta.accent}
-                showCalipers={true}
                 className="p-6 sm:p-7 rounded-2xl flex flex-col justify-between h-full hover:border-black/30 dark:hover:border-white/25 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:shadow-lg dark:hover:shadow-black/40"
               >
                 <div className="mb-4">
