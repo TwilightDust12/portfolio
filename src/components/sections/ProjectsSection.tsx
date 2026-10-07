@@ -1,59 +1,158 @@
 "use client";
 
-import React from "react";
-import PixelMascotDivider from "@/components/ui/PixelMascotDivider";
+import React, { useState } from "react";
 import { portfolioData } from "@/data/portfolio";
+import { SwissFrame } from "@/components/ui/SwissFrame";
+import { ProjectModal } from "@/components/ui/ProjectModal";
+import { Project } from "@/types/portfolio";
+import {
+  FolderGit2,
+  ExternalLink,
+  Layers,
+  Sparkles,
+  Users,
+  CheckCircle2,
+} from "lucide-react";
+import { GithubIcon as Github } from "@/components/ui/Icons";
 
-export default function ProjectsSection() {
+export function ProjectsSection() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
   return (
-    <section id="projects">
-      <PixelMascotDivider number="03" label="PROJECTS" />
+    <section id="works" className="max-w-5xl mx-auto px-4 py-20 relative">
+      {/* Anchor alias to support legacy navigation targeting #projects */}
+      <span id="projects" className="absolute -top-20 invisible" aria-hidden="true" />
 
-      <div className="space-y-8">
-        {portfolioData.projects.map((project, index) => (
-          <div
+      {/* Chapter Header */}
+      <div className="mb-10">
+        <div className="flex items-center gap-2 font-mono text-xs text-ink/60 tracking-wider mb-2">
+          <FolderGit2 className="w-4 h-4 text-accent-text" />
+          <span className="text-accent-text font-semibold">
+            [03] // SELECTED WORKS
+          </span>
+          <span className="text-ink/30">―</span>
+          <span className="hidden sm:inline text-ink/50">SYSTEMS & ARCHITECTURE</span>
+        </div>
+
+        <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
+          architected in code.
+        </h2>
+
+        <p className="font-sans text-sm sm:text-base text-ink/70 mt-3 leading-relaxed max-w-3xl">
+          A curated index of production systems, academic thesis engineering, and creative experiments.
+        </p>
+      </div>
+
+      {/* 2-Column Responsive Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+        {portfolioData.projects.map((project) => (
+          <SwissFrame
             key={project.id}
-            className="rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-6 sm:p-8 flex flex-col lg:flex-row gap-8 items-center justify-between"
+            tag={project.isTeamProject ? "THESIS // TEAM PROJECT" : "PROJECT // SOLO"}
+            showCrosshairs={true}
+            showCalipers={true}
+            className="p-6 rounded-xl flex flex-col justify-between"
           >
-            {/* Left Content */}
-            <div className="flex-1 space-y-4">
-              <div className="flex items-center justify-between gap-4">
-                <h3 className="font-mono text-lg sm:text-xl font-bold text-white flex items-center gap-2">
-                  <span className="text-zinc-500">&gt;</span>
-                  <span>{project.title}</span>
-                </h3>
-
-                <span className="font-mono text-[11px] text-zinc-400 px-3 py-1 rounded-full border border-dashed border-zinc-700 uppercase tracking-wider">
-                  {index === 0 ? "IN PROGRESS" : index === 1 ? "2026" : "ARCHIVED"}
-                </span>
+            <div className="flex flex-col space-y-4">
+              {/* Top row: Project title and badges */}
+              <div>
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="font-mono text-lg font-bold text-ink">
+                    {project.title}
+                  </h3>
+                  <div className="flex flex-wrap items-center gap-1.5 shrink-0">
+                    {project.isTeamProject && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-accent-text/10 text-accent-text border border-accent-text/20">
+                        <Users className="w-3 h-3" />
+                        <span>Team Project (Thesis)</span>
+                      </span>
+                    )}
+                    {project.featured && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-ink/10 text-ink/80 border border-ink/15">
+                        <Sparkles className="w-3 h-3 text-accent-text" />
+                        <span>Featured</span>
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <p className="font-sans text-xs text-accent-text font-medium mt-1">
+                  {project.subtitle}
+                </p>
               </div>
 
-              <p className="font-sans text-sm text-zinc-300 leading-relaxed max-w-xl">
-                {project.description}
-              </p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 pt-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-mono text-xs text-zinc-300 px-3 py-1 rounded-full bg-zinc-800/80 border border-zinc-700/60"
-                  >
-                    {tag}
+              {/* 4-Line Breakdown explicitly visible on the card */}
+              <div className="space-y-3 pt-3 border-t border-ink/10">
+                {/* Problem */}
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink/50 block mb-0.5">
+                    Problem
                   </span>
-                ))}
-              </div>
+                  <p className="text-xs text-ink/70 line-clamp-2">
+                    {project.problem}
+                  </p>
+                </div>
 
-              {/* Action Links */}
-              <div className="flex items-center gap-4 pt-4 font-mono text-xs">
+                {/* Role */}
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink/50 block mb-0.5">
+                    Role
+                  </span>
+                  <p className="font-mono text-[11px] text-ink/90">
+                    {project.role}
+                  </p>
+                </div>
+
+                {/* Stack */}
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink/50 flex items-center gap-1 mb-1">
+                    <Layers className="w-3 h-3 text-ink/40" />
+                    <span>Stack</span>
+                  </span>
+                  <div className="flex flex-wrap gap-1">
+                    {project.stack.map((item) => (
+                      <span
+                        key={item}
+                        className="px-2 py-0.5 rounded text-[11px] font-mono bg-ink/5 border border-ink/10 text-ink/80"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Outcome */}
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink/50 flex items-center gap-1 mb-0.5">
+                    <CheckCircle2 className="w-3 h-3 text-accent-text" />
+                    <span>Outcome</span>
+                  </span>
+                  <p className="text-xs text-ink/80">
+                    {project.outcome}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer Action Row */}
+            <div className="flex items-center justify-between gap-3 pt-5 border-t border-ink/10 mt-6">
+              <button
+                type="button"
+                onClick={() => setSelectedProject(project)}
+                className="btn-press inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent-text/10 hover:bg-accent-text/20 text-accent-text border border-accent-text/20 font-mono text-xs font-semibold transition-colors"
+              >
+                <span>Case Study Deep-Dive ✦</span>
+              </button>
+
+              <div className="flex items-center gap-2">
                 {project.githubUrl && (
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-zinc-400 hover:text-white underline decoration-zinc-700 underline-offset-4 transition-colors"
+                    className="p-1.5 text-ink/60 hover:text-ink rounded-lg border border-ink/10 hover:border-ink/30 transition-colors btn-press"
+                    aria-label={`${project.title} GitHub repository`}
                   >
-                    source ↗
+                    <Github className="w-4 h-4" />
                   </a>
                 )}
                 {project.demoUrl && (
@@ -61,58 +160,26 @@ export default function ProjectsSection() {
                     href={project.demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-zinc-400 hover:text-white underline decoration-zinc-700 underline-offset-4 transition-colors"
+                    className="p-1.5 text-ink/60 hover:text-ink rounded-lg border border-ink/10 hover:border-ink/30 transition-colors btn-press"
+                    aria-label={`${project.title} live demo`}
                   >
-                    live ↗
+                    <ExternalLink className="w-4 h-4" />
                   </a>
                 )}
               </div>
             </div>
-
-            {/* Right: Device & Browser Window Mockup */}
-            <div className="w-full lg:w-[380px] h-[210px] rounded-xl border border-zinc-800 bg-[#0d0d12] p-3 shadow-2xl relative flex-shrink-0 overflow-hidden group">
-              {/* Browser Chrome Bar */}
-              <div className="flex items-center gap-1.5 pb-2 border-b border-zinc-800/80 mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
-                <span className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
-                <span className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
-                <span className="ml-2 font-mono text-[9px] text-zinc-600 truncate">
-                  localhost:3000/{project.id}
-                </span>
-              </div>
-
-              {/* Mockup Canvas Screen */}
-              <div className="rounded-lg bg-zinc-950 p-3 h-[155px] border border-zinc-900 flex flex-col justify-between">
-                <div className="space-y-1.5">
-                  <div className="h-3 w-28 bg-zinc-800 rounded" />
-                  <div className="h-2 w-44 bg-zinc-900 rounded" />
-                  <div className="grid grid-cols-3 gap-1.5 pt-2">
-                    <div className="h-10 bg-zinc-900/80 rounded border border-zinc-850" />
-                    <div className="h-10 bg-zinc-900/80 rounded border border-zinc-850" />
-                    <div className="h-10 bg-zinc-900/80 rounded border border-zinc-850" />
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between font-mono text-[9px] text-zinc-600 pt-1">
-                  <span>● PIPELINE ACTIVE</span>
-                  <span>v2.4.0</span>
-                </div>
-              </div>
-
-              {/* Floating Mobile Phone Mockup Overlay */}
-              <div className="absolute -bottom-2 -right-1 w-28 h-36 rounded-xl border-2 border-zinc-700 bg-black p-1.5 shadow-2xl flex flex-col justify-between transform rotate-3 group-hover:rotate-0 transition-transform duration-300">
-                <div className="w-8 h-1 bg-zinc-800 rounded-full mx-auto mb-1" />
-                <div className="rounded bg-zinc-900 flex-1 p-1.5 space-y-1">
-                  <div className="h-2 w-12 bg-zinc-700 rounded" />
-                  <div className="h-1.5 w-16 bg-zinc-800 rounded" />
-                  <div className="h-8 bg-zinc-800/60 rounded mt-2" />
-                </div>
-                <div className="w-4 h-0.5 bg-zinc-800 rounded-full mx-auto mt-1" />
-              </div>
-            </div>
-          </div>
+          </SwissFrame>
         ))}
       </div>
+
+      {/* Project Modal Case Study Deep-Dive */}
+      <ProjectModal
+        project={selectedProject}
+        open={!!selectedProject}
+        onOpenChange={(open) => !open && setSelectedProject(null)}
+      />
     </section>
   );
 }
+
+export default ProjectsSection;

@@ -1,141 +1,192 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Check } from "lucide-react";
-import { GithubIcon } from "@/components/ui/Icons";
+import React from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 import { Project } from "@/types/portfolio";
+import { portfolioData } from "@/data/portfolio";
+import { X, ExternalLink, CheckCircle2 } from "lucide-react";
+import { GithubIcon as Github } from "@/components/ui/Icons";
 
-interface ProjectModalProps {
+export interface ProjectModalProps {
   project: Project | null;
-  onClose: () => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
-export default function ProjectModal({ project, onClose }: ProjectModalProps) {
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-
-    if (project) {
-      window.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden";
-    }
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [project, onClose]);
+export function ProjectModal({
+  project,
+  open,
+  onOpenChange,
+}: ProjectModalProps) {
+  const projectIndex = project
+    ? portfolioData.projects.findIndex((p) => p.id === project.id) + 1
+    : 1;
 
   return (
-    <AnimatePresence>
-      {project && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm"
-            aria-hidden="true"
-          />
-
-          {/* Dialog Container */}
-          <motion.div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="project-modal-title"
-            initial={{ opacity: 0, scale: 0.96, y: 12 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: 12 }}
-            transition={{ type: "spring", duration: 0.32, bounce: 0.08 }}
-            className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl border border-hairline bg-studio-950 p-6 sm:p-8 shadow-2xl z-10"
-          >
-            {/* Header meta */}
-            <div className="flex items-center justify-between border-b border-hairline pb-4 mb-6">
-              <span className="font-mono text-xs tracking-wider text-accent-warm uppercase">
-                INDEX // {project.id}
-              </span>
-              <button
-                onClick={onClose}
-                className="p-1.5 text-zinc-400 hover:text-white rounded-lg border border-hairline hover:border-zinc-700 transition-colors btn-press"
-                aria-label="Close dialog"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Title & Subtitle */}
-            <h2 id="project-modal-title" className="font-serif text-2xl sm:text-3xl font-normal text-ivory-100 mb-2">
-              {project.title}
-            </h2>
-            <p className="font-mono text-xs text-zinc-400 mb-6">{project.subtitle}</p>
-
-            {/* Tech Tags */}
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="font-mono text-xs text-zinc-300 px-2.5 py-1 rounded-md border border-hairline bg-studio-900"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Detailed Description */}
-            <div className="space-y-4 text-sm sm:text-base text-zinc-300 leading-relaxed font-sans border-b border-hairline pb-6 mb-6">
-              <p>{project.longDescription || project.description}</p>
-            </div>
-
-            {/* Highlights */}
-            {project.highlights && project.highlights.length > 0 && (
-              <div className="mb-8">
-                <h3 className="font-mono text-xs uppercase tracking-wider text-zinc-400 mb-3">
-                  Technical Highlights
-                </h3>
-                <ul className="space-y-2">
-                  {project.highlights.map((highlight, index) => (
-                    <li key={index} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                      <Check className="w-4 h-4 text-accent-warm flex-shrink-0 mt-0.5" />
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
+    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm transition-opacity" />
+        <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-2xl max-h-[85vh] overflow-y-auto p-6 sm:p-8 rounded-2xl bg-bg border border-ink/20 shadow-2xl focus:outline-none">
+          {project && (
+            <>
+              {/* Top Bar: Project Tag Pill, Team Badge, Close Button */}
+              <div className="flex items-center justify-between gap-3 border-b border-ink/10 pb-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-ink/5 border border-ink/15 text-accent-text font-semibold uppercase tracking-wider">
+                    {`[PROJECT-0${projectIndex}] // CASE STUDY`}
+                  </span>
+                  {project.isTeamProject && (
+                    <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-accent-text/10 text-accent-text border border-accent-text/20 uppercase tracking-wider">
+                      TEAM PROJECT // THESIS
+                    </span>
+                  )}
+                </div>
+                <Dialog.Close asChild>
+                  <button
+                    className="p-1.5 text-ink/60 hover:text-ink rounded-lg border border-ink/15 hover:border-ink/40 transition-colors btn-press ml-auto"
+                    aria-label="Close dialog"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </Dialog.Close>
               </div>
-            )}
 
-            {/* Links */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              {project.demoUrl && (
-                <a
-                  href={project.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-press inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ivory-100 text-studio-950 font-sans text-xs font-medium hover:bg-white transition-colors"
-                >
-                  <span>Visit Project</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
+              {/* Title & Subtitle */}
+              <Dialog.Title className="font-mono text-2xl font-bold text-ink mt-3">
+                {project.title}
+              </Dialog.Title>
+              <Dialog.Description className="font-sans text-sm text-ink/70 mt-1">
+                {project.subtitle}
+              </Dialog.Description>
+
+              {/* 4-Line Case Study Breakdown */}
+              <div className="mt-6 space-y-4">
+                {/* Problem */}
+                <div className="p-4 rounded-xl bg-ink/5 border border-ink/10">
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-accent-text font-semibold mb-1">
+                    Problem Space
+                  </div>
+                  <p className="font-sans text-xs sm:text-sm text-ink/80 leading-relaxed">
+                    {project.problem}
+                  </p>
+                </div>
+
+                {/* Role */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-mono text-xs text-ink/50 uppercase tracking-wider">
+                    Role:
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-accent-text/10 text-accent-text border border-accent-text/20 font-mono text-xs font-medium">
+                    {project.role}
+                  </span>
+                </div>
+
+                {/* Stack */}
+                <div>
+                  <span className="block font-mono text-xs text-ink/50 uppercase tracking-wider mb-2">
+                    Stack & Technologies:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 rounded-md text-xs font-mono bg-ink/5 border border-ink/10 text-ink/80"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Outcome */}
+                <div className="p-4 rounded-xl bg-accent-text/5 border border-accent-text/20">
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-accent-text font-semibold mb-1">
+                    Outcome & Impact
+                  </div>
+                  <p className="font-sans text-xs sm:text-sm text-ink/90 leading-relaxed">
+                    {project.outcome}
+                  </p>
+                </div>
+              </div>
+
+              {/* Long Description / Architectural Highlights */}
+              {project.longDescription && (
+                <div className="mt-6 space-y-2">
+                  <h4 className="font-mono text-xs uppercase tracking-wider text-ink/60">
+                    System Architecture & Overview
+                  </h4>
+                  <p className="font-sans text-xs sm:text-sm text-ink/75 leading-relaxed">
+                    {project.longDescription}
+                  </p>
+                </div>
               )}
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-press inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-hairline bg-studio-900 text-zinc-300 font-sans text-xs hover:text-white transition-colors"
-                >
-                  <GithubIcon className="w-3.5 h-3.5" />
-                  <span>Source Code</span>
-                </a>
+
+              {project.highlights && project.highlights.length > 0 && (
+                <div className="mt-6 space-y-3">
+                  <h4 className="font-mono text-xs uppercase tracking-wider text-ink/60">
+                    Architectural Highlights
+                  </h4>
+                  <ul className="space-y-2">
+                    {project.highlights.map((highlight, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-start gap-2.5 text-xs sm:text-sm text-ink/80"
+                      >
+                        <CheckCircle2 className="w-4 h-4 text-accent-text shrink-0 mt-0.5" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
-            </div>
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>
+
+              {project.artAttribution && (
+                <div className="mt-4 p-3 rounded-lg bg-ink/5 border border-dashed border-ink/15 font-mono text-[11px] text-ink/60 italic">
+                  ✦ {project.artAttribution}
+                </div>
+              )}
+
+              {/* Footer Action Links */}
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-ink/10 mt-6">
+                <div className="flex flex-wrap items-center gap-3">
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-press inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-ink/15 bg-ink/5 text-ink hover:border-ink/30 hover:bg-ink/10 transition-colors font-mono text-xs"
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                      <span>Source Repository ↗</span>
+                    </a>
+                  )}
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-press inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-text text-white hover:bg-accent-text/90 transition-colors font-mono text-xs font-medium shadow-sm"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      <span>Live Demo ↗</span>
+                    </a>
+                  )}
+                </div>
+                <Dialog.Close asChild>
+                  <button
+                    type="button"
+                    className="btn-press px-4 py-2 rounded-lg border border-ink/15 text-ink/70 hover:text-ink font-mono text-xs transition-colors"
+                  >
+                    Close
+                  </button>
+                </Dialog.Close>
+              </div>
+            </>
+          )}
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }
+
+export default ProjectModal;
