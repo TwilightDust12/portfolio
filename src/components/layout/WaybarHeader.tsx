@@ -152,3 +152,5 @@ export function WaybarHeader() {
     </>
   );
 }
+
+export default WaybarHeader;
