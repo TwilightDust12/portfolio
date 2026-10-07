@@ -1,68 +1,100 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Check, Copy, ArrowUpRight } from "lucide-react";
+import { Mail, Copy, Check, ArrowUpRight } from "lucide-react";
 
 interface CopyEmailButtonProps {
   email: string;
 }
 
-export default function CopyEmailButton({ email }: CopyEmailButtonProps) {
+export function CopyEmailButton({ email }: CopyEmailButtonProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
     try {
-      if (navigator?.clipboard?.writeText) {
+      if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(email);
       } else {
-        const textarea = document.createElement("textarea");
-        textarea.value = email;
-        document.body.appendChild(textarea);
-        textarea.select();
+        // Fallback for non-secure contexts
+        const textArea = document.createElement("textarea");
+        textArea.value = email;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
         document.execCommand("copy");
-        document.body.removeChild(textarea);
+        textArea.remove();
       }
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), 2500);
     } catch {
-      window.prompt("Copy email address:", email);
+      // Graceful fallback attempt
+      try {
+        const textArea = document.createElement("textarea");
+        textArea.value = email;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+        textArea.remove();
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      } catch {
+        // Silently fail if both methods fail
+      }
     }
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-3">
-      {/* Interactive Copy Button */}
-      <button
-        onClick={handleCopy}
-        className="btn-press group relative inline-flex items-center gap-3 px-5 py-3 rounded-full border border-zinc-700/80 bg-studio-900/80 text-zinc-200 font-mono text-xs hover:border-zinc-500 hover:text-white transition-colors"
-        aria-label="Copy email address"
-      >
-        <Mail className="w-4 h-4 text-accent-warm" />
-        <span className="font-sans font-medium text-sm text-ivory-100">{email}</span>
-        <span className="text-zinc-600">|</span>
-        <span className="flex items-center gap-1.5 text-zinc-400 group-hover:text-zinc-200">
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+      {/* Email Address Display Pill */}
+      <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-ink/15 bg-bg/80 text-ink font-mono text-sm shadow-sm select-all">
+        <Mail className="w-4 h-4 text-accent-text shrink-0" />
+        <span className="tracking-tight">{email}</span>
+      </div>
+
+      <div className="flex items-center gap-2">
+        {/* Copy Button */}
+        <button
+          type="button"
+          onClick={handleCopy}
+          className={`btn-press px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all inline-flex items-center gap-2 border ${
+            copied
+              ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-600 dark:text-emerald-400"
+              : "bg-accent-text/10 border-accent-text/25 text-accent-text hover:bg-accent-text/20"
+          }`}
+          aria-label={copied ? "Email copied to clipboard" : "Copy email address to clipboard"}
+        >
           {copied ? (
             <>
-              <Check className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-emerald-400">Copied</span>
+              <Check className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" />
+              <span>Copied to clipboard ✓</span>
             </>
           ) : (
             <>
               <Copy className="w-3.5 h-3.5" />
-              <span>Copy</span>
+              <span>Copy Address</span>
             </>
           )}
-        </span>
-      </button>
+        </button>
 
-      {/* Direct Mailto */}
-      <a
-        href={`mailto:${email}`}
-        className="btn-press inline-flex items-center gap-2 px-5 py-3 rounded-full border border-hairline bg-studio-950 text-zinc-400 font-sans text-xs hover:text-white hover:border-zinc-700 transition-colors"
-      >
-        <span>Open Mail Client</span>
-        <ArrowUpRight className="w-3.5 h-3.5" />
-      </a>
+        {/* Direct Mailto Secondary Action */}
+        <a
+          href={`mailto:${email}`}
+          className="btn-press px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all inline-flex items-center gap-1.5 border border-ink/15 bg-ink/5 hover:bg-ink/10 text-ink"
+          aria-label="Compose email via mailto link"
+        >
+          <span>Direct Mail</span>
+          <ArrowUpRight className="w-3.5 h-3.5" />
+        </a>
+      </div>
     </div>
   );
 }
+
+export default CopyEmailButton;
