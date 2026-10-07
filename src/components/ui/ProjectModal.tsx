@@ -52,7 +52,7 @@ export function ProjectModal({
               </div>
 
               {/* Title & Subtitle */}
-              <Dialog.Title className="font-mono text-2xl font-bold text-ink mt-3">
+              <Dialog.Title className="font-mono text-2xl sm:text-3xl font-extrabold text-ink mt-3 tracking-tight">
                 {project.title}
               </Dialog.Title>
               <Dialog.Description className="font-sans text-sm text-ink/70 mt-1">

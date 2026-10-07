@@ -31,12 +31,12 @@ export function ProjectsSection() {
             [03] // PRODUCTION WORK &amp; CASE STUDIES
           </div>
 
-          <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
+          <h2 className="font-mono text-3xl sm:text-5xl font-bold text-ink lowercase tracking-tight">
             architected in code. built for real users.
           </h2>
 
           <p className="font-sans text-sm sm:text-base text-ink/75 mt-3 leading-relaxed max-w-3xl">
-            From campus clearance platforms to low-latency Linux audio engines, every project solves a concrete technical challenge.
+            From campus clearance platforms to low-latency Linux systems, every project solves a concrete technical challenge.
           </p>
         </div>
       </MotionFadeUp>
@@ -68,7 +68,7 @@ export function ProjectsSection() {
                     </span>
                   </div>
 
-                  <h3 className="font-mono text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
+                  <h3 className="font-mono text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold text-ink tracking-tight leading-tight">
                     {flagship.title}
                   </h3>
                   <p className="font-sans text-sm sm:text-base text-accent-sky font-bold leading-snug">
