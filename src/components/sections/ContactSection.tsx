@@ -95,7 +95,7 @@ export function ContactSection() {
           tag="PLACEMENT // DIRECT PIPELINE"
           accentBorder="mauve"
           showCalipers={true}
-          className="p-8 sm:p-12 rounded-2xl relative overflow-hidden shadow-lg"
+          className="p-8 sm:p-12 rounded-2xl relative shadow-lg"
         >
           <div className="flex flex-col items-center text-center max-w-2xl mx-auto space-y-6">
             {/* OJT Banner */}
