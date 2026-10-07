@@ -25,16 +25,16 @@ export function ProjectsSection() {
 
       {/* Chapter Header */}
       <div className="mb-10">
+        <div className="font-mono text-xs font-bold text-accent-text tracking-wider uppercase mb-2">
+          [03] // PRODUCTION WORK &amp; CASE STUDIES
+        </div>
+
         <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
-          architected in code.
+          architected in code. built for real users.
         </h2>
 
-        <p className="font-sans text-sm sm:text-base text-accent-text mt-2 font-medium">
-          Selected works and case studies.
-        </p>
-
-        <p className="font-sans text-sm sm:text-base text-ink/70 mt-2 leading-relaxed max-w-3xl">
-          A curated index of production systems, academic thesis engineering, and creative experiments.
+        <p className="font-sans text-sm sm:text-base text-ink/75 mt-3 leading-relaxed max-w-3xl">
+          From campus clearance platforms to low-latency Linux audio engines, every project solves a concrete technical challenge.
         </p>
       </div>
 
@@ -67,8 +67,8 @@ export function ProjectsSection() {
                   <h3 className="font-mono text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
                     {flagship.title}
                   </h3>
-                  <p className="font-sans text-sm text-accent-sky font-semibold">
-                    {flagship.subtitle}
+                  <p className="font-sans text-sm sm:text-base text-accent-sky font-bold leading-snug">
+                    WebC: Multi-role clearance portal automating departmental approval pipelines for STI College Lucena.
                   </p>
 
                   <div className="space-y-3 pt-4 border-t border-black/10 dark:border-white/10">
@@ -181,6 +181,13 @@ export function ProjectsSection() {
                   ? "AUDIO ARCHIVE // WEB AUDIO"
                   : "SYSTEMS // WAYLAND RICE";
 
+              const headlineHook =
+                project.id === "sphere8"
+                  ? "Commercial client portal with structured project intake"
+                  : project.id === "lily-chou-chou"
+                  ? "Real-time ambient sound synthesis with Web Audio API"
+                  : "Sub-5ms PipeWire latency and dynamic Pywal compositor";
+
               return (
                 <SwissFrame
                   key={project.id}
@@ -190,12 +197,15 @@ export function ProjectsSection() {
                   className="p-6 rounded-2xl flex flex-col justify-between hover:border-accent-text/40 transition-all duration-200 ease-out hover:shadow-lg dark:hover:shadow-black/40 hover:-translate-y-1"
                 >
                   <div className="flex flex-col space-y-4">
-                    {/* Top row: Project title and subtitle */}
+                    {/* Top row: Project title and headline hook */}
                     <div>
                       <h4 className="font-mono text-base font-bold text-ink">
                         {project.title}
                       </h4>
-                      <p className="font-sans text-xs text-accent-text font-medium mt-1">
+                      <p className="font-sans text-xs text-accent-text font-bold mt-1">
+                        {headlineHook}
+                      </p>
+                      <p className="font-sans text-[11px] text-ink/65 mt-0.5">
                         {project.subtitle}
                       </p>
                     </div>

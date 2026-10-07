@@ -64,10 +64,15 @@ export default function HeroSection() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Column: Core Identity & Goals */}
         <div className="lg:col-span-7 flex flex-col items-start">
-          {/* Location & Status Badge */}
-          <div className="font-mono text-xs text-ink/70 flex items-center gap-2 mb-4">
-            <MapPin className="w-3.5 h-3.5 text-accent-text" />
-            <span>Lucena City, Philippines</span>
+          {/* Candidate Dossier Kicker & Location */}
+          <div className="font-mono text-xs flex items-center flex-wrap gap-2.5 mb-3">
+            <span className="px-2 py-0.5 rounded bg-accent-text/10 text-accent-text border border-accent-text/25 font-bold tracking-wider">
+              [SYS-ID: 01] // CANDIDATE DOSSIER
+            </span>
+            <span className="text-ink/65 flex items-center gap-1.5 font-medium">
+              <MapPin className="w-3.5 h-3.5 text-accent-text" />
+              <span>Lucena City, Philippines</span>
+            </span>
           </div>
 
           {/* Heading */}
@@ -75,18 +80,14 @@ export default function HeroSection() {
             {portfolioData.personal.name}
           </h1>
 
-          {/* Subtitle */}
-          <p className="font-sans text-lg sm:text-xl text-ink/80 mt-3 font-normal">
-            aspiring full-stack developer{" "}
-            <span className="font-mono text-xs px-2 py-0.5 rounded bg-accent-text/10 text-accent-text border border-accent-text/20 ml-2">
-              systems enthusiast
-            </span>
+          {/* Primary Proposition Headline */}
+          <p className="font-sans text-lg sm:text-xl text-ink font-semibold mt-3 leading-snug max-w-xl">
+            Full-Stack Developer building institutional platforms, resilient web architectures, and low-latency systems.
           </p>
 
-          {/* Bio / Tagline */}
-          <p className="font-sans text-sm sm:text-base text-ink/70 mt-4 leading-relaxed max-w-xl">
-            Doing things, little by little. Building responsive web applications, full-stack systems,
-            and clean user interfaces with Next.js, TypeScript, and modern Linux tooling.
+          {/* Bio / Candidate Philosophy & Background */}
+          <p className="font-sans text-sm sm:text-base text-ink/75 mt-3 leading-relaxed max-w-xl">
+            <span className="italic font-serif text-accent-text font-medium">&ldquo;Doing things, little by little.&rdquo;</span> Computer Science student (MAWD graduate) with hands-on production experience in Next.js 15, TypeScript, Supabase, and automated testing.
           </p>
 
           {/* OJT Availability Pill */}
@@ -96,7 +97,7 @@ export default function HeroSection() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
             <span className="font-bold tracking-wide">
-              Seeking OJT / Internship Placement (2025–2026)
+              [OJT CANDIDATE] // AVAILABLE FOR IMMEDIATE INTERNSHIP (2027)
             </span>
           </div>
 
@@ -138,7 +139,7 @@ export default function HeroSection() {
               Azure MSAL
             </span>
             <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-pink/15 text-accent-pink border border-accent-pink/30 font-semibold">
-              Hyprland Rice
+              Linux Wayland
             </span>
           </div>
 

@@ -73,22 +73,22 @@ export function ContactSection() {
 
       {/* Header */}
       <div className="mb-10">
+        <div className="font-mono text-xs font-bold text-accent-text tracking-wider uppercase mb-2">
+          [05] // TRANSMISSIONS &amp; PLACEMENT
+        </div>
+
         <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
-          get in touch.
+          ready for placement. let&apos;s connect.
         </h2>
 
-        <p className="font-sans text-sm sm:text-base text-accent-text mt-2 font-medium">
-          Open for OJT and internship opportunities.
-        </p>
-
-        <p className="font-sans text-sm sm:text-base text-ink/70 mt-2 leading-relaxed max-w-2xl">
-          Open for On-the-Job Training (OJT), software engineering internships, and collaborations.
+        <p className="font-sans text-sm sm:text-base text-ink/75 mt-3 leading-relaxed max-w-2xl">
+          Open for On-the-Job Training (OJT), software engineering internships, and junior full-stack opportunities. Remote or hybrid (Lucena City / Metro Manila).
         </p>
       </div>
 
       {/* Invitation Card wrapped in SwissFrame */}
       <SwissFrame
-        tag="CONTACT // TRANSMISSION"
+        tag="PLACEMENT // DIRECT PIPELINE"
         accentBorder="mauve"
         showCalipers={true}
         className="p-8 sm:p-12 rounded-2xl relative overflow-hidden shadow-lg"
@@ -97,7 +97,7 @@ export function ContactSection() {
           {/* OJT Banner */}
           <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl border border-emerald-500/35 bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 font-mono text-xs tracking-wide shadow-xs font-bold">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-            <span>Actively Seeking OJT &amp; Internship Placement (2025–2026)</span>
+            <span>Seeking 300–500 hour OJT placement with immediate availability for the second term.</span>
           </div>
 
           {/* Primary Headline */}
@@ -106,7 +106,7 @@ export function ContactSection() {
               Let&apos;s build something together.
             </h3>
             <p className="font-sans text-xs sm:text-sm text-ink/80 max-w-lg mx-auto leading-relaxed">
-              Whether you have an internship opening, a project inquiry, or want to talk about full-stack web engineering and Linux setups - feel free to reach out.
+              Whether you have an internship opening, a project inquiry, or want to talk about full-stack web engineering and Linux setups &mdash; feel free to reach out.
             </p>
           </div>
 

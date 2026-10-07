@@ -25,7 +25,7 @@ interface CategoryMeta {
 const CATEGORY_META: Record<string, CategoryMeta> = {
   Frontend: {
     icon: Layout,
-    tag: "DOM & CLIENT // MODERN WEB",
+    tag: "CLIENT-SIDE // REACT & NEXT.JS",
     colSpan: "lg:col-span-8 md:col-span-2",
     accent: "sky",
     iconBoxClass: "text-accent-sky bg-accent-sky/15 border-accent-sky/30",
@@ -34,7 +34,7 @@ const CATEGORY_META: Record<string, CategoryMeta> = {
   },
   "Backend & Data": {
     icon: Database,
-    tag: "API & STORAGE // CLOUD",
+    tag: "STORAGE & API // SUPABASE & SQL",
     colSpan: "lg:col-span-4 md:col-span-1",
     accent: "peach",
     iconBoxClass: "text-accent-peach bg-accent-peach/15 border-accent-peach/30",
@@ -43,7 +43,7 @@ const CATEGORY_META: Record<string, CategoryMeta> = {
   },
   "DevOps & QA": {
     icon: Container,
-    tag: "CI/CD & AUTOMATION",
+    tag: "TESTING & CI/CD // DOCKER & PLAYWRIGHT",
     colSpan: "lg:col-span-4 md:col-span-1",
     accent: "green",
     iconBoxClass: "text-accent-green bg-accent-green/15 border-accent-green/30",
@@ -52,7 +52,7 @@ const CATEGORY_META: Record<string, CategoryMeta> = {
   },
   "Mobile & Game Dev": {
     icon: Smartphone,
-    tag: "NATIVE & REAL-TIME",
+    tag: "NATIVE & REAL-TIME // JETPACK COMPOSE & C#",
     colSpan: "lg:col-span-4 md:col-span-1",
     accent: "mauve",
     iconBoxClass: "text-accent-text bg-accent-text/15 border-accent-text/30",
@@ -61,7 +61,7 @@ const CATEGORY_META: Record<string, CategoryMeta> = {
   },
   "Linux & Tools": {
     icon: Terminal,
-    tag: "WAYLAND & RUNTIME",
+    tag: "SYSTEMS & WORKSPACE // CACHYOS & HYPRLAND",
     colSpan: "lg:col-span-4 md:col-span-1",
     accent: "pink",
     iconBoxClass: "text-accent-pink bg-accent-pink/15 border-accent-pink/30",
@@ -79,17 +79,16 @@ export function ArsenalSection() {
 
       {/* Section Header */}
       <div className="mb-10">
+        <div className="font-mono text-xs font-bold text-accent-text tracking-wider uppercase mb-2">
+          [04] // REPERTOIRE &amp; INSTRUMENTS
+        </div>
+
         <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
-          technologies &amp; tools.
+          verified stack. zero fluff.
         </h2>
 
-        <p className="font-sans text-sm sm:text-base text-accent-text mt-2 font-medium">
-          Verified stack &amp; developer workflow.
-        </p>
-
-        <p className="font-sans text-sm sm:text-base text-ink/70 mt-2 leading-relaxed max-w-2xl">
-          The languages, frameworks, developer tools, and environments I use to build
-          software.
+        <p className="font-sans text-sm sm:text-base text-ink/75 mt-3 leading-relaxed max-w-2xl">
+          A hands-on index of languages, cloud storage, containerized CI/CD, and operating systems tested in production and thesis workflows.
         </p>
       </div>
 

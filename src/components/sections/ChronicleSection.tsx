@@ -24,18 +24,22 @@ export function ChronicleSection() {
     <section id="about" className="max-w-5xl mx-auto px-4 py-20">
       {/* Chapter Header */}
       <div className="mb-10">
+        <div className="font-mono text-xs font-bold text-accent-text tracking-wider uppercase mb-2">
+          [02] // ACADEMIC CHRONICLE &amp; FOUNDATIONS
+        </div>
+
         <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
-          background &amp; foundations.
+          proven academic rigor &amp; full-stack foundations.
         </h2>
 
-        <p className="font-sans text-sm sm:text-base text-accent-text mt-2 font-medium">
-          Doing things, little by little.
-        </p>
-
-        <p className="font-sans text-sm sm:text-base text-ink/70 mt-2 leading-relaxed max-w-2xl">
-          Computer Science student focusing on full-stack web engineering, native mobile
-          applications, and custom Linux desktop environments.
-        </p>
+        <div className="flex items-center gap-3 mt-3 flex-wrap">
+          <span className="font-serif italic text-xs sm:text-sm text-accent-text bg-accent-text/10 border border-accent-text/25 px-2.5 py-1 rounded-md font-medium">
+            &ldquo;Doing things, little by little.&rdquo;
+          </span>
+          <p className="font-sans text-sm sm:text-base text-ink/80 leading-relaxed max-w-2xl">
+            High Honors graduate with leadership in CodeArts Online, developing real-world web clearance systems at STI College Lucena.
+          </p>
+        </div>
       </div>
 
       {/* Asymmetrical Bento Grid: Academia & Culture */}
@@ -72,7 +76,7 @@ export function ChronicleSection() {
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                   </span>
                   <span className="font-bold tracking-wide">
-                    OJT Candidate Available
+                    OJT Candidate Available (2027)
                   </span>
                 </div>
               </div>
@@ -88,11 +92,11 @@ export function ChronicleSection() {
                       {collegeEdu?.institution || "STI College Lucena"}
                     </h4>
                     <span className="font-mono text-xs px-2 py-0.5 rounded bg-accent-green/15 text-accent-green border border-accent-green/30 font-semibold">
-                      2023 - 2027 · CURRENT
+                      2023 - 2027 · ACTIVE THESIS ENGINEERING
                     </span>
                   </div>
 
-                  <p className="font-mono text-xs sm:text-sm text-ink font-semibold mt-1">
+                  <p className="font-mono text-xs sm:text-sm text-ink font-bold mt-1">
                     {collegeEdu?.degree || "Bachelor of Science in Computer Science"}
                   </p>
 
@@ -115,8 +119,12 @@ export function ChronicleSection() {
                     </span>
                   </div>
 
-                  <p className="font-mono text-xs text-ink/90 font-semibold mt-1">
+                  <p className="font-mono text-xs sm:text-sm text-ink font-bold mt-1">
                     Senior High School · Mobile App and Web Development (MAWD)
+                  </p>
+
+                  <p className="font-sans text-xs text-accent-peach font-semibold mt-0.5">
+                    Graduated with High Honors (95 Average) &amp; Club Vice Presidency
                   </p>
 
                   {/* High-Contrast Standout Achievement Badges */}
