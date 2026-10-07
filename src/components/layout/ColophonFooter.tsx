@@ -30,9 +30,9 @@ export function ColophonFooter() {
   ];
 
   return (
-    <footer className="border-t border-ink/10 mt-20 pt-12 pb-28 sm:pb-16 px-4 max-w-5xl mx-auto">
+    <footer className="border-t border-black/10 dark:border-white/10 mt-20 pt-12 pb-28 sm:pb-16 px-4 max-w-5xl mx-auto">
       {/* Colophon Grid (3 columns on desktop) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-10 border-b border-ink/10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-10 border-b border-black/10 dark:border-white/10">
         {/* Column 1: System Telemetry & Signature */}
         <div className="space-y-3">
           <div className="flex items-center gap-2 font-mono text-xs font-bold text-ink tracking-wider uppercase">
@@ -126,11 +126,11 @@ export function ColophonFooter() {
       </div>
 
       {/* Copyright line */}
-      <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] text-ink/50 border-t border-ink/10 mt-6">
+      <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] text-ink/70 border-t border-black/10 dark:border-white/10 mt-6">
         <p>
           © 2026 Jose Raphael Jaro. Built with Next.js &amp; Tailwind CSS.
         </p>
-        <div className="flex items-center gap-2 text-[11px] text-ink/50">
+        <div className="flex items-center gap-2 text-[11px] text-ink/70 font-semibold">
           <span>Lucena City, Philippines</span>
         </div>
       </div>

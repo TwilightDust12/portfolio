@@ -4,11 +4,18 @@
 
 :root {
   --bg: #eff1f5;
+  --card-bg: rgba(255, 255, 255, 0.90);
+  --card-border: rgba(76, 79, 105, 0.22);
+  --card-border-subtle: rgba(76, 79, 105, 0.14);
   --ink: #4c4f69;
-  --accent-text: #8839ef;   /* Latte Mauve, ~4.8:1 on bg, safe for text */
-  --accent-pink: #ea76cb;   /* fills/borders only */
-  --accent-sky: #04a5e5;    /* fills/borders only */
-  --on-accent: #11111b;     /* dark text on pink/sky buttons */
+  --ink-dark: #2b2d42;
+  --accent-text: #8839ef;   /* Latte Mauve */
+  --accent-pink: #ea76cb;   /* Latte Pink */
+  --accent-sky: #04a5e5;    /* Latte Sky */
+  --accent-peach: #fe640b;  /* Latte Peach/Gold */
+  --accent-green: #40a02b;  /* Latte Green */
+  --accent-sapphire: #209fb5; /* Latte Sapphire */
+  --on-accent: #11111b;
 
   /* Emil Kowalski & Apple Design Easing Tokens */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -19,10 +26,17 @@
 
 .dark {
   --bg: #11111b;
+  --card-bg: rgba(24, 24, 37, 0.72);
+  --card-border: rgba(205, 214, 244, 0.16);
+  --card-border-subtle: rgba(205, 214, 244, 0.10);
   --ink: #cdd6f4;
+  --ink-dark: #f5e0dc;
   --accent-text: #cba6f7;   /* Mocha Mauve */
   --accent-pink: #f5c2e7;   /* Mocha Pink */
   --accent-sky: #89dceb;    /* Mocha Sky */
+  --accent-peach: #fab387;  /* Mocha Peach/Gold */
+  --accent-green: #a6e3a1;  /* Mocha Green */
+  --accent-sapphire: #74c7ec; /* Mocha Sapphire */
   --on-accent: #11111b;
 }
 

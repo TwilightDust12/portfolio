@@ -90,16 +90,18 @@ export default function HeroSection() {
           </p>
 
           {/* OJT Availability Pill */}
-          <div className="font-mono text-xs px-3.5 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 inline-flex items-center gap-2 my-6">
+          <div className="font-mono text-xs px-4 py-2 rounded-xl bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/35 inline-flex items-center gap-2.5 my-6 shadow-xs">
             <span className="relative flex h-2 w-2" aria-hidden="true">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            <span className="font-medium">Seeking OJT / Internship Opportunities</span>
+            <span className="font-bold tracking-wide">
+              Seeking OJT / Internship Placement (2025–2026)
+            </span>
           </div>
 
           {/* Action Buttons Row */}
-          <div className="flex flex-wrap items-center gap-4 mb-6">
+          <div className="flex flex-wrap items-center gap-4 mb-4">
             <a
               href="/cv.pdf"
               download
@@ -112,16 +114,38 @@ export default function HeroSection() {
             </a>
             <a
               href="#works"
-              className="btn-press px-6 py-3 rounded-xl bg-ink/5 hover:bg-ink/10 text-ink border border-ink/15 font-medium text-sm flex items-center gap-2"
+              className="btn-press px-6 py-3 rounded-xl bg-black/[0.04] dark:bg-white/[0.05] hover:bg-black/[0.08] dark:hover:bg-white/[0.09] text-ink border border-black/15 dark:border-white/10 font-semibold text-sm flex items-center gap-2 shadow-xs"
             >
               <span>View Works ↘</span>
             </a>
           </div>
 
+          {/* Core Competencies Matrix Strip for Recruiters */}
+          <div className="flex flex-wrap items-center gap-2 py-3 border-t border-black/10 dark:border-white/10 w-full mt-2">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-ink/60 font-semibold mr-1">
+              focus:
+            </span>
+            <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-sky/15 text-accent-sky border border-accent-sky/30 font-semibold">
+              Next.js 15 &amp; React 19
+            </span>
+            <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-blue-500/15 text-blue-600 dark:text-blue-300 border border-blue-500/30 font-semibold">
+              TypeScript
+            </span>
+            <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-green/15 text-accent-green border border-accent-green/30 font-semibold">
+              Supabase &amp; SQL
+            </span>
+            <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-peach/15 text-accent-peach border border-accent-peach/30 font-semibold">
+              Azure MSAL
+            </span>
+            <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-pink/15 text-accent-pink border border-accent-pink/30 font-semibold">
+              Hyprland Rice
+            </span>
+          </div>
+
           {/* Quick Social Links */}
           <div className="flex items-center gap-2 pt-2">
-            <span className="font-mono text-xs text-ink/50 mr-1 select-none">
-              links:
+            <span className="font-mono text-xs text-ink/60 mr-1 select-none font-semibold">
+              channels:
             </span>
             {portfolioData.socials.map((social) => (
               <a
@@ -131,7 +155,7 @@ export default function HeroSection() {
                 rel="noopener noreferrer"
                 aria-label={social.label}
                 title={`${social.label} (${social.username})`}
-                className="btn-press relative after:absolute after:-inset-1 min-w-[38px] min-h-[38px] sm:min-w-[36px] sm:min-h-[36px] p-2 rounded-lg border border-ink/15 bg-ink/5 hover:bg-ink/10 hover:border-accent-text/40 text-ink/70 hover:text-accent-text transition-colors flex items-center justify-center touch-manipulation"
+                className="btn-press relative after:absolute after:-inset-1 min-w-[38px] min-h-[38px] sm:min-w-[36px] sm:min-h-[36px] p-2 rounded-lg border border-black/15 dark:border-white/10 bg-black/[0.04] dark:bg-white/[0.05] hover:bg-black/[0.08] dark:hover:bg-white/[0.09] hover:border-accent-text/40 text-ink/80 hover:text-accent-text transition-colors flex items-center justify-center touch-manipulation"
               >
                 {socialIconMap[social.platform] ?? (
                   <span className="font-mono text-xs uppercase">
@@ -147,16 +171,18 @@ export default function HeroSection() {
         <div className="lg:col-span-5 flex flex-col items-center lg:items-end w-full">
           <div className="w-full max-w-sm sm:max-w-md">
             <SwissFrame
+              tag="PORTRAIT // 01"
+              accentBorder="mauve"
               showCrosshairs={true}
               showCalipers={true}
-              className="p-3 sm:p-4 rounded-2xl relative"
+              className="p-3 sm:p-4 rounded-2xl relative shadow-lg hover:shadow-2xl transition-all duration-200"
             >
               {/* Clickable Image Container */}
               <button
                 type="button"
                 onClick={handleCycleAvatar}
                 aria-label={`Cycle avatar (currently ${currentAvatar.label}). Click to switch.`}
-                className="relative aspect-square w-full rounded-xl overflow-hidden border border-ink/15 bg-ink/5 group cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-accent-text select-none block active:scale-[0.98] transition-transform duration-150 ease-out"
+                className="relative aspect-square w-full rounded-xl overflow-hidden border border-black/15 dark:border-white/15 bg-black/[0.03] dark:bg-white/[0.04] group cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-accent-text select-none block active:scale-[0.98] transition-transform duration-150 ease-out"
               >
                 {/* Main Avatar Image */}
                 <Image
@@ -192,7 +218,7 @@ export default function HeroSection() {
                 {/* Kanji Vertical Rail */}
                 <div className="absolute top-3 left-3 z-20 pointer-events-none">
                   <span
-                    className="kanji-rail font-sans text-xs tracking-widest text-ink/60 select-none bg-bg/85 backdrop-blur-sm px-1.5 py-2.5 rounded border border-ink/10 shadow-sm"
+                    className="kanji-rail font-sans text-xs tracking-widest text-ink select-none bg-white/90 dark:bg-[#181825]/90 backdrop-blur-md px-2 py-3 rounded-md border border-black/15 dark:border-white/15 shadow-sm font-semibold"
                     lang="ja"
                   >
                     黄昏 // TWILIGHT
@@ -201,8 +227,8 @@ export default function HeroSection() {
 
                 {/* Interactive Click-to-Cycle Pill Overlay */}
                 <div className="absolute bottom-3 right-3 z-20 pointer-events-none">
-                  <span className="font-mono text-[10px] text-ink/80 bg-bg/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-ink/15 shadow-sm inline-flex items-center gap-1.5">
-                    <RefreshCw className="w-3 h-3 text-accent-text animate-spin-reverse" />
+                  <span className="font-mono text-[10px] text-ink font-semibold bg-white/95 dark:bg-[#181825]/95 backdrop-blur-md px-3 py-1.5 rounded-lg border border-black/20 dark:border-white/20 shadow-md inline-flex items-center gap-1.5">
+                    <RefreshCw className="w-3.5 h-3.5 text-accent-text animate-spin-reverse" />
                     <span>click to cycle ({avatarIndex + 1}/{AVATAR_LIST.length})</span>
                   </span>
                 </div>

@@ -16,33 +16,57 @@ interface CategoryMeta {
   icon: React.ComponentType<{ className?: string }>;
   tag: string;
   colSpan: string;
+  accent: "sky" | "peach" | "green" | "mauve" | "pink";
+  iconBoxClass: string;
+  dotClass: string;
+  pillHoverClass: string;
 }
 
 const CATEGORY_META: Record<string, CategoryMeta> = {
   Frontend: {
     icon: Layout,
-    tag: "CLIENT-SIDE",
-    colSpan: "md:col-span-2 lg:col-span-2",
+    tag: "DOM & CLIENT // MODERN WEB",
+    colSpan: "lg:col-span-8 md:col-span-2",
+    accent: "sky",
+    iconBoxClass: "text-accent-sky bg-accent-sky/15 border-accent-sky/30",
+    dotClass: "bg-accent-sky",
+    pillHoverClass: "hover:border-accent-sky/40 hover:bg-accent-sky/10",
   },
   "Backend & Data": {
     icon: Database,
-    tag: "SERVER & STORAGE",
-    colSpan: "md:col-span-1 lg:col-span-1",
+    tag: "API & STORAGE // CLOUD",
+    colSpan: "lg:col-span-4 md:col-span-1",
+    accent: "peach",
+    iconBoxClass: "text-accent-peach bg-accent-peach/15 border-accent-peach/30",
+    dotClass: "bg-accent-peach",
+    pillHoverClass: "hover:border-accent-peach/40 hover:bg-accent-peach/10",
   },
   "DevOps & QA": {
     icon: Container,
-    tag: "CI/CD & TESTING",
-    colSpan: "md:col-span-1 lg:col-span-1",
+    tag: "CI/CD & AUTOMATION",
+    colSpan: "lg:col-span-4 md:col-span-1",
+    accent: "green",
+    iconBoxClass: "text-accent-green bg-accent-green/15 border-accent-green/30",
+    dotClass: "bg-accent-green",
+    pillHoverClass: "hover:border-accent-green/40 hover:bg-accent-green/10",
   },
   "Mobile & Game Dev": {
     icon: Smartphone,
-    tag: "MOBILE & GAME",
-    colSpan: "md:col-span-1 lg:col-span-1",
+    tag: "NATIVE & REAL-TIME",
+    colSpan: "lg:col-span-4 md:col-span-1",
+    accent: "mauve",
+    iconBoxClass: "text-accent-text bg-accent-text/15 border-accent-text/30",
+    dotClass: "bg-accent-text",
+    pillHoverClass: "hover:border-accent-text/40 hover:bg-accent-text/10",
   },
   "Linux & Tools": {
     icon: Terminal,
-    tag: "LINUX & WORKSPACE",
-    colSpan: "md:col-span-1 lg:col-span-1",
+    tag: "WAYLAND & RUNTIME",
+    colSpan: "lg:col-span-4 md:col-span-1",
+    accent: "pink",
+    iconBoxClass: "text-accent-pink bg-accent-pink/15 border-accent-pink/30",
+    dotClass: "bg-accent-pink",
+    pillHoverClass: "hover:border-accent-pink/40 hover:bg-accent-pink/10",
   },
 };
 
@@ -69,13 +93,17 @@ export function ArsenalSection() {
         </p>
       </div>
 
-      {/* Bento Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Asymmetric 12-Column Bento Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
         {portfolioData.skills.map((category) => {
           const meta = CATEGORY_META[category.category] ?? {
             icon: Code2,
             tag: "STACK",
-            colSpan: "md:col-span-1 lg:col-span-1",
+            colSpan: "lg:col-span-4 md:col-span-1",
+            accent: "mauve" as const,
+            iconBoxClass: "text-accent-text bg-accent-text/15 border-accent-text/30",
+            dotClass: "bg-accent-text",
+            pillHoverClass: "hover:border-accent-text/40 hover:bg-accent-text/10",
           };
           const Icon = meta.icon;
 
@@ -83,36 +111,40 @@ export function ArsenalSection() {
             <SwissFrame
               key={category.category}
               tag={meta.tag}
-              className={`p-6 rounded-xl flex flex-col justify-between ${meta.colSpan}`}
+              accentBorder={meta.accent}
+              showCalipers={true}
+              className={`p-6 sm:p-7 rounded-2xl flex flex-col justify-between ${meta.colSpan} hover:border-black/30 dark:hover:border-white/25 transition-all duration-200 ease-out hover:shadow-lg dark:hover:shadow-black/40`}
             >
               <div className="mb-4">
-                {/* Header row: Icon frosted container */}
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <div className="p-2.5 rounded-lg bg-ink/5 border border-ink/10 text-accent-text shrink-0">
+                {/* Header row: Icon colored container */}
+                <div className="flex items-start justify-between gap-3 mb-3.5">
+                  <div
+                    className={`p-2.5 rounded-xl border shrink-0 ${meta.iconBoxClass}`}
+                  >
                     <Icon className="w-5 h-5" />
                   </div>
                 </div>
 
                 {/* Category title */}
-                <h3 className="font-mono text-base font-semibold text-ink">
+                <h3 className="font-mono text-base sm:text-lg font-bold text-ink">
                   {category.category}
                 </h3>
 
                 {/* Short description */}
-                <p className="font-sans text-xs text-ink/70 mt-1 leading-relaxed">
+                <p className="font-sans text-xs text-ink/75 mt-1 leading-relaxed">
                   {category.description}
                 </p>
               </div>
 
-              {/* Tech Pills List (Clean: NO proficiency levels) */}
-              <div className="flex flex-wrap gap-2 pt-4 border-t border-ink/10">
+              {/* Tech Pills List with Distinct Color Accents & High Contrast Borders */}
+              <div className="flex flex-wrap gap-2 pt-4 border-t border-black/10 dark:border-white/10">
                 {category.skills.map((skill) => (
                   <span
                     key={skill.name}
-                    className="btn-press inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink/5 border border-ink/10 text-xs font-mono text-ink/90 hover:border-accent-text/40 hover:bg-accent-text/10 transition-colors select-none"
+                    className={`btn-press inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.05] border border-black/15 dark:border-white/10 text-xs font-mono font-medium text-ink transition-all select-none ${meta.pillHoverClass}`}
                   >
                     <span
-                      className="w-1.5 h-1.5 rounded-full bg-accent-text/70 shrink-0"
+                      className={`w-1.5 h-1.5 rounded-full shrink-0 ${meta.dotClass}`}
                       aria-hidden="true"
                     />
                     <span>{skill.name}</span>

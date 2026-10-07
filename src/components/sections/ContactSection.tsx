@@ -88,23 +88,25 @@ export function ContactSection() {
 
       {/* Invitation Card wrapped in SwissFrame */}
       <SwissFrame
-        tag="CONTACT"
-        className="p-8 sm:p-12 rounded-2xl relative overflow-hidden"
+        tag="CONTACT // TRANSMISSION"
+        accentBorder="mauve"
+        showCalipers={true}
+        className="p-8 sm:p-12 rounded-2xl relative overflow-hidden shadow-lg"
       >
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto space-y-6">
           {/* OJT Banner */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent-text/25 bg-accent-text/10 text-accent-text font-mono text-xs tracking-wide">
+          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl border border-emerald-500/35 bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 font-mono text-xs tracking-wide shadow-xs font-bold">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-            <span>Actively looking for OJT / internship opportunities</span>
+            <span>Actively Seeking OJT &amp; Internship Placement (2025–2026)</span>
           </div>
 
           {/* Primary Headline */}
           <div className="space-y-2">
-            <h3 className="font-mono text-2xl sm:text-3xl font-bold text-ink tracking-tight">
+            <h3 className="font-mono text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
               Let&apos;s build something together.
             </h3>
-            <p className="font-sans text-xs sm:text-sm text-ink/70 max-w-lg mx-auto">
-              Whether you have an internship opening, a project inquiry, or want to talk about full-stack engineering and Linux setups - feel free to reach out.
+            <p className="font-sans text-xs sm:text-sm text-ink/80 max-w-lg mx-auto leading-relaxed">
+              Whether you have an internship opening, a project inquiry, or want to talk about full-stack web engineering and Linux setups - feel free to reach out.
             </p>
           </div>
 
@@ -114,18 +116,18 @@ export function ContactSection() {
           </div>
 
           {/* Subtext info */}
-          <div className="flex items-center justify-center gap-4 pt-2 font-mono text-[11px] text-ink/50 select-none">
-            <span className="flex items-center gap-1">
+          <div className="flex items-center justify-center gap-4 pt-2 font-mono text-[11px] text-ink/60 select-none flex-wrap">
+            <span className="flex items-center gap-1 font-semibold">
               <Terminal className="w-3.5 h-3.5 text-accent-text" />
               <span>Response SLA: &lt;24h</span>
             </span>
             <span>·</span>
-            <span className="flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+            <span className="flex items-center gap-1 font-semibold">
+              <CheckCircle2 className="w-3.5 h-3.5 text-accent-green" />
               <span>GPG / Direct Mail</span>
             </span>
             <span>·</span>
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1 font-semibold">
               <Sparkles className="w-3.5 h-3.5 text-accent-pink" />
               <span>Lucena City, PH</span>
             </span>
@@ -142,7 +144,7 @@ export function ContactSection() {
             <div key={social.platform} className="relative group">
               <SwissFrame
                 tag={social.platform.toUpperCase()}
-                className="p-4 rounded-xl flex flex-col justify-between h-full bg-bg/60 hover:border-accent-text/40 transition-colors"
+                className="p-4 sm:p-5 rounded-2xl flex flex-col justify-between h-full hover:border-black/30 dark:hover:border-white/20 transition-all duration-150 hover:shadow-md"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
