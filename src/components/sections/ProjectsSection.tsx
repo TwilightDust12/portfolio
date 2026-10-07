@@ -25,20 +25,15 @@ export function ProjectsSection() {
 
       {/* Chapter Header */}
       <div className="mb-10">
-        <div className="flex items-center gap-2 font-mono text-xs text-ink/60 tracking-wider mb-2">
-          <FolderGit2 className="w-4 h-4 text-accent-text" />
-          <span className="text-accent-text font-semibold">
-            [03] // SELECTED WORKS
-          </span>
-          <span className="text-ink/30">―</span>
-          <span className="hidden sm:inline text-ink/50">SYSTEMS & ARCHITECTURE</span>
-        </div>
-
         <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
           architected in code.
         </h2>
 
-        <p className="font-sans text-sm sm:text-base text-ink/70 mt-3 leading-relaxed max-w-3xl">
+        <p className="font-sans text-sm sm:text-base text-accent-text mt-2 font-medium">
+          Selected works and case studies.
+        </p>
+
+        <p className="font-sans text-sm sm:text-base text-ink/70 mt-2 leading-relaxed max-w-3xl">
           A curated index of production systems, academic thesis engineering, and creative experiments.
         </p>
       </div>
@@ -48,9 +43,7 @@ export function ProjectsSection() {
         {portfolioData.projects.map((project) => (
           <SwissFrame
             key={project.id}
-            tag={project.isTeamProject ? "THESIS // TEAM PROJECT" : "PROJECT // SOLO"}
-            showCrosshairs={true}
-            showCalipers={true}
+            tag={project.isTeamProject ? "THESIS / TEAM PROJECT" : "SOLO PROJECT"}
             className="p-6 rounded-xl flex flex-col justify-between"
           >
             <div className="flex flex-col space-y-4">

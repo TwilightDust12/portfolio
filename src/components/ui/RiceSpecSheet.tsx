@@ -68,9 +68,7 @@ export function RiceSpecSheet({ className = "" }: { className?: string }) {
 
   return (
     <SwissFrame
-      tag="SYS-RICE // WAYLAND-01"
-      showCrosshairs={true}
-      showCalipers={true}
+      tag="DOTFILES & ENVIRONMENT"
       className={`p-5 sm:p-7 rounded-xl ${className}`}
     >
       {/* Header with Fastfetch-style terminal prompt */}

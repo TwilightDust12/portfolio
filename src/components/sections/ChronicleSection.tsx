@@ -23,22 +23,16 @@ export function ChronicleSection() {
   return (
     <section id="about" className="max-w-5xl mx-auto px-4 py-20">
       {/* Chapter Header */}
-      <div className="mb-12">
-        <div className="flex items-center gap-2 font-mono text-xs text-ink/60 tracking-wider mb-2">
-          <span className="text-accent-text font-semibold">
-            [02] // ABOUT &amp; BACKGROUND
-          </span>
-        </div>
-
+      <div className="mb-10">
         <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
           background &amp; foundations.
         </h2>
 
-        <p className="font-serif italic text-lg sm:text-xl text-accent-text mt-2">
+        <p className="font-sans text-sm sm:text-base text-accent-text mt-2 font-medium">
           Doing things, little by little.
         </p>
 
-        <p className="font-sans text-sm sm:text-base text-ink/70 mt-3 leading-relaxed max-w-2xl">
+        <p className="font-sans text-sm sm:text-base text-ink/70 mt-2 leading-relaxed max-w-2xl">
           Computer Science student focusing on full-stack web engineering, native mobile
           applications, and custom Linux desktop environments.
         </p>
@@ -49,8 +43,6 @@ export function ChronicleSection() {
         {/* Card 1: Academic Milestones */}
         <SwissFrame
           tag="ACADEMIC BACKGROUND"
-          showCrosshairs={true}
-          showCalipers={true}
           className="p-6 sm:p-7 rounded-xl flex flex-col justify-between"
         >
           <div>
@@ -92,7 +84,7 @@ export function ChronicleSection() {
                     {collegeEdu?.institution || "STI College Lucena"}
                   </h4>
                   <span className="font-mono text-xs text-accent-text font-medium">
-                    2023 – 2027
+                    2023 - 2027
                   </span>
                 </div>
                 <p className="font-mono text-xs text-ink/80 mt-0.5 font-semibold">
@@ -111,10 +103,10 @@ export function ChronicleSection() {
                   <h4 className="font-mono text-sm font-semibold text-ink">
                     {shsEdu?.institution || "STI College Lucena"}
                   </h4>
-                  <span className="font-mono text-xs text-ink/50">2021 – 2023</span>
+                  <span className="font-mono text-xs text-ink/50">2021 - 2023</span>
                 </div>
                 <p className="font-mono text-xs text-ink/80 mt-0.5 font-semibold">
-                  Senior High School — Mobile App and Web Development (MAWD)
+                  Senior High School - Mobile App and Web Development (MAWD)
                 </p>
 
                 <div className="flex flex-wrap items-center gap-2 mt-2">
@@ -136,7 +128,7 @@ export function ChronicleSection() {
                   <h4 className="font-mono text-sm font-semibold text-ink">
                     {jhsEdu?.institution || "Saint Philomena School"}
                   </h4>
-                  <span className="font-mono text-xs text-ink/50">2012 – 2021</span>
+                  <span className="font-mono text-xs text-ink/50">2012 - 2021</span>
                 </div>
                 <p className="font-mono text-xs text-ink/70 mt-0.5">
                   Elementary &amp; Junior High School
@@ -149,8 +141,6 @@ export function ChronicleSection() {
         {/* Card 2: Personal Interests (Clean, NO artwork showcase) */}
         <SwissFrame
           tag="INTERESTS &amp; CULTURE"
-          showCrosshairs={true}
-          showCalipers={true}
           className="p-6 sm:p-7 rounded-xl flex flex-col justify-between"
         >
           <div className="space-y-6">

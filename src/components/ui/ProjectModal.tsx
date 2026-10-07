@@ -33,11 +33,11 @@ export function ProjectModal({
               <div className="flex items-center justify-between gap-3 border-b border-ink/10 pb-4">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-ink/5 border border-ink/15 text-accent-text font-semibold uppercase tracking-wider">
-                    {`[PROJECT-0${projectIndex}] // CASE STUDY`}
+                    {`Case Study ${projectIndex}`}
                   </span>
                   {project.isTeamProject && (
                     <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-accent-text/10 text-accent-text border border-accent-text/20 uppercase tracking-wider">
-                      TEAM PROJECT // THESIS
+                      Team Thesis Project
                     </span>
                   )}
                 </div>

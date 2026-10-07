@@ -57,7 +57,7 @@ export const portfolioData: PortfolioConfig = {
       id: "thesis-webc",
       role: "Full-Stack Developer (Team Project)",
       company: "STI College Lucena (Capstone Thesis)",
-      period: "2024 – Present",
+      period: "2024 - Present",
       location: "Lucena City, Philippines",
       description: [
         "Engineered the WebC student clearance system for STI College Lucena with role-based routing.",
@@ -85,7 +85,7 @@ export const portfolioData: PortfolioConfig = {
       id: "college",
       degree: "Bachelor of Science in Computer Science",
       institution: "STI College Lucena",
-      period: "2023 – 2027",
+      period: "2023 - 2027",
       location: "Lucena City, Philippines",
       details: [
         "Major in Computer Science with a focus on Full-Stack Web Development, Systems Architecture, and Database Design.",
@@ -94,9 +94,9 @@ export const portfolioData: PortfolioConfig = {
     },
     {
       id: "shs",
-      degree: "Senior High School — Mobile App and Web Development (MAWD)",
+      degree: "Senior High School - Mobile App and Web Development (MAWD)",
       institution: "STI College Lucena",
-      period: "2021 – 2023",
+      period: "2021 - 2023",
       location: "Lucena City, Philippines",
       honors: "Graduated with High Honors (95 Average)",
       details: [
@@ -108,7 +108,7 @@ export const portfolioData: PortfolioConfig = {
       id: "jhs",
       degree: "Elementary & Junior High School",
       institution: "Saint Philomena School",
-      period: "2012 – 2021",
+      period: "2012 - 2021",
       location: "Lucena City, Philippines",
       details: [
         "Foundational education and early exploration of computer technologies."
@@ -119,7 +119,7 @@ export const portfolioData: PortfolioConfig = {
   projects: [
     {
       id: "webc",
-      title: "WebC — Student Clearance System",
+      title: "WebC - Student Clearance System",
       subtitle: "Capstone Thesis (Team Project)",
       problem: "Manual, paper-reliant academic clearance workflows cause delays, lost clearance filings, and administrative friction across college departments.",
       role: "Full-Stack Developer (Team Project)",

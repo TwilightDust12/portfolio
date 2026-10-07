@@ -69,18 +69,15 @@ export function ContactSection() {
 
       {/* Header */}
       <div className="mb-10">
-        <div className="flex items-center gap-2 font-mono text-xs text-ink/60 tracking-wider mb-2">
-          <Send className="w-4 h-4 text-accent-text" />
-          <span className="text-accent-text font-semibold">
-            [05] // CONTACT &amp; COMMS
-          </span>
-        </div>
-
         <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
           get in touch.
         </h2>
 
-        <p className="font-sans text-sm sm:text-base text-ink/70 mt-3 leading-relaxed max-w-2xl">
+        <p className="font-sans text-sm sm:text-base text-accent-text mt-2 font-medium">
+          Open for OJT and internship opportunities.
+        </p>
+
+        <p className="font-sans text-sm sm:text-base text-ink/70 mt-2 leading-relaxed max-w-2xl">
           Open for On-the-Job Training (OJT), software engineering internships, and collaborations.
         </p>
       </div>
@@ -88,8 +85,6 @@ export function ContactSection() {
       {/* Invitation Card wrapped in SwissFrame */}
       <SwissFrame
         tag="CONTACT"
-        showCrosshairs={true}
-        showCalipers={true}
         className="p-8 sm:p-12 rounded-2xl relative overflow-hidden"
       >
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto space-y-6">
@@ -105,7 +100,7 @@ export function ContactSection() {
               Let&apos;s build something together.
             </h3>
             <p className="font-sans text-xs sm:text-sm text-ink/70 max-w-lg mx-auto">
-              Whether you have an internship opening, a project inquiry, or want to talk about full-stack engineering and Linux setups—feel free to reach out.
+              Whether you have an internship opening, a project inquiry, or want to talk about full-stack engineering and Linux setups - feel free to reach out.
             </p>
           </div>
 
@@ -143,8 +138,6 @@ export function ContactSection() {
             <div key={social.platform} className="relative group">
               <SwissFrame
                 tag={social.platform.toUpperCase()}
-                showCalipers={true}
-                showCrosshairs={false}
                 className="p-4 rounded-xl flex flex-col justify-between h-full bg-bg/60 hover:border-accent-text/40 transition-colors"
               >
                 <div>

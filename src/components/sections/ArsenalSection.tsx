@@ -55,18 +55,15 @@ export function ArsenalSection() {
 
       {/* Section Header */}
       <div className="mb-10">
-        <div className="flex items-center gap-2 font-mono text-xs text-ink/60 tracking-wider mb-2">
-          <Code2 className="w-4 h-4 text-accent-text" />
-          <span className="text-accent-text font-semibold">
-            [04] // TECH STACK
-          </span>
-        </div>
-
         <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
           technologies &amp; tools.
         </h2>
 
-        <p className="font-sans text-sm sm:text-base text-ink/70 mt-3 leading-relaxed max-w-2xl">
+        <p className="font-sans text-sm sm:text-base text-accent-text mt-2 font-medium">
+          Verified stack &amp; developer workflow.
+        </p>
+
+        <p className="font-sans text-sm sm:text-base text-ink/70 mt-2 leading-relaxed max-w-2xl">
           The languages, frameworks, developer tools, and environments I use to build
           software.
         </p>
@@ -86,8 +83,6 @@ export function ArsenalSection() {
             <SwissFrame
               key={category.category}
               tag={meta.tag}
-              showCrosshairs={true}
-              showCalipers={true}
               className={`p-6 rounded-xl flex flex-col justify-between ${meta.colSpan}`}
             >
               <div className="mb-4">

@@ -15,10 +15,10 @@ export function SwissFrame({
   className = "",
   tag,
   showCrosshairs = false,
-  showCalipers = true,
+  showCalipers = false,
 }: SwissFrameProps) {
   return (
-    <div className={`border border-ink/15 relative bg-bg/40 backdrop-blur-sm ${className}`}>
+    <div className={`border border-ink/10 relative bg-bg/50 backdrop-blur-xs transition-colors duration-150 ${className}`}>
       {/* Precision Calipers at 4 Corners */}
       {showCalipers && (
         <>
