@@ -25,7 +25,7 @@ Doing things, little by little. Building responsive web systems, intuitive user 
 
 ## Experience & Education
 - **Elementary & Junior High School:** Saint Philomena School, 2012 – 2021
-- **Senior High School:** STI College Lucena, 2021 – 2023. Graduated with high honors (average grade of 95) and served as Vice President of CodeArts Online (coding and digital arts club).
+- **Senior High School:** STI College Lucena, 2021 – 2023. Mobile App and Web Development (MAWD) strand. Graduated with high honors (average grade of 95) and served as Vice President of CodeArts Online (coding and digital arts club).
 - **College:** Bachelor of Science in Computer Science at STI College Lucena, 2023 – 2027.
 - **Current Objective:** Actively seeking an On-the-Job Training (OJT) / internship role to contribute full-stack capabilities in a production software team.
 

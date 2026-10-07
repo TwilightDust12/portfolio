@@ -140,11 +140,6 @@ export function ProjectModal({
                 </div>
               )}
 
-              {project.artAttribution && (
-                <div className="mt-4 p-3 rounded-lg bg-ink/5 border border-dashed border-ink/15 font-mono text-[11px] text-ink/60 italic">
-                  ✦ {project.artAttribution}
-                </div>
-              )}
 
               {/* Footer Action Links */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-ink/10 mt-6">

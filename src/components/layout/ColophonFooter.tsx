@@ -126,14 +126,12 @@ export function ColophonFooter() {
       </div>
 
       {/* Copyright line */}
-      <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] text-ink/50">
+      <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] text-ink/50 border-t border-ink/10 mt-6">
         <p>
-          © 2026 Jose Raphael Jaro. All transmissions logged. Artwork tributes credited to original creators.
+          © 2026 Jose Raphael Jaro. Built with Next.js &amp; Tailwind CSS.
         </p>
-        <div className="flex items-center gap-2 text-[10px] text-ink/40">
-          <span>LATENCY: 0.12ms</span>
-          <span>·</span>
-          <span>STATUS: ONLINE</span>
+        <div className="flex items-center gap-2 text-[11px] text-ink/50">
+          <span>Lucena City, Philippines</span>
         </div>
       </div>
     </footer>

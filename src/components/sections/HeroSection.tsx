@@ -10,6 +10,7 @@ import {
   FacebookIcon,
   InstagramIcon,
 } from "@/components/ui/Icons";
+import { MapPin, RefreshCw } from "lucide-react";
 
 function DiscordIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -24,8 +25,15 @@ function DiscordIcon({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
+const AVATAR_LIST = [
+  { src: "/assets/profile.jpg", label: "Jose Raphael Jaro (Primary)" },
+  { src: "/assets/profile2.jpg", label: "Jose Raphael Jaro (Alternate)" },
+  { src: "/assets/reze.jpg", label: "Reze Avatar (Chainsaw Man)" },
+];
+
 export default function HeroSection() {
-  const [portraitSrc, setPortraitSrc] = useState("/assets/profile.jpg");
+  const [avatarIndex, setAvatarIndex] = useState(0);
+  const [isGlitching, setIsGlitching] = useState(false);
 
   const socialIconMap: Record<string, React.ReactNode> = {
     github: <GithubIcon className="w-4 h-4" />,
@@ -35,21 +43,31 @@ export default function HeroSection() {
     discord: <DiscordIcon className="w-4 h-4" />,
   };
 
+  const handleCycleAvatar = () => {
+    if (isGlitching) return;
+    setIsGlitching(true);
+    setTimeout(() => {
+      setAvatarIndex((prev) => (prev + 1) % AVATAR_LIST.length);
+    }, 120);
+    setTimeout(() => {
+      setIsGlitching(false);
+    }, 320);
+  };
+
+  const currentAvatar = AVATAR_LIST[avatarIndex];
+
   return (
     <section
       id="hero"
-      className="min-h-[85vh] flex flex-col justify-center max-w-5xl mx-auto px-4 py-16 sm:py-24"
+      className="min-h-[80vh] flex flex-col justify-center max-w-5xl mx-auto px-4 py-16 sm:py-24"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        {/* Left Column: Telemetry & Identity */}
+        {/* Left Column: Core Identity & Goals */}
         <div className="lg:col-span-7 flex flex-col items-start">
-          {/* Telemetry badge */}
-          <div className="font-mono text-xs text-ink/60 tracking-wider mb-4 flex items-center gap-2">
-            <span
-              className="inline-block w-1.5 h-1.5 rounded-full bg-accent-text animate-pulse"
-              aria-hidden="true"
-            />
-            <span>[LOC-01] // 13.9319° N, 121.6172° E · LUCENA CITY, PH</span>
+          {/* Location & Status Badge */}
+          <div className="font-mono text-xs text-ink/70 flex items-center gap-2 mb-4">
+            <MapPin className="w-3.5 h-3.5 text-accent-text" />
+            <span>Lucena City, Philippines</span>
           </div>
 
           {/* Heading */}
@@ -65,20 +83,19 @@ export default function HeroSection() {
             </span>
           </p>
 
-          {/* Tagline / Philosophy */}
+          {/* Bio / Tagline */}
           <p className="font-sans text-sm sm:text-base text-ink/70 mt-4 leading-relaxed max-w-xl">
-            Doing things, little by little. Building responsive web systems and clean
-            code at the crossroads of full-stack engineering, Wayland environments,
-            and anime aesthetics.
+            Doing things, little by little. Building responsive web applications, full-stack systems,
+            and clean user interfaces with Next.js, TypeScript, and modern Linux tooling.
           </p>
 
           {/* OJT Availability Pill */}
-          <div className="font-mono text-xs px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 inline-flex items-center gap-2 my-6">
+          <div className="font-mono text-xs px-3.5 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 inline-flex items-center gap-2 my-6">
             <span className="relative flex h-2 w-2" aria-hidden="true">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            <span>Seeking OJT / Internship Opportunities</span>
+            <span className="font-medium">Seeking OJT / Internship Opportunities</span>
           </div>
 
           {/* Action Buttons Row */}
@@ -98,10 +115,10 @@ export default function HeroSection() {
             </a>
           </div>
 
-          {/* Quick Socials */}
+          {/* Quick Social Links */}
           <div className="flex items-center gap-2 pt-2">
             <span className="font-mono text-xs text-ink/50 mr-1 select-none">
-              // links:
+              links:
             </span>
             {portfolioData.socials.map((social) => (
               <a
@@ -123,78 +140,71 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right Column: Swiss-Japanese Portrait Frame */}
+        {/* Right Column: Interactive Click-to-Cycle Profile Card */}
         <div className="lg:col-span-5 flex flex-col items-center lg:items-end w-full">
-          <SwissFrame
-            tag="EVA-SPEC // 01"
-            showCrosshairs={true}
-            showCalipers={true}
-            className="p-3 sm:p-4 rounded-2xl w-full max-w-sm sm:max-w-md relative"
-          >
-            {/* Image Canvas with Filmic Styling */}
-            <div className="relative aspect-[4/5] rounded-xl overflow-hidden border border-ink/10 bg-ink/5 group">
-              <Image
-                src={portraitSrc}
-                alt={portfolioData.personal.name}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                priority
-                className="object-cover object-center grayscale contrast-125 dark:contrast-115 group-hover:grayscale-0 transition-all duration-500"
-                onError={() => setPortraitSrc("/assets/profile2.jpg")}
-              />
-
-              {/* Filmic duotone vignette overlay */}
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent pointer-events-none"
-                aria-hidden="true"
-              />
-
-              {/* Vertical Kanji rail */}
-              <div className="absolute top-3 left-3 z-20 pointer-events-none">
-                <span
-                  className="kanji-rail font-sans text-xs tracking-widest text-ink/50 select-none bg-bg/85 backdrop-blur-sm px-1.5 py-2.5 rounded border border-ink/10 shadow-sm"
-                  lang="ja"
-                >
-                  黄昏 // TWILIGHT
-                </span>
-              </div>
-
-              {/* Coordinate markers */}
-              <div className="absolute bottom-3 left-3 z-20 font-mono text-[10px] text-ink/70 tracking-wider uppercase bg-bg/85 backdrop-blur-sm px-2 py-1 rounded border border-ink/10 select-none pointer-events-none">
-                COORD // 13.9319° N, 121.6172° E
-              </div>
-            </div>
-
-            {/* Interactive Bocchi sticker at bottom-right corner */}
-            <div className="absolute -bottom-4 -right-4 z-30 group/bocchi">
-              <div
-                tabIndex={0}
-                role="img"
-                aria-label="Bocchi the Rock! sticker"
-                className="w-14 h-14 rounded-full border-2 border-accent-pink overflow-hidden shadow-lg hover:scale-110 transition-transform btn-press cursor-pointer relative bg-zinc-900"
+          <div className="w-full max-w-sm sm:max-w-md">
+            <SwissFrame
+              showCrosshairs={true}
+              showCalipers={true}
+              className="p-3 sm:p-4 rounded-2xl relative"
+            >
+              {/* Clickable Image Container */}
+              <button
+                type="button"
+                onClick={handleCycleAvatar}
+                aria-label={`Cycle avatar (currently ${currentAvatar.label}). Click to switch.`}
+                className="relative aspect-square w-full rounded-xl overflow-hidden border border-ink/15 bg-ink/5 group cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-accent-text select-none block"
               >
-                <img
-                  src="/assets/bocchifunni.jpg"
-                  alt="Bocchi sticker"
-                  className="w-full h-full object-cover"
+                {/* Main Avatar Image */}
+                <Image
+                  src={currentAvatar.src}
+                  alt={currentAvatar.label}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                  priority
+                  className={`object-cover object-center grayscale contrast-125 dark:contrast-115 group-hover:grayscale-0 transition-all duration-300 ${
+                    isGlitching ? "scale-105 filter blur-[1px]" : "scale-100"
+                  }`}
                 />
-              </div>
 
-              {/* Hover Tooltip */}
-              <div className="opacity-0 group-hover/bocchi:opacity-100 group-focus-within/bocchi:opacity-100 transition-opacity duration-200 pointer-events-none absolute right-0 bottom-full mb-2 w-56 p-2 rounded-lg bg-bg/95 backdrop-blur border border-accent-pink/30 shadow-xl text-center">
-                <p className="font-mono text-[11px] text-ink font-medium leading-tight">
-                  &ldquo;Guitarist &amp; anxious developer&rdquo;
-                </p>
-                <p className="font-mono text-[9px] text-ink/50 mt-1 uppercase tracking-wider">
-                  // &copy; CloverWorks
-                </p>
-              </div>
-            </div>
-          </SwissFrame>
+                {/* Pixel Mosaic Glitch Transition Overlay (screenshot 2 effect) */}
+                {isGlitching && (
+                  <div
+                    className="absolute inset-0 z-30 grid grid-cols-8 grid-rows-8 pointer-events-none"
+                    aria-hidden="true"
+                  >
+                    {Array.from({ length: 64 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="bg-black/95 dark:bg-white/95"
+                        style={{
+                          opacity: ((i * 37 + avatarIndex * 19) % 10) / 10,
+                          transition: "opacity 120ms ease-out",
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
 
-          {/* Subtle attribution credit line */}
-          <div className="text-[10px] font-mono text-ink/40 text-right mt-3 pr-2 select-none">
-            Bocchi the Rock! © CloverWorks
+                {/* Kanji Vertical Rail */}
+                <div className="absolute top-3 left-3 z-20 pointer-events-none">
+                  <span
+                    className="kanji-rail font-sans text-xs tracking-widest text-ink/60 select-none bg-bg/85 backdrop-blur-sm px-1.5 py-2.5 rounded border border-ink/10 shadow-sm"
+                    lang="ja"
+                  >
+                    黄昏 // TWILIGHT
+                  </span>
+                </div>
+
+                {/* Interactive Click-to-Cycle Pill Overlay */}
+                <div className="absolute bottom-3 right-3 z-20 pointer-events-none">
+                  <span className="font-mono text-[10px] text-ink/80 bg-bg/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-ink/15 shadow-sm inline-flex items-center gap-1.5">
+                    <RefreshCw className="w-3 h-3 text-accent-text animate-spin-reverse" />
+                    <span>click to cycle ({avatarIndex + 1}/{AVATAR_LIST.length})</span>
+                  </span>
+                </div>
+              </button>
+            </SwissFrame>
           </div>
         </div>
       </div>

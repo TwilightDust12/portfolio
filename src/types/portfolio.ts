@@ -14,7 +14,6 @@ export interface Project {
   stack: string[];
   outcome: string;
   isTeamProject?: boolean;
-  artAttribution?: string;
   description: string;
   longDescription?: string;
   tags: string[];
@@ -27,23 +26,13 @@ export interface Project {
 
 export interface SkillItem {
   name: string;
-  level?: 'Proficient' | 'Advanced' | 'Familiar';
 }
 
 export interface SkillCategory {
   category: string;
   description: string;
+  tag: string;
   skills: SkillItem[];
-}
-
-export interface Certification {
-  id: string;
-  title: string;
-  issuer: string;
-  issueDate: string;
-  expiryDate?: string;
-  credentialId?: string;
-  credentialUrl?: string;
 }
 
 export interface Experience {
@@ -90,15 +79,6 @@ export interface GamingInterests {
   favorites?: string[];
 }
 
-export interface ArtworkAttribution {
-  asset: string;
-  character?: string;
-  source: string;
-  studio: string;
-  copyrightNotice: string;
-  context: string;
-}
-
 export interface PortfolioConfig {
   personal: {
     name: string;
@@ -108,15 +88,14 @@ export interface PortfolioConfig {
     location: string;
     email: string;
     availability: string;
+    avatars: string[];
   };
   socials: SocialLink[];
   experience: Experience[];
   education: Education[];
   projects: Project[];
   skills: SkillCategory[];
-  certifications: Certification[];
   riceSpec: RiceSpec;
   animeInterests: AnimeInterests;
   gamingInterests: GamingInterests;
-  artworkAttributions: ArtworkAttribution[];
 }

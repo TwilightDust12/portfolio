@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { portfolioData } from "@/data/portfolio";
 import { SwissFrame } from "@/components/ui/SwissFrame";
 import { RiceSpecSheet } from "@/components/ui/RiceSpecSheet";
@@ -11,17 +10,15 @@ import {
   Gamepad2,
   Tv,
   Terminal,
-  Sparkles,
   BookOpen,
-  Heart,
 } from "lucide-react";
 
 export function ChronicleSection() {
   const { education, animeInterests, gamingInterests } = portfolioData;
 
-  const collegeEdu = education.find((e) => e.id === "edu-cs");
-  const shsEdu = education.find((e) => e.id === "edu-shs");
-  const spsEdu = education.find((e) => e.id === "edu-sps");
+  const collegeEdu = education.find((e) => e.id === "college");
+  const shsEdu = education.find((e) => e.id === "shs");
+  const jhsEdu = education.find((e) => e.id === "jhs");
 
   return (
     <section id="about" className="max-w-5xl mx-auto px-4 py-20">
@@ -29,32 +26,29 @@ export function ChronicleSection() {
       <div className="mb-12">
         <div className="flex items-center gap-2 font-mono text-xs text-ink/60 tracking-wider mb-2">
           <span className="text-accent-text font-semibold">
-            [02] // CHRONICLE & FOUNDATIONS
+            [02] // ABOUT &amp; BACKGROUND
           </span>
-          <span className="text-ink/30">―</span>
-          <span className="hidden sm:inline text-ink/50">ORIGINS & RUNTIME</span>
         </div>
 
         <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
-          behind the transmissions.
+          background &amp; foundations.
         </h2>
 
         <p className="font-serif italic text-lg sm:text-xl text-accent-text mt-2">
           Doing things, little by little.
         </p>
 
-        <p className="font-sans text-sm sm:text-base text-ink/70 mt-4 leading-relaxed max-w-3xl">
-          A trajectory shaped by structured academic inquiry, early leadership in digital
-          arts, and a dedicated appreciation for Japanese narrative animation and
-          precision Linux desktop computing.
+        <p className="font-sans text-sm sm:text-base text-ink/70 mt-3 leading-relaxed max-w-2xl">
+          Computer Science student focusing on full-stack web engineering, native mobile
+          applications, and custom Linux desktop environments.
         </p>
       </div>
 
       {/* Two-Column Grid: Academia & Culture */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-        {/* Card 1: Academic Milestones & Trajectory */}
+        {/* Card 1: Academic Milestones */}
         <SwissFrame
-          tag="ACADEMIA // STI"
+          tag="ACADEMIC BACKGROUND"
           showCrosshairs={true}
           showCalipers={true}
           className="p-6 sm:p-7 rounded-xl flex flex-col justify-between"
@@ -68,7 +62,7 @@ export function ChronicleSection() {
                 </div>
                 <div>
                   <h3 className="font-mono text-base font-bold text-ink">
-                    Academic Milestones
+                    Education
                   </h3>
                   <span className="font-mono text-[11px] text-ink/50 uppercase tracking-wider">
                     Lucena City, Philippines
@@ -76,14 +70,14 @@ export function ChronicleSection() {
                 </div>
               </div>
 
-              {/* Clear OJT objective badge */}
+              {/* OJT Badge */}
               <div className="font-mono text-xs px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25 inline-flex items-center gap-2 self-start sm:self-auto">
                 <span className="relative flex h-2 w-2" aria-hidden="true">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
                 <span className="font-semibold tracking-wide">
-                  Ready for On-the-Job Training (OJT)
+                  Seeking OJT / Internship
                 </span>
               </div>
             </div>
@@ -105,13 +99,12 @@ export function ChronicleSection() {
                   {collegeEdu?.degree || "Bachelor of Science in Computer Science"}
                 </p>
                 <p className="font-sans text-xs text-ink/70 mt-2 leading-relaxed">
-                  Focusing on modern full-stack web architectures, systems design,
-                  algorithms, and database engineering. Leading development on the
-                  WebC Student Clearance Portal as thesis capstone.
+                  Focusing on full-stack web applications, database systems, and software engineering.
+                  Currently developing the WebC Student Clearance System capstone thesis project.
                 </p>
               </div>
 
-              {/* Senior High School */}
+              {/* Senior High School - MAWD Strand */}
               <div className="relative pl-5 border-l-2 border-ink/20">
                 <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-ink/40" />
                 <div className="flex flex-wrap items-baseline justify-between gap-1">
@@ -120,14 +113,14 @@ export function ChronicleSection() {
                   </h4>
                   <span className="font-mono text-xs text-ink/50">2021 – 2023</span>
                 </div>
-                <p className="font-mono text-xs text-ink/80 mt-0.5">
-                  Senior High School (STEM)
+                <p className="font-mono text-xs text-ink/80 mt-0.5 font-semibold">
+                  Senior High School — Mobile App and Web Development (MAWD)
                 </p>
 
                 <div className="flex flex-wrap items-center gap-2 mt-2">
                   <span className="font-mono text-[11px] inline-flex items-center gap-1 px-2 py-0.5 rounded bg-accent-text/10 text-accent-text border border-accent-text/20">
                     <Award className="w-3 h-3" />
-                    Graduated with High Honors (95 average)
+                    High Honors (95 Average)
                   </span>
                   <span className="font-mono text-[11px] inline-flex items-center gap-1 px-2 py-0.5 rounded bg-ink/5 text-ink/80 border border-ink/15">
                     <BookOpen className="w-3 h-3 text-ink/60" />
@@ -141,71 +134,52 @@ export function ChronicleSection() {
                 <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-ink/20" />
                 <div className="flex flex-wrap items-baseline justify-between gap-1">
                   <h4 className="font-mono text-sm font-semibold text-ink">
-                    {spsEdu?.institution || "Saint Philomena School"}
+                    {jhsEdu?.institution || "Saint Philomena School"}
                   </h4>
                   <span className="font-mono text-xs text-ink/50">2012 – 2021</span>
                 </div>
                 <p className="font-mono text-xs text-ink/70 mt-0.5">
-                  Junior High & Elementary
-                </p>
-                <p className="font-sans text-xs text-ink/60 mt-1 leading-relaxed">
-                  Foundational education with early immersion in computing, mathematics,
-                  and logic.
+                  Elementary &amp; Junior High School
                 </p>
               </div>
             </div>
           </div>
-
-          <div className="mt-6 pt-4 border-t border-ink/10 flex items-center justify-between font-mono text-[11px] text-ink/50">
-            <span>TRAJECTORY: BSCS CANDIDATE</span>
-            <span>STATUS: ACTIVE ENROLLMENT</span>
-          </div>
         </SwissFrame>
 
-        {/* Card 2: Personal Passions & Anime Culture */}
+        {/* Card 2: Personal Interests (Clean, NO artwork showcase) */}
         <SwissFrame
-          tag="CULTURE // ANIME & GAMING"
+          tag="INTERESTS &amp; CULTURE"
           showCrosshairs={true}
           showCalipers={true}
           className="p-6 sm:p-7 rounded-xl flex flex-col justify-between"
         >
-          <div>
+          <div className="space-y-6">
             {/* Header */}
-            <div className="flex items-center justify-between pb-5 mb-5 border-b border-ink/10">
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-lg bg-accent-pink/15 text-accent-text border border-accent-pink/30">
-                  <Tv className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="font-mono text-base font-bold text-ink">
-                    Culture & Aesthetics
-                  </h3>
-                  <span className="font-mono text-[11px] text-ink/50 uppercase tracking-wider">
-                    Narratives · Visual Arts · Precision Play
-                  </span>
-                </div>
+            <div className="flex items-center gap-2.5 pb-5 border-b border-ink/10">
+              <div className="p-2 rounded-lg bg-accent-pink/15 text-accent-text border border-accent-pink/30">
+                <Tv className="w-5 h-5" />
               </div>
-
-              <div className="flex items-center gap-1.5 text-accent-text">
-                <Heart className="w-4 h-4 fill-accent-text/20 text-accent-text" />
-                <Sparkles className="w-4 h-4 text-accent-sky" />
+              <div>
+                <h3 className="font-mono text-base font-bold text-ink">
+                  Personal Interests
+                </h3>
+                <span className="font-mono text-[11px] text-ink/50 uppercase tracking-wider">
+                  Anime · Gaming · Ricing
+                </span>
               </div>
             </div>
 
-            {/* Anime Narrative & Favorites */}
-            <div className="space-y-3 mb-5">
-              <div className="flex items-center gap-2 font-mono text-xs font-semibold text-ink">
-                <span>Anime Culture & Influences</span>
+            {/* Anime Interests */}
+            <div>
+              <div className="flex items-center gap-2 font-mono text-xs font-semibold text-ink mb-1.5">
+                <Tv className="w-3.5 h-3.5 text-accent-text" />
+                <span>Anime</span>
               </div>
               <p className="font-sans text-xs text-ink/75 leading-relaxed">
                 {animeInterests.description}
               </p>
 
-              {/* Genre badges */}
-              <div className="flex flex-wrap gap-1.5 pt-1">
-                <span className="font-mono text-[10px] text-ink/50 uppercase tracking-wider mr-1 self-center">
-                  GENRES:
-                </span>
+              <div className="flex flex-wrap gap-1.5 mt-2.5">
                 {animeInterests.genres.map((genre) => (
                   <span
                     key={genre}
@@ -216,11 +190,7 @@ export function ChronicleSection() {
                 ))}
               </div>
 
-              {/* Favorites badges */}
-              <div className="flex flex-wrap gap-1.5 pt-1">
-                <span className="font-mono text-[10px] text-ink/50 uppercase tracking-wider mr-1 self-center">
-                  FAVORITES:
-                </span>
+              <div className="flex flex-wrap gap-1.5 mt-2">
                 {animeInterests.favorites.map((fav) => (
                   <span
                     key={fav}
@@ -232,87 +202,27 @@ export function ChronicleSection() {
               </div>
             </div>
 
-            {/* Artwork Showcase with studio attribution badges */}
-            <div className="pt-2 mb-5">
-              <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-ink/60 font-medium">
-                  Artwork Showcase // Studio Attributions
-                </span>
-                <span className="font-mono text-[10px] text-ink/40">MAPPA ARCHIVE</span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3.5">
-                {/* Reze preview frame */}
-                <div className="rounded-lg border border-ink/15 overflow-hidden bg-ink/5 group flex flex-col transition-all hover:border-accent-text/40">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink/10">
-                    <Image
-                      src="/assets/reze.jpg"
-                      alt="Reze (Bomb Girl) — Chainsaw Man"
-                      fill
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 50vw, 250px"
-                    />
-                  </div>
-                  <div className="p-2 sm:p-2.5 bg-bg/95 border-t border-ink/10 flex flex-col gap-0.5">
-                    <span className="font-mono text-[11px] font-semibold text-ink line-clamp-1">
-                      Reze (Bomb Girl)
-                    </span>
-                    <span className="font-mono text-[9px] sm:text-[10px] text-accent-text font-medium tracking-tight line-clamp-1">
-                      Chainsaw Man © MAPPA
-                    </span>
-                  </div>
-                </div>
-
-                {/* Rika preview frame */}
-                <div className="rounded-lg border border-ink/15 overflow-hidden bg-ink/5 group flex flex-col transition-all hover:border-accent-text/40">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink/10">
-                    <Image
-                      src="/assets/rika.png"
-                      alt="Rika Orimoto — Jujutsu Kaisen 0"
-                      fill
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 50vw, 250px"
-                    />
-                  </div>
-                  <div className="p-2 sm:p-2.5 bg-bg/95 border-t border-ink/10 flex flex-col gap-0.5">
-                    <span className="font-mono text-[11px] font-semibold text-ink line-clamp-1">
-                      Rika Orimoto
-                    </span>
-                    <span className="font-mono text-[9px] sm:text-[10px] text-accent-text font-medium tracking-tight line-clamp-1">
-                      Jujutsu Kaisen 0 © MAPPA
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Gaming & Precision Play */}
-            <div className="pt-2 border-t border-ink/10">
-              <div className="flex items-center gap-2 mb-1.5">
-                <Gamepad2 className="w-4 h-4 text-accent-sky" />
-                <span className="font-mono text-xs font-semibold text-ink">
-                  Gaming Disciplines
-                </span>
+            {/* Gaming Interests */}
+            <div className="pt-4 border-t border-ink/10">
+              <div className="flex items-center gap-2 font-mono text-xs font-semibold text-ink mb-1.5">
+                <Gamepad2 className="w-3.5 h-3.5 text-accent-sky" />
+                <span>Gaming</span>
               </div>
               <p className="font-sans text-xs text-ink/75 leading-relaxed">
                 {gamingInterests.description}
               </p>
-              <div className="flex flex-wrap gap-1.5 mt-2">
+
+              <div className="flex flex-wrap gap-1.5 mt-2.5">
                 {gamingInterests.genres.map((genre) => (
                   <span
                     key={genre}
-                    className="font-mono text-[10px] px-2 py-0.5 rounded bg-ink/5 text-ink/70 border border-ink/10"
+                    className="font-mono text-[11px] px-2 py-0.5 rounded bg-ink/5 border border-ink/10 text-ink/70"
                   >
                     {genre}
                   </span>
                 ))}
               </div>
             </div>
-          </div>
-
-          <div className="mt-6 pt-4 border-t border-ink/10 flex items-center justify-between font-mono text-[11px] text-ink/50">
-            <span>MEDIA: MAPPA / GAINAX / CLOVERWORKS</span>
-            <span>AUDIO: PIPEWIRE LOW-LATENCY</span>
           </div>
         </SwissFrame>
       </div>
@@ -322,7 +232,7 @@ export function ChronicleSection() {
         <div className="flex items-center gap-2 mb-3 px-1">
           <Terminal className="w-4 h-4 text-accent-text" />
           <span className="font-mono text-xs uppercase tracking-wider text-ink/70 font-semibold">
-            Technical Foundation // Wayland Rice & Shell Environment
+            Linux Environment &amp; Dotfiles Rice
           </span>
         </div>
         <RiceSpecSheet />

@@ -72,24 +72,22 @@ export function ContactSection() {
         <div className="flex items-center gap-2 font-mono text-xs text-ink/60 tracking-wider mb-2">
           <Send className="w-4 h-4 text-accent-text" />
           <span className="text-accent-text font-semibold">
-            [05] // TRANSMISSION & COMMUNICATIONS
+            [05] // CONTACT &amp; COMMS
           </span>
-          <span className="text-ink/30">―</span>
-          <span className="hidden sm:inline text-ink/50">OPEN PROTOCOLS</span>
         </div>
 
         <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
-          initiate transmission.
+          get in touch.
         </h2>
 
-        <p className="font-sans text-sm sm:text-base text-ink/70 mt-3 leading-relaxed max-w-3xl">
-          Open for On-the-Job Training (OJT), software engineering internships, and systems collaborations.
+        <p className="font-sans text-sm sm:text-base text-ink/70 mt-3 leading-relaxed max-w-2xl">
+          Open for On-the-Job Training (OJT), software engineering internships, and collaborations.
         </p>
       </div>
 
       {/* Invitation Card wrapped in SwissFrame */}
       <SwissFrame
-        tag="COMMS // DIRECT PIPELINE"
+        tag="CONTACT"
         showCrosshairs={true}
         showCalipers={true}
         className="p-8 sm:p-12 rounded-2xl relative overflow-hidden"
@@ -98,16 +96,16 @@ export function ContactSection() {
           {/* OJT Banner */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent-text/25 bg-accent-text/10 text-accent-text font-mono text-xs tracking-wide">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-            <span>Actively looking for OJT opportunities for 2024–2025 / 2025–2026 academic periods.</span>
+            <span>Actively looking for OJT / internship opportunities</span>
           </div>
 
           {/* Primary Headline */}
           <div className="space-y-2">
             <h3 className="font-mono text-2xl sm:text-3xl font-bold text-ink tracking-tight">
-              Let&apos;s build reliable software systems together.
+              Let&apos;s build something together.
             </h3>
             <p className="font-sans text-xs sm:text-sm text-ink/70 max-w-lg mx-auto">
-              Whether you have an internship opening, a production challenge, or want to discuss full-stack architectures and Wayland rices—my transmission lines are open.
+              Whether you have an internship opening, a project inquiry, or want to talk about full-stack engineering and Linux setups—feel free to reach out.
             </p>
           </div>
 
