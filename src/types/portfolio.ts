@@ -5,6 +5,12 @@ export interface SocialLink {
   username: string;
 }
 
+export interface ProjectScreenshot {
+  label: string;
+  desktopUrl: string;
+  mobileUrl?: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -19,6 +25,7 @@ export interface Project {
   tags: string[];
   featured: boolean;
   image?: string;
+  screenshots?: ProjectScreenshot[];
   demoUrl?: string;
   githubUrl?: string;
   highlights?: string[];

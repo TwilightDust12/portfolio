@@ -131,6 +131,23 @@ export const portfolioData: PortfolioConfig = {
       longDescription: "WebC replaces fragmented physical clearance sign-offs with an automated, auditable digital workflow. The system features role-based access for students, department heads, and campus administration with real-time approval status updates.",
       tags: ["Next.js 15", "TypeScript", "Supabase", "Drizzle ORM", "Azure MSAL"],
       githubUrl: "https://github.com/sudosetnametoAsh/next-webc",
+      screenshots: [
+        {
+          label: "Student Dashboard",
+          desktopUrl: "/assets/project screenshots/WebC/Student Dashboard.png",
+          mobileUrl: "/assets/project screenshots/WebC/Student Dashboard Mobile View.png",
+        },
+        {
+          label: "Faculty Dashboard",
+          desktopUrl: "/assets/project screenshots/WebC/Faculty Dashboard.png",
+          mobileUrl: "/assets/project screenshots/WebC/Faculty Dashboard Mobile View.png",
+        },
+        {
+          label: "Admin Dashboard",
+          desktopUrl: "/assets/project screenshots/WebC/Admin Dashboard.png",
+          mobileUrl: "/assets/project screenshots/WebC/Admin Dashboard Mobile View.png",
+        },
+      ],
       highlights: [
         "Role-based clearance routing for students, departments, and administrators",
         "Microsoft Azure MSAL single sign-on integration for institutional accounts",
@@ -170,6 +187,13 @@ export const portfolioData: PortfolioConfig = {
       longDescription: "A creative homage exploring digital connection and ethereal atmosphere. Features Web Audio API synthesis, scanline shaders, and responsive typographic columns.",
       tags: ["Next.js", "Tailwind CSS", "Web Audio API"],
       githubUrl: "https://github.com/TwilightDust12/lily-chou-chou-themed-portfolio",
+      screenshots: [
+        {
+          label: "Atmospheric Web Archive",
+          desktopUrl: "/assets/project screenshots/lily-chou-chou-themed-portfolio/lily-chou-chou-website.png",
+          mobileUrl: "/assets/project screenshots/lily-chou-chou-themed-portfolio/lily chou chou mobile view.PNG",
+        },
+      ],
       highlights: [
         "Procedural Web Audio API ambient tone synthesizer",
         "Custom scanline textures and filmic typography",

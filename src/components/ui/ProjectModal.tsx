@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Project } from "@/types/portfolio";
 import { portfolioData } from "@/data/portfolio";
-import { X, ExternalLink, CheckCircle2 } from "lucide-react";
+import { X, ExternalLink, CheckCircle2, Laptop, Smartphone } from "lucide-react";
 import { GithubIcon as Github } from "@/components/ui/Icons";
 
 export interface ProjectModalProps {
@@ -18,9 +18,15 @@ export function ProjectModal({
   open,
   onOpenChange,
 }: ProjectModalProps) {
+  const [modalScreenIdx, setModalScreenIdx] = useState(0);
+  const [modalDevice, setModalDevice] = useState<"desktop" | "mobile">("desktop");
+
   const projectIndex = project
     ? portfolioData.projects.findIndex((p) => p.id === project.id) + 1
     : 1;
+
+  const screenshots = project?.screenshots || [];
+  const currentScreen = screenshots[modalScreenIdx] || screenshots[0];
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -43,7 +49,7 @@ export function ProjectModal({
                 </div>
                 <Dialog.Close asChild>
                   <button
-                    className="relative after:absolute after:-inset-2 min-w-[36px] min-h-[36px] p-2 text-ink/60 hover:text-ink rounded-lg border border-ink/15 hover:border-ink/40 transition-colors btn-press ml-auto flex items-center justify-center touch-manipulation"
+                    className="relative after:absolute after:-inset-2 min-w-[36px] min-h-[36px] p-2 text-ink/60 hover:text-ink rounded-lg border border-ink/15 hover:border-ink/40 transition-colors btn-press ml-auto flex items-center justify-center touch-manipulation cursor-pointer"
                     aria-label="Close dialog"
                   >
                     <X className="w-4 h-4" />
@@ -58,6 +64,75 @@ export function ProjectModal({
               <Dialog.Description className="font-sans text-sm text-ink/70 mt-1">
                 {project.subtitle}
               </Dialog.Description>
+
+              {/* Screenshots Gallery if available */}
+              {screenshots.length > 0 && (
+                <div className="mt-5 rounded-xl border border-ink/15 overflow-hidden bg-black/5 dark:bg-black/40">
+                  <div className="flex items-center justify-between gap-2 px-3 py-2 bg-ink/5 border-b border-ink/10 flex-wrap">
+                    <div className="flex items-center gap-1 flex-wrap">
+                      {screenshots.map((s, idx) => (
+                        <button
+                          key={s.label}
+                          type="button"
+                          onClick={() => setModalScreenIdx(idx)}
+                          className={`px-2.5 py-1 rounded-md font-mono text-[11px] font-semibold transition-all cursor-pointer ${
+                            modalScreenIdx === idx
+                              ? "bg-accent-text text-white shadow-xs"
+                              : "text-ink/65 hover:text-ink hover:bg-ink/5"
+                          }`}
+                        >
+                          {s.label}
+                        </button>
+                      ))}
+                    </div>
+
+                    {currentScreen?.mobileUrl && (
+                      <div className="flex items-center gap-1 bg-ink/10 p-0.5 rounded text-[10px] font-mono">
+                        <button
+                          type="button"
+                          onClick={() => setModalDevice("desktop")}
+                          className={`px-2 py-0.5 rounded cursor-pointer ${
+                            modalDevice === "desktop"
+                              ? "bg-bg text-ink shadow-xs font-bold"
+                              : "text-ink/60 hover:text-ink"
+                          }`}
+                        >
+                          Desktop
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setModalDevice("mobile")}
+                          className={`px-2 py-0.5 rounded cursor-pointer ${
+                            modalDevice === "mobile"
+                              ? "bg-bg text-ink shadow-xs font-bold"
+                              : "text-ink/60 hover:text-ink"
+                          }`}
+                        >
+                          Mobile
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="p-3 sm:p-4 flex items-center justify-center bg-black/[0.02] dark:bg-black/20">
+                    {modalDevice === "desktop" ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img
+                        src={currentScreen?.desktopUrl}
+                        alt={currentScreen?.label || project.title}
+                        className="w-full max-h-[380px] object-cover object-top rounded-lg border border-ink/15 shadow-md"
+                      />
+                    ) : (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img
+                        src={currentScreen?.mobileUrl || currentScreen?.desktopUrl}
+                        alt={`${currentScreen?.label} Mobile`}
+                        className="w-full max-w-[240px] max-h-[380px] object-cover object-top rounded-2xl border-2 border-ink/20 shadow-xl"
+                      />
+                    )}
+                  </div>
+                </div>
+              )}
 
               {/* 4-Line Case Study Breakdown */}
               <div className="mt-6 space-y-4">
