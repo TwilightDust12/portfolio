@@ -6,9 +6,16 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
+        bg: "var(--bg)",
+        ink: "var(--ink)",
+        "accent-text": "var(--accent-text)",
+        "accent-pink": "var(--accent-pink)",
+        "accent-sky": "var(--accent-sky)",
+        "on-accent": "var(--on-accent)",
         canvas: "#08080a",
         surface: {
           950: "#0c0c10",
