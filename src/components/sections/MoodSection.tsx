@@ -163,7 +163,7 @@ export function MoodSection() {
 
                     {music?.isFallback && (
                       <span className="inline-block mt-2 font-mono text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-ink/5 border border-ink/10 text-ink/50">
-                        CURATED SELECTION // .ENV READY
+                        CURATED SELECTION
                       </span>
                     )}
                   </div>
@@ -174,7 +174,7 @@ export function MoodSection() {
             {/* Bottom Action Footer */}
             <div className="pt-4 mt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
               <a
-                href={music?.songUrl || "https://www.last.fm"}
+                href={music?.songUrl || "https://www.last.fm/user/TwilightDust12"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-press font-mono text-xs text-accent-text hover:underline inline-flex items-center gap-1.5 font-medium"
@@ -282,7 +282,7 @@ export function MoodSection() {
             {/* Bottom Action Footer */}
             <div className="pt-4 mt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
               <a
-                href="https://letterboxd.com"
+                href="https://letterboxd.com/twilightdust"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-press font-mono text-xs text-accent-peach hover:underline inline-flex items-center gap-1.5 font-medium"
@@ -294,7 +294,7 @@ export function MoodSection() {
 
               {cinema?.isFallback ? (
                 <span className="font-mono text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-ink/5 border border-ink/10 text-ink/50">
-                  FALLBACK ACTIVE // .ENV READY
+                  FALLBACK ACTIVE
                 </span>
               ) : (
                 <span className="font-mono text-[10px] text-ink/50 uppercase">
