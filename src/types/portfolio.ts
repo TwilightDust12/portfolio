@@ -1,5 +1,5 @@
 export interface SocialLink {
-  platform: 'github' | 'linkedin' | 'instagram' | 'facebook' | 'email' | string;
+  platform: 'github' | 'linkedin' | 'instagram' | 'facebook' | 'discord' | 'email' | string;
   label: string;
   url: string;
   username: string;
@@ -9,14 +9,20 @@ export interface Project {
   id: string;
   title: string;
   subtitle: string;
+  problem: string;
+  role: string;
+  stack: string[];
+  outcome: string;
+  isTeamProject?: boolean;
+  artAttribution?: string;
   description: string;
-  longDescription: string;
+  longDescription?: string;
   tags: string[];
   featured: boolean;
   image?: string;
   demoUrl?: string;
   githubUrl?: string;
-  highlights: string[];
+  highlights?: string[];
 }
 
 export interface SkillItem {
@@ -60,6 +66,39 @@ export interface Education {
   details?: string[];
 }
 
+export interface RiceSpec {
+  os: string;
+  kernel: string;
+  wm: string;
+  bar: string;
+  terminals: string[];
+  shell: string[];
+  launchers?: string[];
+  daemonsAndTools?: string[];
+  audioTuning: string;
+}
+
+export interface AnimeInterests {
+  description: string;
+  favorites: string[];
+  genres: string[];
+}
+
+export interface GamingInterests {
+  description: string;
+  genres: string[];
+  favorites?: string[];
+}
+
+export interface ArtworkAttribution {
+  asset: string;
+  character?: string;
+  source: string;
+  studio: string;
+  copyrightNotice: string;
+  context: string;
+}
+
 export interface PortfolioConfig {
   personal: {
     name: string;
@@ -76,4 +115,8 @@ export interface PortfolioConfig {
   projects: Project[];
   skills: SkillCategory[];
   certifications: Certification[];
+  riceSpec: RiceSpec;
+  animeInterests: AnimeInterests;
+  gamingInterests: GamingInterests;
+  artworkAttributions: ArtworkAttribution[];
 }

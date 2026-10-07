@@ -2,16 +2,16 @@ import { PortfolioConfig } from "@/types/portfolio";
 
 export const portfolioData: PortfolioConfig = {
   personal: {
-    name: "Twilight",
-    title: "Software Engineer & Systems Tinkerer",
-    tagline: "Building responsive web systems, tailored Linux desktop suites, and low-latency audio tooling with clean editorial discipline.",
+    name: "Jose Raphael Jaro",
+    title: "Aspiring Full-Stack Developer",
+    tagline: "Doing things, little by little. Building responsive web systems, intuitive user interfaces, and clean code at the intersection of modern full-stack development, Wayland Linux environments, and expressive personal aesthetics.",
     bioParagraphs: [
-      "I am a software engineer focused on building clean, high-performance web applications and exploring the Linux desktop ecosystem. My work pairs deep technical care with a strong respect for layout, typography, and tactile interface craft.",
-      "Beyond modern web stacks, I spend substantial time configuring Wayland window managers, writing automation tools in Shell and Rust, and optimizing audio pipelines for rhythm games on Linux."
+      "Doing things, little by little. Building responsive web systems, intuitive user interfaces, and clean code at the intersection of modern full-stack development, Wayland Linux environments, and expressive personal aesthetics.",
+      "Actively seeking an On-the-Job Training (OJT) / internship role to contribute full-stack capabilities in a production software team."
     ],
-    location: "Manila, PH / Remote",
+    location: "Lucena City, Quezon Province, Philippines",
     email: "jyrum12@gmail.com",
-    availability: "Available for select projects & full-time engineering roles",
+    availability: "Seeking OJT / Internship Opportunities",
   },
 
   socials: [
@@ -24,207 +24,309 @@ export const portfolioData: PortfolioConfig = {
     {
       platform: "linkedin",
       label: "LinkedIn",
-      url: "https://linkedin.com",
-      username: "Twilight"
-    },
-    {
-      platform: "instagram",
-      label: "Instagram",
-      url: "https://instagram.com",
-      username: "@twilight"
+      url: "https://www.linkedin.com/in/jose-raphael-jaro-822b2b251/",
+      username: "Jose Raphael Jaro"
     },
     {
       platform: "facebook",
       label: "Facebook",
-      url: "https://facebook.com",
-      username: "Twilight"
+      url: "https://www.facebook.com/Jyrum.JaroLuckyStar/",
+      username: "Jyrum Jaro"
+    },
+    {
+      platform: "instagram",
+      label: "Instagram",
+      url: "https://www.instagram.com/jy.twi/",
+      username: "@jy.twi"
+    },
+    {
+      platform: "discord",
+      label: "Discord",
+      url: "https://discord.com",
+      username: "twilightdust"
     }
   ],
 
   experience: [
     {
-      id: "exp-1",
-      role: "Open Source Creator & Systems Engineer",
-      company: "Independent Projects",
-      period: "2023 — Present",
-      location: "Manila, PH",
+      id: "exp-thesis",
+      role: "Full-Stack Developer (Team Project)",
+      company: "WebC Student Clearance System",
+      period: "2024 — Present",
+      location: "STI College Lucena",
       description: [
-        "Created osu-winello to resolve audio sync discrepancies and input latency for competitive rhythm gaming across Wine and PipeWire.",
-        "Engineered the HyprNova suite, an aesthetic Wayland desktop environment with dynamic IPC socket listeners and status daemons.",
-        "Authored modular shell scripts and configuration architectures adopted by desktop Linux enthusiasts."
+        "Architecting and developing centralized multi-role student clearance web portal using Next.js 15, Supabase, and Drizzle ORM.",
+        "Engineering automated clearance approval pipelines across academic departments and integrating institutional Microsoft Azure MSAL login."
       ],
-      technologies: ["Linux", "Bash", "Rust", "Wayland", "PipeWire", "Git"]
+      technologies: ["Next.js 15", "TypeScript", "Supabase", "Drizzle ORM", "Microsoft Azure MSAL", "Tailwind CSS"]
     },
     {
-      id: "exp-2",
-      role: "Fullstack Web Developer",
-      company: "Freelance & Collaborative Work",
-      period: "2022 — 2024",
-      location: "Remote",
+      id: "exp-sphere8",
+      role: "Lead Frontend & Full-Stack Developer",
+      company: "Sphere8 Construction",
+      period: "2024 — Present",
+      location: "Lucena City, PH",
       description: [
-        "Architected and deployed responsive single-page applications and marketing frontends using Next.js, React, and TypeScript.",
-        "Integrated Supabase backends with row-level security and relational PostgreSQL schemas.",
-        "Refined accessibility, performance budgets, and typography hierarchies across diverse client web projects."
+        "Engineering modern corporate web portal featuring structured showcase galleries and direct service inquiry funnels.",
+        "Refining responsive design, component performance, and client intake workflows using Next.js and Tailwind CSS."
       ],
-      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL"]
+      technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"]
+    },
+    {
+      id: "exp-codearts",
+      role: "Vice President",
+      company: "CodeArts Online",
+      period: "2021 — 2023",
+      location: "STI College Lucena",
+      description: [
+        "Led coding workshops, student digital arts collaborations, and technical showcases.",
+        "Mentored peer members on web development fundamentals and creative programming."
+      ],
+      technologies: ["Web Development", "Leadership", "Creative Technology"]
     }
   ],
 
   education: [
     {
-      id: "edu-1",
-      degree: "Bachelor of Science in Information Technology",
-      institution: "College of Computer Studies",
-      period: "2021 — 2025",
-      location: "Philippines",
-      honors: "Dean's Honor List",
+      id: "edu-cs",
+      degree: "Bachelor of Science in Computer Science",
+      institution: "STI College Lucena",
+      period: "2023 — 2027",
+      location: "Lucena City, Philippines",
       details: [
-        "Specialized in Systems Analysis, Modern Web Architectures, and Relational Database Systems.",
-        "Completed capstone engineering projects emphasizing secure REST API design and responsive frontends."
+        "Focused on modern full-stack web architectures, algorithms, systems design, and database engineering.",
+        "Developing WebC Thesis Capstone Portal as primary academic software engineering project."
+      ]
+    },
+    {
+      id: "edu-shs",
+      degree: "Senior High School (STEM)",
+      institution: "STI College Lucena",
+      period: "2021 — 2023",
+      location: "Lucena City, Philippines",
+      honors: "Graduated with High Honors (95 average)",
+      details: [
+        "Served as Vice President of CodeArts Online (coding and digital arts club).",
+        "Graduated with High Honors with an overall grade average of 95."
+      ]
+    },
+    {
+      id: "edu-sps",
+      degree: "Elementary & Junior High School",
+      institution: "Saint Philomena School",
+      period: "2012 — 2021",
+      location: "Lucena City, Philippines",
+      details: [
+        "Foundational education with early immersion in computing, mathematics, and logic."
       ]
     }
   ],
 
   projects: [
     {
-      id: "osu-winello",
-      title: "osu-winello",
-      subtitle: "Linux & Wine Runner Suite",
-      tags: ["Shell", "Wine", "Linux", "PipeWire"],
+      id: "webc",
+      title: "WebC — Student Clearance System",
+      subtitle: "Thesis Capstone Portal",
+      isTeamProject: true,
+      role: "Full-Stack Developer (Team Project)",
+      problem: "Manual, paper-reliant academic clearance workflows cause bottlenecks, delayed graduation filings, and lost records between college departments.",
+      stack: ["Next.js 15", "TypeScript", "Supabase", "Drizzle ORM", "Microsoft Azure MSAL", "Tailwind CSS"],
+      outcome: "Centralized multi-role web portal featuring role-based dashboards (Student, Department, Admin), automated clearance approval pipelines, and institutional Azure login.",
+      description: "Centralized multi-role web portal featuring role-based dashboards (Student, Department, Admin), automated clearance approval pipelines, and institutional Azure login.",
+      longDescription: "Manual, paper-reliant academic clearance workflows cause bottlenecks, delayed graduation filings, and lost records between college departments. WebC provides a centralized multi-role web portal featuring role-based dashboards (Student, Department, Admin), automated clearance approval pipelines, and institutional Azure login.",
+      tags: ["Next.js 15", "TypeScript", "Supabase", "Drizzle ORM", "Microsoft Azure MSAL", "Tailwind CSS"],
       featured: true,
-      description: "A specialized Wine runner and prefix manager optimizing low-latency audio pipelines and beatmap synchronization for rhythm gaming on Linux.",
-      longDescription: "Built to overcome audio crackling and micro-stutters on modern Wayland desktop sessions. Automates Wine staging prefixes, PipeWire buffer configurations, and seamless beatmap storage mounting.",
+      githubUrl: "https://github.com/sudosetnametoAsh/next-webc",
       highlights: [
-        "Low-latency audio tuning with PipeWire buffer management",
-        "Automated Wine prefix configuration and DLL overrides",
-        "Symlink management for seamless song library migration"
-      ],
-      githubUrl: "https://github.com/TwilightDust12/osu-winello",
-      demoUrl: "https://github.com/TwilightDust12/osu-winello"
+        "Role-based dashboards tailored for Students, Academic Departments, and Administrators",
+        "Automated clearance approval pipelines with real-time verification and record keeping",
+        "Institutional single sign-on integration via Microsoft Azure MSAL"
+      ]
     },
     {
-      id: "hyprnova",
-      title: "HyprNova Desktop Suite",
-      subtitle: "Minimalist Wayland Environment",
-      tags: ["Hyprland", "Wayland", "Rust", "CSS"],
+      id: "sphere8",
+      title: "Sphere8 Construction Company Website",
+      subtitle: "Commercial Client Portal",
+      isTeamProject: false,
+      role: "Lead Frontend & Full-Stack Developer",
+      problem: "Traditional construction contracting suffers from friction in client intake and fragmented offline project portfolios.",
+      stack: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
+      outcome: "Modern corporate web portal featuring structured showcase galleries and direct service inquiry funnels (In Active Development).",
+      description: "Modern corporate web portal featuring structured showcase galleries and direct service inquiry funnels (In Active Development).",
+      longDescription: "Traditional construction contracting suffers from friction in client intake and fragmented offline project portfolios. Developed a modern corporate web portal featuring structured showcase galleries and direct service inquiry funnels (In Active Development).",
+      tags: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
       featured: true,
-      description: "A cohesive desktop suite for Hyprland featuring custom status bars, dynamic wallpaper palette extraction, and keyboard-centric productivity flows.",
-      longDescription: "HyprNova focuses on visual restraint, rapid keyboard navigation, and lightweight resource utilization. Designed with custom IPC listeners, rofi application pickers, and minimal CPU overhead.",
       highlights: [
-        "Dynamic palette synchronization across terminal and UI",
-        "Custom status bar layouts with hardware monitoring",
-        "Sub-1% idle CPU consumption on modern systems"
-      ],
-      githubUrl: "https://github.com/TwilightDust12",
-      demoUrl: "https://github.com/TwilightDust12"
+        "Structured portfolio showcase galleries highlighting ongoing and completed construction contracts",
+        "Interactive intake and inquiry funnels reducing client onboard friction",
+        "High-performance responsive architecture built with Next.js and Tailwind CSS"
+      ]
     },
     {
-      id: "lily-chou-chou-portfolio",
-      title: "The Ether / Lily Archive",
-      subtitle: "Cinematic Web Experience",
-      tags: ["Next.js", "Web Audio", "Tailwind CSS", "Typography"],
+      id: "lily-chou-chou",
+      title: "All About Lily Chou-Chou Themed Portfolio",
+      subtitle: "Creative Ambient Sound Archive",
+      isTeamProject: false,
+      role: "Creator & Designer",
+      problem: "Conventional portfolios lack sensory identity and emotional depth.",
+      stack: ["Next.js", "Tailwind CSS", "Web Audio API", "TypeScript"],
+      outcome: "Atmospheric web archive integrating real-time Web Audio API ambient sound synthesis, filmic scanlines, and retro typography.",
+      description: "Atmospheric web archive integrating real-time Web Audio API ambient sound synthesis, filmic scanlines, and retro typography.",
+      longDescription: "Conventional portfolios lack sensory identity and emotional depth. Engineered an atmospheric web archive integrating real-time Web Audio API ambient sound synthesis, filmic scanlines, and retro typography inspired by Shunji Iwai's film.",
+      tags: ["Next.js", "Tailwind CSS", "Web Audio API", "TypeScript"],
       featured: true,
-      description: "A creative web archive inspired by Shunji Iwai's All About Lily Chou-Chou, pairing 35mm optical grain with interactive Web Audio sound design.",
-      longDescription: "An exploration of early internet nostalgia and film cinematography. Incorporates interactive synthesized soundscapes, custom typeface pairings, and balanced editorial columns.",
-      highlights: [
-        "Web Audio API ambient sound generator",
-        "Optical lens vignette and custom grain shaders",
-        "Responsive editorial typography and zero layout shift"
-      ],
       githubUrl: "https://github.com/TwilightDust12/lily-chou-chou-themed-portfolio",
-      demoUrl: "https://twilightdust12.github.io/lily-chou-chou-themed-portfolio/"
+      demoUrl: "https://twilightdust12.github.io/lily-chou-chou-themed-portfolio/",
+      artAttribution: "Inspired by Shunji Iwai's film All About Lily Chou-Chou (2001)",
+      highlights: [
+        "Real-time Web Audio API ambient sound synthesis and interactive soundscape player",
+        "Custom CRT scanlines, optical vignette shader effects, and retro typography",
+        "Fluid responsive design with zero layout shift"
+      ]
     },
     {
-      id: "accela-wired-cli",
-      title: "Accela CLI Notes",
-      subtitle: "Terminal Scratchpad & Vault",
-      tags: ["Rust", "CLI", "TUI", "Linux"],
-      featured: false,
-      description: "A fast terminal scratchpad for snippets, notes, and workspace bookmarks with fuzzy finding and local file storage.",
-      longDescription: "Engineered in Rust for instantaneous startup under 10 milliseconds. Provides keyboard-only workflows, tagging, and direct markdown export.",
-      highlights: [
-        "Instant startup under 10ms with zero runtime overhead",
-        "Fuzzy search across local markdown vaults",
-        "Vim-inspired navigation bindings"
-      ],
+      id: "wayland-rice",
+      title: "Wayland Rice & Dotfiles",
+      subtitle: "Dynamic CachyOS Environment",
+      isTeamProject: false,
+      role: "Maintainer & Ricer",
+      problem: "Default desktop environments lack workflow efficiency and cohesive visual customization.",
+      stack: ["CachyOS", "Hyprland", "Waybar", "Pywal", "Bash", "PipeWire"],
+      outcome: "Automated Wayland rice environment with dynamic wallpaper-extracted color palettes, custom IPC status bars, and low-latency audio daemons.",
+      description: "Automated Wayland rice environment with dynamic wallpaper-extracted color palettes, custom IPC status bars, and low-latency audio daemons.",
+      longDescription: "Default desktop environments lack workflow efficiency and cohesive visual customization. Engineered an automated Wayland rice environment with dynamic wallpaper-extracted color palettes, custom IPC status bars, and low-latency audio daemons on CachyOS.",
+      tags: ["CachyOS", "Hyprland", "Waybar", "Pywal", "Bash", "PipeWire"],
+      featured: true,
       githubUrl: "https://github.com/TwilightDust12",
-      demoUrl: "https://github.com/TwilightDust12"
+      highlights: [
+        "Dynamic palette extraction across Waybar, Alacritty/Kitty, and system UI via Pywal",
+        "Custom Waybar modules with dynamic IPC socket listeners and hardware telemetry",
+        "Low-latency PipeWire audio daemon routing and custom system scripts"
+      ]
     }
   ],
 
   skills: [
     {
-      category: "Languages & Core",
-      description: "Core programming languages and foundational web technologies.",
+      category: "Frontend",
+      description: "Modern component-driven web architectures, typing systems, and utility styling.",
       skills: [
+        { name: "Next.js", level: "Advanced" },
+        { name: "React", level: "Advanced" },
         { name: "TypeScript", level: "Advanced" },
-        { name: "JavaScript (ESNext)", level: "Advanced" },
-        { name: "Rust", level: "Proficient" },
-        { name: "Python", level: "Proficient" },
-        { name: "Bash / Shell", level: "Advanced" },
-        { name: "HTML5 & CSS3", level: "Advanced" }
-      ]
-    },
-    {
-      category: "Frontend Architecture",
-      description: "Modern component-driven frameworks and UI engineering.",
-      skills: [
-        { name: "Next.js (App Router)", level: "Advanced" },
-        { name: "React 19", level: "Advanced" },
         { name: "Tailwind CSS", level: "Advanced" },
-        { name: "Framer Motion", level: "Proficient" },
-        { name: "Responsive Layouts", level: "Advanced" },
-        { name: "Web Audio API", level: "Familiar" }
+        { name: "Vite", level: "Proficient" },
+        { name: "Bootstrap", level: "Proficient" }
       ]
     },
     {
-      category: "Backend & Systems",
-      description: "Data persistence, cloud services, and runtime platforms.",
+      category: "Backend & Data",
+      description: "Runtime environments, relational persistence, ORM tooling, and enterprise frameworks.",
       skills: [
         { name: "Node.js", level: "Proficient" },
         { name: "Supabase", level: "Proficient" },
-        { name: "PostgreSQL", level: "Proficient" },
-        { name: "RESTful APIs", level: "Advanced" },
-        { name: "Git & Version Control", level: "Advanced" }
+        { name: "Drizzle ORM", level: "Proficient" },
+        { name: "SQL Server", level: "Proficient" },
+        { name: "ASP.NET (Web Forms & MVC)", level: "Familiar" }
       ]
     },
     {
-      category: "Linux & Desktop",
-      description: "Operating system tailoring, window managers, and tooling.",
+      category: "DevOps & QA",
+      description: "Containerization, automated CI/CD pipelines, end-to-end testing, and version control.",
       skills: [
-        { name: "Linux (Arch / Debian)", level: "Advanced" },
-        { name: "Hyprland & Wayland", level: "Advanced" },
-        { name: "Wine & Proton Staging", level: "Advanced" },
-        { name: "PipeWire Audio", level: "Proficient" },
-        { name: "Docker", level: "Familiar" }
+        { name: "Docker", level: "Proficient" },
+        { name: "GitHub Actions", level: "Proficient" },
+        { name: "Playwright", level: "Proficient" },
+        { name: "Git & GitHub", level: "Advanced" }
+      ]
+    },
+    {
+      category: "Mobile & Game Dev",
+      description: "Native Android application engineering and interactive game development.",
+      skills: [
+        { name: "Android (Kotlin, Jetpack Compose, Room, MVVM)", level: "Proficient" },
+        { name: "Unity (C#)", level: "Familiar" }
+      ]
+    },
+    {
+      category: "Tools & Linux",
+      description: "Arch-based desktop distributions, Wayland compositors, IPC status bars, and shell automation.",
+      skills: [
+        { name: "CachyOS", level: "Advanced" },
+        { name: "Hyprland", level: "Advanced" },
+        { name: "Waybar", level: "Advanced" },
+        { name: "Bash", level: "Advanced" },
+        { name: "Linux Administration", level: "Proficient" }
       ]
     }
   ],
 
-  certifications: [
+  certifications: [],
+
+  riceSpec: {
+    os: "CachyOS",
+    kernel: "Arch Linux optimized kernel",
+    wm: "Hyprland (Dynamic tiling Wayland compositor)",
+    bar: "Waybar (Dynamic Pywal theming)",
+    terminals: ["Alacritty", "Kitty (GPU-accelerated)"],
+    shell: ["Zsh", "Bash"],
+    launchers: ["Rofi (Wayland fork)", "Wofi"],
+    daemonsAndTools: ["Hyprlock", "Hypridle", "Mako", "Fastfetch", "Waypaper", "Cava", "Spicetify"],
+    audioTuning: "PipeWire low-latency configuration"
+  },
+
+  animeInterests: {
+    description: "Avid anime watcher and reviewer with a deep appreciation for slice-of-life and rom-com narratives.",
+    favorites: ["Bocchi the Rock!", "Chainsaw Man", "Jujutsu Kaisen", "Neon Genesis Evangelion"],
+    genres: ["Slice of Life", "Romantic Comedy", "Psychological Thriller", "Supernatural / Action"]
+  },
+
+  gamingInterests: {
+    description: "Lifelong gaming enthusiast balanced between high-focus competitive shooters and immersive single-player adventures.",
+    genres: ["Competitive Tactical Shooters", "Immersive Single-Player Adventures", "Rhythm Games"],
+    favorites: ["Tactical Shooters", "Story-driven RPGs", "Rhythm Games"]
+  },
+
+  artworkAttributions: [
     {
-      id: "meta-frontend",
-      title: "Meta Front-End Developer Professional Certificate",
-      issuer: "Meta / Coursera",
-      issueDate: "2024",
-      credentialId: "META-FE-9921",
-      credentialUrl: "https://coursera.org"
+      asset: "bocchifunni.jpg",
+      character: "Hitori Gotoh (Bocchi)",
+      source: "Bocchi the Rock!",
+      studio: "CloverWorks",
+      copyrightNotice: "© Aki Hamaji / Houbunsha, Aniplex, CloverWorks",
+      context: "Interactive mascot sticker with hover dialogue"
     },
     {
-      id: "aws-cloud-practitioner",
-      title: "AWS Certified Cloud Practitioner",
-      issuer: "Amazon Web Services",
-      issueDate: "2024",
-      credentialId: "AWS-CCP-4810",
-      credentialUrl: "https://aws.amazon.com"
+      asset: "reze.jpg",
+      character: "Reze (Bomb Girl)",
+      source: "Chainsaw Man",
+      studio: "MAPPA",
+      copyrightNotice: "© Tatsuki Fujimoto / Shueisha, MAPPA",
+      context: "Visual accent and anime culture interest showcase"
     },
     {
-      id: "linux-sysadmin",
-      title: "Linux Systems Administration & Scripting",
-      issuer: "Linux Professional Institute",
-      issueDate: "2023",
-      credentialId: "LPI-SYS-1029",
-      credentialUrl: "https://lpi.org"
+      asset: "rika.png",
+      character: "Rika Orimoto",
+      source: "Jujutsu Kaisen 0",
+      studio: "MAPPA",
+      copyrightNotice: "© Gege Akutami / Shueisha, JUJUTSU KAISEN Project, MAPPA",
+      context: "Visual accent and anime culture interest showcase"
+    },
+    {
+      asset: "evangelion.jpg",
+      character: "Rei Ayanami / Evangelion Unit-01",
+      source: "Neon Genesis Evangelion",
+      studio: "Studio Khara / Gainax",
+      copyrightNotice: "© khara / Gainax",
+      context: "Aesthetic inspiration for Swiss-Japanese typography and HUD framing"
+    },
+    {
+      asset: "gojo.jpg",
+      character: "Satoru Gojo",
+      source: "Jujutsu Kaisen",
+      studio: "MAPPA",
+      copyrightNotice: "© Gege Akutami / Shueisha, MAPPA",
+      context: "Aesthetic inspiration for high-contrast neon accents and typography"
     }
   ]
 };
