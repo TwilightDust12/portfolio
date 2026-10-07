@@ -44,7 +44,7 @@ export function ProjectsSection() {
           <SwissFrame
             key={project.id}
             tag={project.isTeamProject ? "THESIS / TEAM PROJECT" : "SOLO PROJECT"}
-            className="p-6 rounded-xl flex flex-col justify-between"
+            className="p-6 rounded-xl flex flex-col justify-between hover:border-accent-text/30 transition-[border-color,box-shadow,transform] duration-200 ease-out hover:shadow-lg dark:hover:shadow-black/40 hover:-translate-y-0.5"
           >
             <div className="flex flex-col space-y-4">
               {/* Top row: Project title and badges */}

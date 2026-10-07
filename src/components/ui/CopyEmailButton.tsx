@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Mail, Copy, Check, ArrowUpRight } from "lucide-react";
+import { toast } from "sonner";
 
 interface CopyEmailButtonProps {
   email: string;
@@ -28,6 +29,9 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
         textArea.remove();
       }
       setCopied(true);
+      toast.success("Email address copied", {
+        description: email,
+      });
       setTimeout(() => setCopied(false), 2500);
     } catch {
       // Graceful fallback attempt

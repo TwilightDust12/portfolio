@@ -21,6 +21,7 @@ import {
   InstagramIcon as Instagram,
   FacebookIcon as Facebook,
 } from "@/components/ui/Icons";
+import { toast } from "sonner";
 
 function DiscordIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -59,6 +60,9 @@ export function ContactSection() {
     e.preventDefault();
     navigator.clipboard?.writeText(username);
     setDiscordCopied(true);
+    toast.success("Discord handle copied", {
+      description: `@${username}`,
+    });
     setTimeout(() => setDiscordCopied(false), 2000);
   };
 
