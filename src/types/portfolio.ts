@@ -26,6 +26,7 @@ export interface Project {
   featured: boolean;
   image?: string;
   screenshots?: ProjectScreenshot[];
+  videoUrl?: string;
   demoUrl?: string;
   githubUrl?: string;
   highlights?: string[];

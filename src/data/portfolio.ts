@@ -214,6 +214,7 @@ export const portfolioData: PortfolioConfig = {
       longDescription: "A finely tuned Wayland desktop workflow running on CachyOS. Features customized Waybar status bars, GPU-accelerated terminals (Alacritty/Kitty), dynamic Pywal theme extraction, and PipeWire latency optimization.",
       tags: ["Hyprland", "Waybar", "CachyOS", "Pywal", "Bash"],
       githubUrl: "https://github.com/TwilightDust12",
+      videoUrl: "/assets/project screenshots/hyprland rice/hyprland rice.mp4",
       highlights: [
         "Real-time Pywal palette generation synced across Waybar, Mako, and Discord",
         "Fluid Wayland animations and tiling rules on Hyprland",

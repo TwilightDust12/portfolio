@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Project } from "@/types/portfolio";
 import { portfolioData } from "@/data/portfolio";
-import { X, ExternalLink, CheckCircle2, Laptop, Smartphone } from "lucide-react";
+import { X, ExternalLink, CheckCircle2, Laptop, Smartphone, Play } from "lucide-react";
 import { GithubIcon as Github } from "@/components/ui/Icons";
 
 export interface ProjectModalProps {
@@ -64,6 +64,30 @@ export function ProjectModal({
               <Dialog.Description className="font-sans text-sm text-ink/70 mt-1">
                 {project.subtitle}
               </Dialog.Description>
+
+              {/* Video Player if available */}
+              {project.videoUrl && (
+                <div className="mt-5 rounded-xl border border-ink/15 overflow-hidden bg-black/5 dark:bg-black/50 shadow-md">
+                  <div className="flex items-center justify-between px-3 py-2 bg-ink/5 border-b border-ink/10">
+                    <span className="font-mono text-xs font-bold text-accent-text flex items-center gap-1.5">
+                      <Play className="w-3.5 h-3.5 fill-current" />
+                      <span>Live Desktop Recording // Hyprland Rice</span>
+                    </span>
+                    <span className="font-mono text-[10px] text-ink/50 uppercase">MP4 · 60 FPS</span>
+                  </div>
+                  <div className="p-2 sm:p-3 bg-black flex items-center justify-center">
+                    <video
+                      src={project.videoUrl}
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full max-h-[420px] rounded-lg object-contain shadow-lg"
+                    />
+                  </div>
+                </div>
+              )}
 
               {/* Screenshots Gallery if available */}
               {screenshots.length > 0 && (
