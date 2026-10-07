@@ -76,7 +76,7 @@ export function ContactSection() {
       <MotionFadeUp yOffset={14} className="mb-10">
         <div>
           <div className="font-mono text-xs font-bold text-accent-text tracking-wider uppercase mb-2">
-            [05] // TRANSMISSIONS &amp; PLACEMENT
+            [06] // TRANSMISSIONS &amp; PLACEMENT
           </div>
 
           <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
@@ -94,7 +94,6 @@ export function ContactSection() {
         <SwissFrame
           tag="PLACEMENT // DIRECT PIPELINE"
           accentBorder="mauve"
-          showCalipers={true}
           className="p-8 sm:p-12 rounded-2xl relative shadow-lg"
         >
           <div className="flex flex-col items-center text-center max-w-2xl mx-auto space-y-6">

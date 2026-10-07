@@ -16,7 +16,8 @@ const WORKSPACES: Workspace[] = [
   { id: "about", num: "2", label: "about" },
   { id: "works", num: "3", label: "works" },
   { id: "arsenal", num: "4", label: "arsenal" },
-  { id: "comms", num: "5", label: "comms" },
+  { id: "mood", num: "5", label: "mood" },
+  { id: "comms", num: "6", label: "comms" },
 ];
 
 export function WaybarHeader() {

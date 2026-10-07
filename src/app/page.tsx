@@ -6,6 +6,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import ChronicleSection from "@/components/sections/ChronicleSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import ArsenalSection from "@/components/sections/ArsenalSection";
+import { MoodSection } from "@/components/sections/MoodSection";
 import ContactSection from "@/components/sections/ContactSection";
 import ColophonFooter from "@/components/layout/ColophonFooter";
 
@@ -29,7 +30,10 @@ export default function Home() {
         {/* Chapter 04: Verified Tech Arsenal & Instruments */}
         <ArsenalSection />
 
-        {/* Chapter 05: Transmission & Social Matrix */}
+        {/* Chapter 05: Sensory Archive & Mood Board (Last.fm & Letterboxd) */}
+        <MoodSection />
+
+        {/* Chapter 06: Transmission & Social Matrix */}
         <ContactSection />
       </main>
 
