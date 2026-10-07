@@ -5,6 +5,7 @@ export interface MusicData {
   album: string;
   albumArt: string;
   songUrl: string;
+  profileUrl?: string;
   isFallback: boolean;
 }
 
@@ -20,5 +21,6 @@ export interface FilmItem {
 
 export interface CinemaData {
   films: FilmItem[];
+  profileUrl?: string;
   isFallback: boolean;
 }

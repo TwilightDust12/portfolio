@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { CinemaData, FilmItem } from "@/types/telemetry";
 
+export const dynamic = "force-dynamic";
+
 const FALLBACK_FILMS: FilmItem[] = [
   {
     title: "All About Lily Chou-Chou",
@@ -136,7 +138,11 @@ export async function GET() {
     }
 
     return NextResponse.json(
-      { films: items, isFallback: false },
+      {
+        films: items,
+        profileUrl: `https://letterboxd.com/${username}`,
+        isFallback: false,
+      },
       {
         headers: {
           "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",

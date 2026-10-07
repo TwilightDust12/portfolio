@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { MusicData } from "@/types/telemetry";
 
+export const dynamic = "force-dynamic";
+
 const FALLBACK_MUSIC: MusicData = {
   isPlaying: true,
   title: "Tsubasa wo Kudasai",
@@ -68,6 +70,7 @@ export async function GET() {
       album,
       albumArt: bestImage || FALLBACK_MUSIC.albumArt,
       songUrl: latest.url || `https://www.last.fm/user/${username}`,
+      profileUrl: `https://www.last.fm/user/${username}`,
       isFallback: false,
     };
 

@@ -282,7 +282,7 @@ export function MoodSection() {
             {/* Bottom Action Footer */}
             <div className="pt-4 mt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
               <a
-                href="https://letterboxd.com/twilightdust"
+                href={cinema?.profileUrl || "https://letterboxd.com/twilightdust"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-press font-mono text-xs text-accent-peach hover:underline inline-flex items-center gap-1.5 font-medium"
