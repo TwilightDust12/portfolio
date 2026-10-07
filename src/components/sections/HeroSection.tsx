@@ -80,7 +80,7 @@ export default function HeroSection() {
 
           {/* Heading */}
           <MotionFadeUp immediate={true} delay={0.12} yOffset={14}>
-            <h1 className="font-mono text-4xl sm:text-6xl font-bold tracking-tight text-ink lowercase">
+            <h1 className="font-mono text-4xl sm:text-6xl font-bold tracking-tight text-ink">
               {portfolioData.personal.name}
             </h1>
           </MotionFadeUp>
