@@ -4,6 +4,7 @@ import React from "react";
 import { portfolioData } from "@/data/portfolio";
 import { SwissFrame } from "@/components/ui/SwissFrame";
 import { RiceSpecSheet } from "@/components/ui/RiceSpecSheet";
+import { MotionFadeUp } from "@/components/ui/MotionFadeUp";
 import {
   GraduationCap,
   Award,
@@ -23,29 +24,31 @@ export function ChronicleSection() {
   return (
     <section id="about" className="max-w-5xl mx-auto px-4 py-20">
       {/* Chapter Header */}
-      <div className="mb-10">
-        <div className="font-mono text-xs font-bold text-accent-text tracking-wider uppercase mb-2">
-          [02] // ACADEMIC CHRONICLE &amp; FOUNDATIONS
-        </div>
+      <MotionFadeUp yOffset={14} className="mb-10">
+        <div>
+          <div className="font-mono text-xs font-bold text-accent-text tracking-wider uppercase mb-2">
+            [02] // ACADEMIC CHRONICLE &amp; FOUNDATIONS
+          </div>
 
-        <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
-          proven academic rigor &amp; full-stack foundations.
-        </h2>
+          <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
+            proven academic rigor &amp; full-stack foundations.
+          </h2>
 
-        <div className="flex items-center gap-3 mt-3 flex-wrap">
-          <span className="font-serif italic text-xs sm:text-sm text-accent-text bg-accent-text/10 border border-accent-text/25 px-2.5 py-1 rounded-md font-medium">
-            &ldquo;Doing things, little by little.&rdquo;
-          </span>
-          <p className="font-sans text-sm sm:text-base text-ink/80 leading-relaxed max-w-2xl">
-            High Honors graduate with leadership in CodeArts Online, developing real-world web clearance systems at STI College Lucena.
-          </p>
+          <div className="flex items-center gap-3 mt-3 flex-wrap">
+            <span className="font-serif italic text-xs sm:text-sm text-accent-text bg-accent-text/10 border border-accent-text/25 px-2.5 py-1 rounded-md font-medium">
+              &ldquo;Doing things, little by little.&rdquo;
+            </span>
+            <p className="font-sans text-sm sm:text-base text-ink/80 leading-relaxed max-w-2xl">
+              High Honors graduate with leadership in CodeArts Online, developing real-world web clearance systems at STI College Lucena.
+            </p>
+          </div>
         </div>
-      </div>
+      </MotionFadeUp>
 
       {/* Asymmetrical Bento Grid: Academia & Culture */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
         {/* Column 1: Academic Milestones & OJT Dossier (7 Cols) */}
-        <div className="lg:col-span-7">
+        <MotionFadeUp delay={0.08} yOffset={16} scaleFrom={0.98} className="lg:col-span-7 h-full">
           <SwissFrame
             tag="ACADEMIC DOSSIER // STI COLLEGE"
             accentBorder="green"
@@ -161,10 +164,10 @@ export function ChronicleSection() {
               </div>
             </div>
           </SwissFrame>
-        </div>
+        </MotionFadeUp>
 
         {/* Column 2: Interests & Culture Matrix (5 Cols) */}
-        <div className="lg:col-span-5 flex flex-col">
+        <MotionFadeUp delay={0.16} yOffset={16} scaleFrom={0.98} className="lg:col-span-5 flex flex-col h-full">
           <SwissFrame
             tag="CULTURE &amp; IDENTITY"
             accentBorder="pink"
@@ -245,19 +248,21 @@ export function ChronicleSection() {
               </div>
             </div>
           </SwissFrame>
-        </div>
+        </MotionFadeUp>
       </div>
 
       {/* Section 3: Mounts RiceSpecSheet as a full-width technical foundation card */}
-      <div className="w-full">
-        <div className="flex items-center gap-2 mb-3 px-1">
-          <Terminal className="w-4 h-4 text-accent-text" />
-          <span className="font-mono text-xs uppercase tracking-wider text-ink/70 font-semibold">
-            Linux Environment &amp; Dotfiles Rice
-          </span>
+      <MotionFadeUp delay={0.12} yOffset={16} scaleFrom={0.98} className="w-full">
+        <div className="w-full">
+          <div className="flex items-center gap-2 mb-3 px-1">
+            <Terminal className="w-4 h-4 text-accent-text" />
+            <span className="font-mono text-xs uppercase tracking-wider text-ink/70 font-semibold">
+              Linux Environment &amp; Dotfiles Rice
+            </span>
+          </div>
+          <RiceSpecSheet />
         </div>
-        <RiceSpecSheet />
-      </div>
+      </MotionFadeUp>
     </section>
   );
 }

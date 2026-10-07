@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Mail, Copy, Check, ArrowUpRight } from "lucide-react";
 import { toast } from "sonner";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface CopyEmailButtonProps {
   email: string;
@@ -67,24 +68,40 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
         <button
           type="button"
           onClick={handleCopy}
-          className={`btn-press px-4 py-2.5 sm:py-2 rounded-xl text-xs font-mono font-medium transition-[background-color,border-color,color,transform] duration-150 ease-out inline-flex items-center gap-2 border select-none touch-manipulation ${
+          className={`btn-press px-4 py-2.5 sm:py-2 rounded-xl text-xs font-mono font-medium transition-[background-color,border-color,color,transform] duration-150 ease-out inline-flex items-center gap-2 border select-none touch-manipulation min-w-[155px] justify-center ${
             copied
               ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-600 dark:text-emerald-400"
               : "bg-accent-text/10 border-accent-text/25 text-accent-text hover:bg-accent-text/20"
           }`}
           aria-label={copied ? "Email copied to clipboard" : "Copy email address to clipboard"}
         >
-          {copied ? (
-            <>
-              <Check className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" />
-              <span>Copied to clipboard ✓</span>
-            </>
-          ) : (
-            <>
-              <Copy className="w-3.5 h-3.5" />
-              <span>Copy Address</span>
-            </>
-          )}
+          <AnimatePresence mode="wait" initial={false}>
+            {copied ? (
+              <motion.span
+                key="copied"
+                initial={{ opacity: 0, transform: "scale(0.95)" }}
+                animate={{ opacity: 1, transform: "scale(1)" }}
+                exit={{ opacity: 0, transform: "scale(0.95)" }}
+                transition={{ duration: 0.14, ease: [0.23, 1, 0.32, 1] }}
+                className="inline-flex items-center gap-1.5"
+              >
+                <Check className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" />
+                <span>Copied to clipboard ✓</span>
+              </motion.span>
+            ) : (
+              <motion.span
+                key="copy"
+                initial={{ opacity: 0, transform: "scale(0.95)" }}
+                animate={{ opacity: 1, transform: "scale(1)" }}
+                exit={{ opacity: 0, transform: "scale(0.95)" }}
+                transition={{ duration: 0.14, ease: [0.23, 1, 0.32, 1] }}
+                className="inline-flex items-center gap-1.5"
+              >
+                <Copy className="w-3.5 h-3.5" />
+                <span>Copy Address</span>
+              </motion.span>
+            )}
+          </AnimatePresence>
         </button>
 
         {/* Direct Mailto Secondary Action */}

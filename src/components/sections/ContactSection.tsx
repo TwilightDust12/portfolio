@@ -22,6 +22,7 @@ import {
   FacebookIcon as Facebook,
 } from "@/components/ui/Icons";
 import { toast } from "sonner";
+import { MotionFadeUp } from "@/components/ui/MotionFadeUp";
 
 function DiscordIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -72,146 +73,158 @@ export function ContactSection() {
       <span id="contact" className="absolute -top-20 invisible" aria-hidden="true" />
 
       {/* Header */}
-      <div className="mb-10">
-        <div className="font-mono text-xs font-bold text-accent-text tracking-wider uppercase mb-2">
-          [05] // TRANSMISSIONS &amp; PLACEMENT
+      <MotionFadeUp yOffset={14} className="mb-10">
+        <div>
+          <div className="font-mono text-xs font-bold text-accent-text tracking-wider uppercase mb-2">
+            [05] // TRANSMISSIONS &amp; PLACEMENT
+          </div>
+
+          <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
+            ready for placement. let&apos;s connect.
+          </h2>
+
+          <p className="font-sans text-sm sm:text-base text-ink/75 mt-3 leading-relaxed max-w-2xl">
+            Open for On-the-Job Training (OJT), software engineering internships, and junior full-stack opportunities. Remote or hybrid (Lucena City / Metro Manila).
+          </p>
         </div>
-
-        <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
-          ready for placement. let&apos;s connect.
-        </h2>
-
-        <p className="font-sans text-sm sm:text-base text-ink/75 mt-3 leading-relaxed max-w-2xl">
-          Open for On-the-Job Training (OJT), software engineering internships, and junior full-stack opportunities. Remote or hybrid (Lucena City / Metro Manila).
-        </p>
-      </div>
+      </MotionFadeUp>
 
       {/* Invitation Card wrapped in SwissFrame */}
-      <SwissFrame
-        tag="PLACEMENT // DIRECT PIPELINE"
-        accentBorder="mauve"
-        showCalipers={true}
-        className="p-8 sm:p-12 rounded-2xl relative overflow-hidden shadow-lg"
-      >
-        <div className="flex flex-col items-center text-center max-w-2xl mx-auto space-y-6">
-          {/* OJT Banner */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl border border-emerald-500/35 bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 font-mono text-xs tracking-wide shadow-xs font-bold">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-            <span>Seeking 300–500 hour OJT placement with immediate availability for the second term.</span>
-          </div>
+      <MotionFadeUp delay={0.08} yOffset={16} scaleFrom={0.98}>
+        <SwissFrame
+          tag="PLACEMENT // DIRECT PIPELINE"
+          accentBorder="mauve"
+          showCalipers={true}
+          className="p-8 sm:p-12 rounded-2xl relative overflow-hidden shadow-lg"
+        >
+          <div className="flex flex-col items-center text-center max-w-2xl mx-auto space-y-6">
+            {/* OJT Banner */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl border border-emerald-500/35 bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 font-mono text-xs tracking-wide shadow-xs font-bold">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              <span>Seeking 300–500 hour OJT placement with immediate availability for the second term.</span>
+            </div>
 
-          {/* Primary Headline */}
-          <div className="space-y-2">
-            <h3 className="font-mono text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
-              Let&apos;s build something together.
-            </h3>
-            <p className="font-sans text-xs sm:text-sm text-ink/80 max-w-lg mx-auto leading-relaxed">
-              Whether you have an internship opening, a project inquiry, or want to talk about full-stack web engineering and Linux setups &mdash; feel free to reach out.
-            </p>
-          </div>
+            {/* Primary Headline */}
+            <div className="space-y-2">
+              <h3 className="font-mono text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
+                Let&apos;s build something together.
+              </h3>
+              <p className="font-sans text-xs sm:text-sm text-ink/80 max-w-lg mx-auto leading-relaxed">
+                Whether you have an internship opening, a project inquiry, or want to talk about full-stack web engineering and Linux setups &mdash; feel free to reach out.
+              </p>
+            </div>
 
-          {/* Mount CopyEmailButton */}
-          <div className="pt-2 w-full">
-            <CopyEmailButton email={portfolioData.personal.email} />
-          </div>
+            {/* Mount CopyEmailButton */}
+            <div className="pt-2 w-full">
+              <CopyEmailButton email={portfolioData.personal.email} />
+            </div>
 
-          {/* Subtext info */}
-          <div className="flex items-center justify-center gap-4 pt-2 font-mono text-[11px] text-ink/60 select-none flex-wrap">
-            <span className="flex items-center gap-1 font-semibold">
-              <Terminal className="w-3.5 h-3.5 text-accent-text" />
-              <span>Response SLA: &lt;24h</span>
-            </span>
-            <span>·</span>
-            <span className="flex items-center gap-1 font-semibold">
-              <CheckCircle2 className="w-3.5 h-3.5 text-accent-green" />
-              <span>GPG / Direct Mail</span>
-            </span>
-            <span>·</span>
-            <span className="flex items-center gap-1 font-semibold">
-              <Sparkles className="w-3.5 h-3.5 text-accent-pink" />
-              <span>Lucena City, PH</span>
-            </span>
+            {/* Subtext info */}
+            <div className="flex items-center justify-center gap-4 pt-2 font-mono text-[11px] text-ink/60 select-none flex-wrap">
+              <span className="flex items-center gap-1 font-semibold">
+                <Terminal className="w-3.5 h-3.5 text-accent-text" />
+                <span>Response SLA: &lt;24h</span>
+              </span>
+              <span>·</span>
+              <span className="flex items-center gap-1 font-semibold">
+                <CheckCircle2 className="w-3.5 h-3.5 text-accent-green" />
+                <span>GPG / Direct Mail</span>
+              </span>
+              <span>·</span>
+              <span className="flex items-center gap-1 font-semibold">
+                <Sparkles className="w-3.5 h-3.5 text-accent-pink" />
+                <span>Lucena City, PH</span>
+              </span>
+            </div>
           </div>
-        </div>
-      </SwissFrame>
+        </SwissFrame>
+      </MotionFadeUp>
 
       {/* Social Channels Matrix (5 columns on desktop) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-8">
-        {portfolioData.socials.map((social) => {
+        {portfolioData.socials.map((social, idx) => {
           const isDiscord = social.platform.toLowerCase() === "discord";
 
           return (
-            <div key={social.platform} className="relative group">
-              <SwissFrame
-                tag={social.platform.toUpperCase()}
-                className="p-4 sm:p-5 rounded-2xl flex flex-col justify-between h-full hover:border-black/30 dark:hover:border-white/20 transition-all duration-150 hover:shadow-md"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="text-ink/80 group-hover:text-accent-text transition-colors">
-                      {getSocialIcon(social.platform)}
+            <MotionFadeUp
+              key={social.platform}
+              delay={0.10 + idx * 0.05}
+              yOffset={12}
+              scaleFrom={0.98}
+              className="h-full"
+            >
+              <div className="relative group h-full">
+                <SwissFrame
+                  tag={social.platform.toUpperCase()}
+                  className="p-4 sm:p-5 rounded-2xl flex flex-col justify-between h-full hover:border-black/30 dark:hover:border-white/20 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:shadow-md"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="text-ink/80 group-hover:text-accent-text transition-colors">
+                        {getSocialIcon(social.platform)}
+                      </div>
+                      {isDiscord ? (
+                        <button
+                          type="button"
+                          onClick={(e) => handleCopyDiscord(e, social.username)}
+                          className="relative after:absolute after:-inset-2 min-w-[32px] min-h-[32px] flex items-center justify-center text-ink/40 group-hover:text-accent-text hover:opacity-100 transition-opacity p-1.5 rounded hover:bg-ink/5 touch-manipulation"
+                          title="Copy Discord username"
+                          aria-label="Copy Discord username"
+                        >
+                          {discordCopied ? (
+                            <Check className="w-3.5 h-3.5 text-emerald-500" />
+                          ) : (
+                            <Copy className="w-3.5 h-3.5" />
+                          )}
+                        </button>
+                      ) : (
+                        <a
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="relative after:absolute after:-inset-2 min-w-[32px] min-h-[32px] flex items-center justify-center text-ink/40 group-hover:text-accent-text group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform p-1.5 touch-manipulation"
+                          aria-label={`Open ${social.label}`}
+                        >
+                          <ArrowUpRight className="w-4 h-4" />
+                        </a>
+                      )}
                     </div>
+
+                    <div className="font-mono text-xs font-bold text-ink tracking-tight mb-0.5">
+                      {social.label}
+                    </div>
+                    <div className="font-mono text-[11px] text-ink/60 truncate" title={social.username}>
+                      {social.username}
+                    </div>
+                  </div>
+
+                  <div className="pt-3 mt-3 border-t border-ink/10 flex items-center justify-between">
                     {isDiscord ? (
                       <button
                         type="button"
                         onClick={(e) => handleCopyDiscord(e, social.username)}
-                        className="relative after:absolute after:-inset-2 min-w-[32px] min-h-[32px] flex items-center justify-center text-ink/40 group-hover:text-accent-text hover:opacity-100 transition-opacity p-1.5 rounded hover:bg-ink/5 touch-manipulation"
-                        title="Copy Discord username"
-                        aria-label="Copy Discord username"
+                        className="font-mono text-[10px] text-accent-text hover:underline flex items-center gap-1 py-1 touch-manipulation"
                       >
-                        {discordCopied ? (
-                          <Check className="w-3.5 h-3.5 text-emerald-500" />
-                        ) : (
-                          <Copy className="w-3.5 h-3.5" />
-                        )}
+                        <span>{discordCopied ? "Copied tag ✓" : "Copy tag"}</span>
                       </button>
                     ) : (
                       <a
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative after:absolute after:-inset-2 min-w-[32px] min-h-[32px] flex items-center justify-center text-ink/40 group-hover:text-accent-text group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all p-1.5 touch-manipulation"
-                        aria-label={`Open ${social.label}`}
+                        className="font-mono text-[10px] text-accent-text hover:underline flex items-center gap-1 group-hover:text-accent-text py-1 touch-manipulation"
                       >
-                        <ArrowUpRight className="w-4 h-4" />
+                        <span>Connect</span>
+                        <ArrowUpRight className="w-3 h-3" />
                       </a>
                     )}
+                    <span className="font-mono text-[10px] text-ink/40 uppercase">
+                      LIVE
+                    </span>
                   </div>
-
-                  <div className="font-mono text-xs font-bold text-ink tracking-tight mb-0.5">
-                    {social.label}
-                  </div>
-                  <div className="font-mono text-[11px] text-ink/60 truncate" title={social.username}>
-                    {social.username}
-                  </div>
-                </div>
-
-                <div className="pt-3 mt-3 border-t border-ink/10 flex items-center justify-between">
-                  {isDiscord ? (
-                    <button
-                      type="button"
-                      onClick={(e) => handleCopyDiscord(e, social.username)}
-                      className="font-mono text-[10px] text-accent-text hover:underline flex items-center gap-1 py-1 touch-manipulation"
-                    >
-                      <span>{discordCopied ? "Copied tag ✓" : "Copy tag"}</span>
-                    </button>
-                  ) : (
-                    <a
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-[10px] text-accent-text hover:underline flex items-center gap-1 group-hover:text-accent-text py-1 touch-manipulation"
-                    >
-                      <span>Connect</span>
-                      <ArrowUpRight className="w-3 h-3" />
-                    </a>
-                  )}
-                  <span className="font-mono text-[10px] text-ink/40 uppercase">
-                    LIVE
-                  </span>
-                </div>
-              </SwissFrame>
-            </div>
+                </SwissFrame>
+              </div>
+            </MotionFadeUp>
           );
         })}
       </div>

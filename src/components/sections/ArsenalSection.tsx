@@ -11,6 +11,7 @@ import {
   Code2,
   Container,
 } from "lucide-react";
+import { MotionFadeUp } from "@/components/ui/MotionFadeUp";
 
 interface CategoryMeta {
   icon: React.ComponentType<{ className?: string }>;
@@ -78,23 +79,25 @@ export function ArsenalSection() {
       <span id="stack" className="absolute -top-20 invisible" aria-hidden="true" />
 
       {/* Section Header */}
-      <div className="mb-10">
-        <div className="font-mono text-xs font-bold text-accent-text tracking-wider uppercase mb-2">
-          [04] // REPERTOIRE &amp; INSTRUMENTS
+      <MotionFadeUp yOffset={14} className="mb-10">
+        <div>
+          <div className="font-mono text-xs font-bold text-accent-text tracking-wider uppercase mb-2">
+            [04] // REPERTOIRE &amp; INSTRUMENTS
+          </div>
+
+          <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
+            verified stack. zero fluff.
+          </h2>
+
+          <p className="font-sans text-sm sm:text-base text-ink/75 mt-3 leading-relaxed max-w-2xl">
+            A hands-on index of languages, cloud storage, containerized CI/CD, and operating systems tested in production and thesis workflows.
+          </p>
         </div>
-
-        <h2 className="font-mono text-3xl sm:text-4xl font-bold text-ink lowercase tracking-tight">
-          verified stack. zero fluff.
-        </h2>
-
-        <p className="font-sans text-sm sm:text-base text-ink/75 mt-3 leading-relaxed max-w-2xl">
-          A hands-on index of languages, cloud storage, containerized CI/CD, and operating systems tested in production and thesis workflows.
-        </p>
-      </div>
+      </MotionFadeUp>
 
       {/* Asymmetric 12-Column Bento Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
-        {portfolioData.skills.map((category) => {
+        {portfolioData.skills.map((category, idx) => {
           const meta = CATEGORY_META[category.category] ?? {
             icon: Code2,
             tag: "STACK",
@@ -107,50 +110,57 @@ export function ArsenalSection() {
           const Icon = meta.icon;
 
           return (
-            <SwissFrame
+            <MotionFadeUp
               key={category.category}
-              tag={meta.tag}
-              accentBorder={meta.accent}
-              showCalipers={true}
-              className={`p-6 sm:p-7 rounded-2xl flex flex-col justify-between ${meta.colSpan} hover:border-black/30 dark:hover:border-white/25 transition-all duration-200 ease-out hover:shadow-lg dark:hover:shadow-black/40`}
+              delay={0.08 + idx * 0.06}
+              yOffset={16}
+              scaleFrom={0.98}
+              className={`${meta.colSpan} h-full`}
             >
-              <div className="mb-4">
-                {/* Header row: Icon colored container */}
-                <div className="flex items-start justify-between gap-3 mb-3.5">
-                  <div
-                    className={`p-2.5 rounded-xl border shrink-0 ${meta.iconBoxClass}`}
-                  >
-                    <Icon className="w-5 h-5" />
+              <SwissFrame
+                tag={meta.tag}
+                accentBorder={meta.accent}
+                showCalipers={true}
+                className="p-6 sm:p-7 rounded-2xl flex flex-col justify-between h-full hover:border-black/30 dark:hover:border-white/25 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:shadow-lg dark:hover:shadow-black/40"
+              >
+                <div className="mb-4">
+                  {/* Header row: Icon colored container */}
+                  <div className="flex items-start justify-between gap-3 mb-3.5">
+                    <div
+                      className={`p-2.5 rounded-xl border shrink-0 ${meta.iconBoxClass}`}
+                    >
+                      <Icon className="w-5 h-5" />
+                    </div>
                   </div>
+
+                  {/* Category title */}
+                  <h3 className="font-mono text-base sm:text-lg font-bold text-ink">
+                    {category.category}
+                  </h3>
+
+                  {/* Short description */}
+                  <p className="font-sans text-xs text-ink/75 mt-1 leading-relaxed">
+                    {category.description}
+                  </p>
                 </div>
 
-                {/* Category title */}
-                <h3 className="font-mono text-base sm:text-lg font-bold text-ink">
-                  {category.category}
-                </h3>
-
-                {/* Short description */}
-                <p className="font-sans text-xs text-ink/75 mt-1 leading-relaxed">
-                  {category.description}
-                </p>
-              </div>
-
-              {/* Tech Pills List with Distinct Color Accents & High Contrast Borders */}
-              <div className="flex flex-wrap gap-2 pt-4 border-t border-black/10 dark:border-white/10">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill.name}
-                    className={`btn-press inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.05] border border-black/15 dark:border-white/10 text-xs font-mono font-medium text-ink transition-all select-none ${meta.pillHoverClass}`}
-                  >
+                {/* Tech Pills List with Distinct Color Accents & High Contrast Borders */}
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-black/10 dark:border-white/10">
+                  {category.skills.map((skill) => (
                     <span
-                      className={`w-1.5 h-1.5 rounded-full shrink-0 ${meta.dotClass}`}
-                      aria-hidden="true"
-                    />
-                    <span>{skill.name}</span>
-                  </span>
-                ))}
-              </div>
-            </SwissFrame>
+                      key={skill.name}
+                      className={`btn-press inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.05] border border-black/15 dark:border-white/10 text-xs font-mono font-medium text-ink transition-[color,background-color,border-color,transform] duration-150 ease-out select-none ${meta.pillHoverClass}`}
+                    >
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full shrink-0 ${meta.dotClass}`}
+                        aria-hidden="true"
+                      />
+                      <span>{skill.name}</span>
+                    </span>
+                  ))}
+                </div>
+              </SwissFrame>
+            </MotionFadeUp>
           );
         })}
       </div>

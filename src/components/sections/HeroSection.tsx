@@ -11,6 +11,7 @@ import {
   InstagramIcon,
 } from "@/components/ui/Icons";
 import { MapPin, RefreshCw } from "lucide-react";
+import { MotionFadeUp } from "@/components/ui/MotionFadeUp";
 
 function DiscordIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -65,118 +66,140 @@ export default function HeroSection() {
         {/* Left Column: Core Identity & Goals */}
         <div className="lg:col-span-7 flex flex-col items-start">
           {/* Candidate Dossier Kicker & Location */}
-          <div className="font-mono text-xs flex items-center flex-wrap gap-2.5 mb-3">
-            <span className="px-2 py-0.5 rounded bg-accent-text/10 text-accent-text border border-accent-text/25 font-bold tracking-wider">
-              [SYS-ID: 01] // CANDIDATE DOSSIER
-            </span>
-            <span className="text-ink/65 flex items-center gap-1.5 font-medium">
-              <MapPin className="w-3.5 h-3.5 text-accent-text" />
-              <span>Lucena City, Philippines</span>
-            </span>
-          </div>
+          <MotionFadeUp immediate={true} delay={0.06} yOffset={10}>
+            <div className="font-mono text-xs flex items-center flex-wrap gap-2.5 mb-3">
+              <span className="px-2 py-0.5 rounded bg-accent-text/10 text-accent-text border border-accent-text/25 font-bold tracking-wider">
+                [SYS-ID: 01] // CANDIDATE DOSSIER
+              </span>
+              <span className="text-ink/65 flex items-center gap-1.5 font-medium">
+                <MapPin className="w-3.5 h-3.5 text-accent-text" />
+                <span>Lucena City, Philippines</span>
+              </span>
+            </div>
+          </MotionFadeUp>
 
           {/* Heading */}
-          <h1 className="font-mono text-4xl sm:text-6xl font-bold tracking-tight text-ink lowercase">
-            {portfolioData.personal.name}
-          </h1>
+          <MotionFadeUp immediate={true} delay={0.12} yOffset={14}>
+            <h1 className="font-mono text-4xl sm:text-6xl font-bold tracking-tight text-ink lowercase">
+              {portfolioData.personal.name}
+            </h1>
+          </MotionFadeUp>
 
           {/* Primary Proposition Headline */}
-          <p className="font-sans text-lg sm:text-xl text-ink font-semibold mt-3 leading-snug max-w-xl">
-            Full-Stack Developer building institutional platforms, resilient web architectures, and low-latency systems.
-          </p>
+          <MotionFadeUp immediate={true} delay={0.18} yOffset={14}>
+            <p className="font-sans text-lg sm:text-xl text-ink font-semibold mt-3 leading-snug max-w-xl">
+              Full-Stack Developer building institutional platforms, resilient web architectures, and low-latency systems.
+            </p>
+          </MotionFadeUp>
 
           {/* Bio / Candidate Philosophy & Background */}
-          <p className="font-sans text-sm sm:text-base text-ink/75 mt-3 leading-relaxed max-w-xl">
-            <span className="italic font-serif text-accent-text font-medium">&ldquo;Doing things, little by little.&rdquo;</span> Computer Science student (MAWD graduate) with hands-on production experience in Next.js 15, TypeScript, Supabase, and automated testing.
-          </p>
+          <MotionFadeUp immediate={true} delay={0.24} yOffset={14}>
+            <p className="font-sans text-sm sm:text-base text-ink/75 mt-3 leading-relaxed max-w-xl">
+              <span className="italic font-serif text-accent-text font-medium">&ldquo;Doing things, little by little.&rdquo;</span> Computer Science student (MAWD graduate) with hands-on production experience in Next.js 15, TypeScript, Supabase, and automated testing.
+            </p>
+          </MotionFadeUp>
 
           {/* OJT Availability Pill */}
-          <div className="font-mono text-xs px-4 py-2 rounded-xl bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/35 inline-flex items-center gap-2.5 my-6 shadow-xs">
-            <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span className="font-bold tracking-wide">
-              [OJT CANDIDATE] // AVAILABLE FOR IMMEDIATE INTERNSHIP (2027)
-            </span>
-          </div>
+          <MotionFadeUp immediate={true} delay={0.30} yOffset={10} scaleFrom={0.96}>
+            <div className="font-mono text-xs px-4 py-2 rounded-xl bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/35 inline-flex items-center gap-2.5 my-6 shadow-xs">
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span className="font-bold tracking-wide">
+                [OJT CANDIDATE] // AVAILABLE FOR IMMEDIATE INTERNSHIP (2027)
+              </span>
+            </div>
+          </MotionFadeUp>
 
           {/* Action Buttons Row */}
-          <div className="flex flex-wrap items-center gap-4 mb-4">
-            <a
-              href="/cv.pdf"
-              download
-              className="btn-press px-6 py-3 rounded-xl bg-accent-text text-white dark:text-[#11111b] font-semibold text-sm flex items-center gap-2.5 shadow-lg shadow-accent-text/20 hover:opacity-95"
-            >
-              <span>Download CV ↓</span>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-black/15 dark:bg-black/25 select-none">
-                PDF
-              </span>
-            </a>
-            <a
-              href="#works"
-              className="btn-press px-6 py-3 rounded-xl bg-black/[0.04] dark:bg-white/[0.05] hover:bg-black/[0.08] dark:hover:bg-white/[0.09] text-ink border border-black/15 dark:border-white/10 font-semibold text-sm flex items-center gap-2 shadow-xs"
-            >
-              <span>View Works ↘</span>
-            </a>
-          </div>
+          <MotionFadeUp immediate={true} delay={0.36} yOffset={12}>
+            <div className="flex flex-wrap items-center gap-4 mb-4">
+              <a
+                href="/cv.pdf"
+                download
+                className="btn-press px-6 py-3 rounded-xl bg-accent-text text-white dark:text-[#11111b] font-semibold text-sm flex items-center gap-2.5 shadow-lg shadow-accent-text/20 hover:opacity-95"
+              >
+                <span>Download CV ↓</span>
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-black/15 dark:bg-black/25 select-none">
+                  PDF
+                </span>
+              </a>
+              <a
+                href="#works"
+                className="btn-press px-6 py-3 rounded-xl bg-black/[0.04] dark:bg-white/[0.05] hover:bg-black/[0.08] dark:hover:bg-white/[0.09] text-ink border border-black/15 dark:border-white/10 font-semibold text-sm flex items-center gap-2 shadow-xs"
+              >
+                <span>View Works ↘</span>
+              </a>
+            </div>
+          </MotionFadeUp>
 
           {/* Core Competencies Matrix Strip for Recruiters */}
-          <div className="flex flex-wrap items-center gap-2 py-3 border-t border-black/10 dark:border-white/10 w-full mt-2">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-ink/60 font-semibold mr-1">
-              focus:
-            </span>
-            <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-sky/15 text-accent-sky border border-accent-sky/30 font-semibold">
-              Next.js 15 &amp; React 19
-            </span>
-            <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-blue-500/15 text-blue-600 dark:text-blue-300 border border-blue-500/30 font-semibold">
-              TypeScript
-            </span>
-            <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-green/15 text-accent-green border border-accent-green/30 font-semibold">
-              Supabase &amp; SQL
-            </span>
-            <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-peach/15 text-accent-peach border border-accent-peach/30 font-semibold">
-              Azure MSAL
-            </span>
-            <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-pink/15 text-accent-pink border border-accent-pink/30 font-semibold">
-              Linux Wayland
-            </span>
-          </div>
+          <MotionFadeUp immediate={true} delay={0.42} yOffset={10} className="w-full">
+            <div className="flex flex-wrap items-center gap-2 py-3 border-t border-black/10 dark:border-white/10 w-full mt-2">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-ink/60 font-semibold mr-1">
+                focus:
+              </span>
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-sky/15 text-accent-sky border border-accent-sky/30 font-semibold">
+                Next.js 15 &amp; React 19
+              </span>
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-blue-500/15 text-blue-600 dark:text-blue-300 border border-blue-500/30 font-semibold">
+                TypeScript
+              </span>
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-green/15 text-accent-green border border-accent-green/30 font-semibold">
+                Supabase &amp; SQL
+              </span>
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-peach/15 text-accent-peach border border-accent-peach/30 font-semibold">
+                Azure MSAL
+              </span>
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-accent-pink/15 text-accent-pink border border-accent-pink/30 font-semibold">
+                Linux Wayland
+              </span>
+            </div>
+          </MotionFadeUp>
 
           {/* Quick Social Links */}
-          <div className="flex items-center gap-2 pt-2">
-            <span className="font-mono text-xs text-ink/60 mr-1 select-none font-semibold">
-              channels:
-            </span>
-            {portfolioData.socials.map((social) => (
-              <a
-                key={social.platform}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                title={`${social.label} (${social.username})`}
-                className="btn-press relative after:absolute after:-inset-1 min-w-[38px] min-h-[38px] sm:min-w-[36px] sm:min-h-[36px] p-2 rounded-lg border border-black/15 dark:border-white/10 bg-black/[0.04] dark:bg-white/[0.05] hover:bg-black/[0.08] dark:hover:bg-white/[0.09] hover:border-accent-text/40 text-ink/80 hover:text-accent-text transition-colors flex items-center justify-center touch-manipulation"
-              >
-                {socialIconMap[social.platform] ?? (
-                  <span className="font-mono text-xs uppercase">
-                    {social.platform.slice(0, 2)}
-                  </span>
-                )}
-              </a>
-            ))}
-          </div>
+          <MotionFadeUp immediate={true} delay={0.48} yOffset={8}>
+            <div className="flex items-center gap-2 pt-2">
+              <span className="font-mono text-xs text-ink/60 mr-1 select-none font-semibold">
+                channels:
+              </span>
+              {portfolioData.socials.map((social) => (
+                <a
+                  key={social.platform}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  title={`${social.label} (${social.username})`}
+                  className="btn-press relative after:absolute after:-inset-1 min-w-[38px] min-h-[38px] sm:min-w-[36px] sm:min-h-[36px] p-2 rounded-lg border border-black/15 dark:border-white/10 bg-black/[0.04] dark:bg-white/[0.05] hover:bg-black/[0.08] dark:hover:bg-white/[0.09] hover:border-accent-text/40 text-ink/80 hover:text-accent-text transition-colors flex items-center justify-center touch-manipulation"
+                >
+                  {socialIconMap[social.platform] ?? (
+                    <span className="font-mono text-xs uppercase">
+                      {social.platform.slice(0, 2)}
+                    </span>
+                  )}
+                </a>
+              ))}
+            </div>
+          </MotionFadeUp>
         </div>
 
         {/* Right Column: Interactive Click-to-Cycle Profile Card */}
         <div className="lg:col-span-5 flex flex-col items-center lg:items-end w-full">
-          <div className="w-full max-w-sm sm:max-w-md">
+          <MotionFadeUp
+            immediate={true}
+            delay={0.16}
+            yOffset={16}
+            scaleFrom={0.96}
+            className="w-full max-w-sm sm:max-w-md"
+          >
             <SwissFrame
               tag="PORTRAIT // 01"
               accentBorder="mauve"
               showCrosshairs={true}
               showCalipers={true}
-              className="p-3 sm:p-4 rounded-2xl relative shadow-lg hover:shadow-2xl transition-all duration-200"
+              className="p-3 sm:p-4 rounded-2xl relative shadow-lg hover:shadow-2xl transition-[transform,border-color,box-shadow] duration-200 ease-out"
             >
               {/* Clickable Image Container */}
               <button
@@ -235,7 +258,7 @@ export default function HeroSection() {
                 </div>
               </button>
             </SwissFrame>
-          </div>
+          </MotionFadeUp>
         </div>
       </div>
     </section>
