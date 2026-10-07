@@ -131,7 +131,7 @@ export function ProjectsSection() {
               <button
                 type="button"
                 onClick={() => setSelectedProject(project)}
-                className="btn-press inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent-text/10 hover:bg-accent-text/20 text-accent-text border border-accent-text/20 font-mono text-xs font-semibold transition-colors"
+                className="btn-press inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent-text/10 hover:bg-accent-text/20 text-accent-text border border-accent-text/20 font-mono text-xs font-semibold transition-[color,background-color,border-color,transform] duration-150 ease-out"
               >
                 <span>Case Study Deep-Dive ✦</span>
               </button>
@@ -142,7 +142,7 @@ export function ProjectsSection() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 text-ink/60 hover:text-ink rounded-lg border border-ink/10 hover:border-ink/30 transition-colors btn-press"
+                    className="p-1.5 text-ink/60 hover:text-ink rounded-lg border border-ink/10 hover:border-ink/30 transition-[color,border-color,transform] duration-150 ease-out btn-press"
                     aria-label={`${project.title} GitHub repository`}
                   >
                     <Github className="w-4 h-4" />
@@ -153,7 +153,7 @@ export function ProjectsSection() {
                     href={project.demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 text-ink/60 hover:text-ink rounded-lg border border-ink/10 hover:border-ink/30 transition-colors btn-press"
+                    className="p-1.5 text-ink/60 hover:text-ink rounded-lg border border-ink/10 hover:border-ink/30 transition-[color,border-color,transform] duration-150 ease-out btn-press"
                     aria-label={`${project.title} live demo`}
                   >
                     <ExternalLink className="w-4 h-4" />

@@ -153,7 +153,7 @@ export default function HeroSection() {
                 type="button"
                 onClick={handleCycleAvatar}
                 aria-label={`Cycle avatar (currently ${currentAvatar.label}). Click to switch.`}
-                className="relative aspect-square w-full rounded-xl overflow-hidden border border-ink/15 bg-ink/5 group cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-accent-text select-none block"
+                className="relative aspect-square w-full rounded-xl overflow-hidden border border-ink/15 bg-ink/5 group cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-accent-text select-none block active:scale-[0.98] transition-transform duration-150 ease-out"
               >
                 {/* Main Avatar Image */}
                 <Image
@@ -162,7 +162,7 @@ export default function HeroSection() {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                   priority
-                  className={`object-cover object-center grayscale contrast-125 dark:contrast-115 group-hover:grayscale-0 transition-all duration-300 ${
+                  className={`object-cover object-center grayscale contrast-125 dark:contrast-115 group-hover:grayscale-0 transition-[filter,transform] duration-200 ease-out ${
                     isGlitching ? "scale-105 filter blur-[1px]" : "scale-100"
                   }`}
                 />

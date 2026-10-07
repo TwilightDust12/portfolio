@@ -57,7 +57,7 @@ export function WaybarHeader() {
       <header className="hidden sm:block sticky top-4 z-40 max-w-5xl mx-auto px-4 w-full">
         <nav
           aria-label="Desktop Waybar Navigation"
-          className="flex items-center justify-between px-3.5 py-2 rounded-xl bg-bg/80 backdrop-blur-md border border-ink/10 shadow-lg shadow-black/5 dark:shadow-black/20"
+          className="flex items-center justify-between px-3.5 py-2 rounded-xl bg-bg/80 apple-translucent border border-ink/10 shadow-lg shadow-black/5 dark:shadow-black/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
         >
           {/* Left: Identity / Host pill */}
           <div className="flex items-center gap-2">
@@ -67,7 +67,7 @@ export function WaybarHeader() {
                 e.preventDefault();
                 handleScroll("hero");
               }}
-              className="btn-press flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-ink/5 border border-ink/10 font-mono text-xs text-ink/90 hover:text-accent-text hover:border-accent-text/30 transition-colors"
+              className="btn-press flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-ink/5 border border-ink/10 font-mono text-xs text-ink/90 hover:text-accent-text hover:border-accent-text/30 transition-[color,border-color,background-color] duration-150"
             >
               <span className="text-accent-text font-semibold">twilight@cachyos</span>
               <span className="text-ink/40">::</span>
@@ -87,7 +87,7 @@ export function WaybarHeader() {
                     e.preventDefault();
                     handleScroll(ws.id);
                   }}
-                  className={`btn-press font-mono text-xs px-2.5 py-1 rounded-md transition-all duration-150 flex items-center gap-1.5 ${
+                  className={`btn-press font-mono text-xs px-2.5 py-1 rounded-md transition-[color,background-color,border-color,transform] duration-150 ease-out flex items-center gap-1.5 ${
                     isActive
                       ? "text-accent-text bg-accent-text/10 border border-accent-text/30 font-medium shadow-sm shadow-accent-text/5"
                       : "text-ink/70 hover:text-ink hover:bg-ink/5 border border-transparent"
@@ -118,7 +118,7 @@ export function WaybarHeader() {
       {/* Mobile Floating Bottom Dock */}
       <nav
         aria-label="Mobile Bottom Navigation Dock"
-        className="flex sm:hidden fixed bottom-4 inset-x-4 z-40 max-w-sm mx-auto px-3 py-2 rounded-2xl bg-bg/90 backdrop-blur-md border border-ink/10 shadow-2xl items-center justify-between"
+        className="flex sm:hidden fixed bottom-4 inset-x-4 z-40 max-w-sm mx-auto px-3 py-2 rounded-2xl bg-bg/90 apple-translucent border border-ink/10 shadow-2xl items-center justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
       >
         <div className="flex items-center gap-1.5 flex-1 justify-around pr-2">
           {WORKSPACES.map((ws) => {
@@ -131,7 +131,7 @@ export function WaybarHeader() {
                   e.preventDefault();
                   handleScroll(ws.id);
                 }}
-                className={`btn-press font-mono text-xs w-9 h-9 rounded-xl flex items-center justify-center transition-all ${
+                className={`btn-press font-mono text-xs w-9 h-9 rounded-xl flex items-center justify-center transition-[color,background-color,border-color,transform] duration-150 ease-out ${
                   isActive
                     ? "text-accent-text bg-accent-text/15 border border-accent-text/40 font-bold shadow-sm"
                     : "text-ink/70 hover:text-ink bg-ink/5 border border-ink/5"

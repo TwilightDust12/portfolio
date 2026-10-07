@@ -115,11 +115,11 @@ export function ColophonFooter() {
             <button
               type="button"
               onClick={scrollToTop}
-              className="btn-press font-mono text-xs text-accent-text hover:underline flex items-center gap-1 mt-3"
+              className="btn-press font-mono text-xs text-accent-text hover:underline flex items-center gap-1.5 mt-3 group"
               aria-label="Back to top of page"
             >
               <span>Back to Top</span>
-              <ArrowUp className="w-3.5 h-3.5" />
+              <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform duration-150 ease-out" />
             </button>
           </div>
         </div>
