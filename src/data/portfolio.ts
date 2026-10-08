@@ -11,7 +11,7 @@ export const portfolioData: PortfolioConfig = {
     ],
     location: "Lucena City, Quezon Province, Philippines",
     email: "jyrum12@gmail.com",
-    availability: "Available for OJT & Internships",
+    availability: "Seeking full-stack internship opportunities",
     avatars: [
       "/assets/profile.jpg",
       "/assets/profile2.jpg",

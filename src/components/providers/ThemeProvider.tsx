@@ -11,8 +11,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       <Toaster
         position="bottom-right"
         toastOptions={{
-          className:
-            "font-mono text-xs border border-ink/15 bg-bg/95 text-ink shadow-xl backdrop-blur-md rounded-xl p-3.5",
+          className: "font-sans text-sm",
+          style: {
+            background: "var(--surface-raised)",
+            color: "var(--ink)",
+            borderColor: "var(--line)",
+          },
         }}
       />
     </NextThemesProvider>

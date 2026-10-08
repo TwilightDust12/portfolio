@@ -22,9 +22,8 @@ export function ManilaClock() {
   return (
     <time
       suppressHydrationWarning
-      className="font-mono text-xs text-ink/80 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-ink/5 border border-ink/10"
+      className="font-mono text-xs text-muted whitespace-nowrap tabular-nums"
     >
-      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
       {time} PHT
     </time>
   );
