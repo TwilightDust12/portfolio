@@ -5,18 +5,18 @@ import Image from "next/image";
 import { Monitor, Smartphone } from "lucide-react";
 import type { Project } from "@/types/portfolio";
 
-export function ProjectMedia({ project, compact = false }: { project: Project; compact?: boolean }) {
+export function ProjectMedia({ project, compact = false, showVideo = false }: { project: Project; compact?: boolean; showVideo?: boolean }) {
   const [screenIndex, setScreenIndex] = useState(0);
   const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
   const viewportId = useId();
   const screens = project.screenshots ?? [];
   const screen = screens[screenIndex] ?? screens[0];
 
-  if (project.videoUrl) {
+  if (project.videoUrl && (showVideo || !screen)) {
     return (
       <figure className="project-media">
-        <video src={project.videoUrl} controls playsInline preload="none" className="w-full max-h-[440px] bg-black" aria-label={`${project.title} desktop recording`} />
-        <figcaption className="media-caption">CachyOS / Hyprland · Desktop recording</figcaption>
+        <video src={project.videoUrl} controls playsInline preload="none" className="w-full max-h-[440px] bg-black" aria-label={`${project.title} demo video`} />
+        <figcaption className="media-caption">{project.title} · Demo video</figcaption>
       </figure>
     );
   }

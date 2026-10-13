@@ -7,7 +7,7 @@ export function ChronicleSection() {
       <div className="about-grid">
         <div className="about-copy">
           <p>I’m Jose, a Computer Science student in Lucena City. I enjoy building useful web applications, working through the details of an interface, and understanding the systems underneath it.</p>
-          <p className="text-muted">My work includes a student clearance capstone, a construction company’s web presence, and personal experiments with sound and the web. Outside the browser, I spend time tuning my CachyOS and Hyprland environment.</p>
+          <p className="text-muted">My work includes a student clearance capstone, a construction company’s web presence, a hackathon Android app for freelancers, and personal experiments with sound and the web. Outside the browser, I spend time tuning my CachyOS and Hyprland environment.</p>
           <blockquote className="mt-7 font-mono text-accent-text text-base">“Doing things, little by little.”</blockquote>
         </div>
         <div>

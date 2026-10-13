@@ -7,9 +7,9 @@ import type { Project } from "@/types/portfolio";
 import { ProjectMedia } from "@/components/ui/ProjectMedia";
 import { ProjectModal } from "@/components/ui/ProjectModal";
 
-const FEATURED_IDS = ["webc", "lily-chou-chou"];
 const DISPLAY_NAMES: Record<string, string> = {
   webc: "WebC",
+  owlset: "OwlSet",
   "lily-chou-chou": "All About Lily Chou-Chou",
   sphere8: "Sphere8 Construction",
   "wayland-rice": "Wayland rice & dotfiles",
@@ -18,8 +18,8 @@ const DISPLAY_NAMES: Record<string, string> = {
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const trigger = useRef<HTMLButtonElement | null>(null);
-  const featured = FEATURED_IDS.flatMap((id) => portfolioData.projects.filter((project) => project.id === id));
-  const supporting = portfolioData.projects.filter((project) => !FEATURED_IDS.includes(project.id));
+  const featured = portfolioData.projects.filter((project) => project.featured);
+  const supporting = portfolioData.projects.filter((project) => !project.featured);
 
   function openProject(project: Project, button: HTMLButtonElement) {
     trigger.current = button;
@@ -41,15 +41,15 @@ export function ProjectsSection() {
       <span id="projects" className="anchor-alias" aria-hidden="true" />
       <div className="section-heading">
         <h2 className="section-title">Selected projects.</h2>
-        <p className="section-note">Campus workflows, client work, and experiments with the web.</p>
+        <p className="section-note">Campus workflows, client work, a hackathon app, and creative experiments.</p>
       </div>
       {featured.map((project) => (
         <article key={project.id} className="project-feature" id={`project-${project.id}`}>
           <ProjectMedia project={project} />
           <div className="project-copy">
-            <p className="project-kind">{project.id === "webc" ? "Full-stack / Team capstone" : "Design & development / Personal project"}</p>
+            <p className="project-kind">{project.subtitle}</p>
             <h3 className="project-title">{DISPLAY_NAMES[project.id]}</h3>
-            <p className="project-description">{project.id === "webc" ? "Moving student clearance from paper sign-offs to a shared, role-based workflow." : "An atmospheric web archive built around film, ambient sound, and digital connection."}</p>
+            <p className="project-description">{project.description}</p>
             <dl className="project-facts">
               <dt>My role</dt><dd>{project.role}</dd>
               <dt>What it does</dt><dd>{project.outcome}</dd>
@@ -62,7 +62,7 @@ export function ProjectsSection() {
       <div className="supporting-projects">
         {supporting.map((project) => (
           <article key={project.id} className="supporting-project" id={`project-${project.id}`}>
-            <p className="project-status"><span className="status-dot" aria-hidden="true" />{project.id === "sphere8" ? "Client project · In development" : "Personal environment · Linux / Wayland"}</p>
+            <p className="project-status"><span className="status-dot" aria-hidden="true" />{project.subtitle}</p>
             <h3>{DISPLAY_NAMES[project.id] ?? project.title}</h3>
             <p className="project-description">{project.description}</p>
             {actions(project)}

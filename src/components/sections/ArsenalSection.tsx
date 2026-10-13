@@ -5,7 +5,7 @@ const EVIDENCE: Record<string, { label: string; href?: string }> = {
   Frontend: { label: "WebC & Lily Chou-Chou", href: "#works" },
   "Backend & Data": { label: "WebC", href: "#project-webc" },
   "DevOps & QA": { label: "Development & testing tools" },
-  "Mobile & Game Dev": { label: "Academic & personal work" },
+  "Mobile & Game Dev": { label: "OwlSet hackathon app", href: "#project-owlset" },
   "Linux & Tools": { label: "Wayland environment", href: "#project-wayland-rice" },
 };
 

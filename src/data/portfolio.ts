@@ -134,18 +134,15 @@ export const portfolioData: PortfolioConfig = {
       screenshots: [
         {
           label: "Student Dashboard",
-          desktopUrl: "/assets/project screenshots/WebC/Student Dashboard.png",
-          mobileUrl: "/assets/project screenshots/WebC/Student Dashboard Mobile View.png",
+          desktopUrl: "/assets/project screenshots/WebC/student new UI.png",
         },
         {
           label: "Faculty Dashboard",
-          desktopUrl: "/assets/project screenshots/WebC/Faculty Dashboard.png",
-          mobileUrl: "/assets/project screenshots/WebC/Faculty Dashboard Mobile View.png",
+          desktopUrl: "/assets/project screenshots/WebC/faculty⁄staff NEW UI.png",
         },
         {
           label: "Admin Dashboard",
-          desktopUrl: "/assets/project screenshots/WebC/Admin Dashboard.png",
-          mobileUrl: "/assets/project screenshots/WebC/Admin Dashboard Mobile View.png",
+          desktopUrl: "/assets/project screenshots/WebC/admin NEW UI.png",
         },
       ],
       highlights: [
@@ -155,49 +152,118 @@ export const portfolioData: PortfolioConfig = {
       ]
     },
     {
-      id: "sphere8",
-      title: "Sphere8 Construction Company Website",
-      subtitle: "Commercial Corporate Portal",
-      problem: "Traditional construction contracting suffers from friction in client intake and fragmented offline project portfolios.",
-      role: "Lead Frontend Developer",
-      stack: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
-      outcome: "Modern corporate web portal featuring structured showcase galleries and direct service inquiry funnels (In Active Development).",
-      isTeamProject: false,
+      id: "owlset",
+      title: "OwlSet",
+      subtitle: "Android app / Hackathon team project",
+      problem: "Freelancers lose track of deliverables and revision terms scattered across client conversations, making additional requests difficult to assess.",
+      role: "Frontend & application logic developer (Team Project)",
+      stack: [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "SQLite",
+        "Zod",
+        "llama.rn"
+      ],
+      outcome: "An Android test build that drafts project scope, stores confirmed agreements, compares new requests, and prepares editable change proposals.",
+      isTeamProject: true,
       featured: true,
-      description: "Commercial corporate web portal featuring structured showcase galleries and service inquiry funnels.",
-      longDescription: "A modern responsive corporate website built for Sphere8 Construction Company. Provides an elegant digital presence highlighting commercial projects and automating prospective customer quotes.",
-      tags: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
+      description: "A hackathon Android app helping freelancers turn client conversations into clear scope and review new requests against it.",
+      longDescription: "Built with a hackathon team. Projects and versioned agreements stay in a local SQLite database. On-device AI suggests scope and request classifications for the freelancer to review; the user confirms terms and supplies prices and deadlines. The website presents a prepared interactive demo.",
+      tags: [
+        "React Native",
+        "Expo",
+        "SQLite",
+        "On-device AI"
+      ],
+      githubUrl: "https://github.com/chimkenchrls/appbuildersph-hackathon",
+      demoUrl: "https://owlsetph.vercel.app/",
+      screenshots: [
+        {
+          label: "Product website",
+          desktopUrl: "/assets/project screenshots/OwlSetPH/OwlSetPH Landing.png"
+        }
+      ],
+      videoUrl: "/assets/project screenshots/OwlSetPH/OwlSetDemo.mp4",
       highlights: [
-        "Fast responsive interface optimized for mobile and desktop",
-        "Interactive project gallery and quotation inquiry flow",
-        "Clean, corporate typography and architectural imagery"
+        "Local SQLite storage for projects and versioned agreements",
+        "On-device inference with llama.rn and validated model output",
+        "Request findings cite recorded scope and require human review"
+      ]
+    },
+    {
+      id: "sphere8",
+      title: "Sphere8 Construction",
+      subtitle: "Live client website",
+      problem: "A construction company needed a clear digital presence for its services, project work, and prospective client inquiries.",
+      role: "Lead Frontend Developer",
+      stack: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Netlify Forms"
+      ],
+      outcome: "A live company website with 25 project images, category filters, a lightbox, and an inquiry form with an email fallback.",
+      featured: true,
+      description: "A design-and-build company website showcasing real projects and making client inquiries easier.",
+      longDescription: "Built for Sphere8 Construction Corp. in Lucena City. The static site is prerendered at build time, includes company structured data, and uses Netlify Forms without a custom server.",
+      tags: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS"
+      ],
+      githubUrl: "https://github.com/TwilightDust12/Sphere8",
+      demoUrl: "https://spehere8construction.netlify.app/",
+      screenshots: [
+        {
+          label: "Company website",
+          desktopUrl: "/assets/project screenshots/Sphere8/Sphere8 Landing.png",
+          mobileUrl: "/assets/project screenshots/Sphere8/Sphere8 Mobile.png"
+        }
+      ],
+      highlights: [
+        "Filterable project gallery with keyboard-accessible lightbox",
+        "Netlify inquiry form with validation and email-draft fallback",
+        "Prerendered HTML, structured data, sitemap, and responsive images"
       ]
     },
     {
       id: "lily-chou-chou",
-      title: "All About Lily Chou-Chou Themed Portfolio",
-      subtitle: "Atmospheric Web Experience",
-      problem: "Conventional web portfolios often lack sensory atmosphere and emotional resonance.",
+      title: "The Ether — Lily Chou-Chou",
+      subtitle: "Interactive film tribute",
+      problem: "A film tribute needed to convey the atmosphere of All About Lily Chou-Chou through more than a conventional information page.",
       role: "Creator & Designer",
-      stack: ["Next.js", "Tailwind CSS", "Web Audio API", "TypeScript"],
-      outcome: "Atmospheric web archive integrating real-time Web Audio API ambient sound synthesis, filmic scanlines, and retro typography.",
-      isTeamProject: false,
+      stack: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Web Audio API"
+      ],
+      outcome: "An interactive film tribute with a still gallery, nine-track Discman listening room, and real-time audio visualizations.",
       featured: true,
-      description: "An experimental, atmospheric web portfolio immersing visitors in an ethereal ether of ambient sound, retro typography, and filmic grain.",
-      longDescription: "A creative homage exploring digital connection and ethereal atmosphere. Features Web Audio API synthesis, scanline shaders, and responsive typographic columns.",
-      tags: ["Next.js", "Tailwind CSS", "Web Audio API"],
-      githubUrl: "https://github.com/TwilightDust12/lily-chou-chou-themed-portfolio",
+      description: "A cinematic fan tribute exploring film landscapes, music, and imagined message-board conversations.",
+      longDescription: "Built with native browser features and no runtime JavaScript dependencies. Visitors can change the opening landscape, explore film stills, and control a Discman-style HTML5 audio player with waveform and frequency views.",
+      tags: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Web Audio API"
+      ],
+      githubUrl: "https://github.com/TwilightDust12/Lily-Chou-Chou-Fan-Tribute",
+      demoUrl: "https://twilightdust12.github.io/Lily-Chou-Chou-Fan-Tribute/",
       screenshots: [
         {
-          label: "Atmospheric Web Archive",
-          desktopUrl: "/assets/project screenshots/lily-chou-chou-themed-portfolio/lily-chou-chou-website.png",
-          mobileUrl: "/assets/project screenshots/lily-chou-chou-themed-portfolio/lily chou chou mobile view.PNG",
-        },
+          label: "Film tribute",
+          desktopUrl: "/assets/project screenshots/lily-chou-chou-themed-portfolio/new UI.png",
+          mobileUrl: "/assets/project screenshots/lily-chou-chou-themed-portfolio/UI REDESIGN MOBILE.PNG"
+        }
       ],
       highlights: [
-        "Procedural Web Audio API ambient tone synthesizer",
-        "Custom scanline textures and filmic typography",
-        "Lightweight zero-dependency audio generation"
+        "Discman player with seeking, volume, and Web Audio visualizations",
+        "Keyboard-accessible still gallery with remembered landscape selection",
+        "Theme switching, reduced-motion support, and motion pause control"
       ]
     },
     {
@@ -209,7 +275,7 @@ export const portfolioData: PortfolioConfig = {
       stack: ["CachyOS", "Hyprland", "Waybar", "Pywal", "Bash", "PipeWire"],
       outcome: "Automated Wayland rice environment with dynamic wallpaper-extracted color palettes, custom IPC status bars, and low-latency audio daemons.",
       isTeamProject: false,
-      featured: true,
+      featured: false,
       description: "Personal Wayland environment on CachyOS featuring dynamic Pywal theming, GPU terminal setups, and PipeWire audio routing.",
       longDescription: "A finely tuned Wayland desktop workflow running on CachyOS. Features customized Waybar status bars, GPU-accelerated terminals (Alacritty/Kitty), dynamic Pywal theme extraction, and PipeWire latency optimization.",
       tags: ["Hyprland", "Waybar", "CachyOS", "Pywal", "Bash"],
@@ -265,6 +331,8 @@ export const portfolioData: PortfolioConfig = {
       description: "Native Android applications with MVVM architecture and C# game development in Unity.",
       tag: "MOBILE & GAME",
       skills: [
+        { name: "React Native / Expo" },
+        { name: "SQLite" },
         { name: "Android (Kotlin)" },
         { name: "Jetpack Compose" },
         { name: "Room Database" },
