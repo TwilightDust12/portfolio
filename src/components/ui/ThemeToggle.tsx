@@ -10,16 +10,17 @@ export function ThemeToggle() {
   useEffect(() => setMounted(true), []);
   const isDark = resolvedTheme === "dark";
 
+  if (!mounted) return <span className="theme-toggle" aria-hidden="true" />;
+
   return (
     <button
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      disabled={!mounted}
       className="theme-toggle btn-press"
-      aria-label={mounted ? `Switch to ${isDark ? "Latte light" : "Mocha dark"} theme` : "Change theme"}
-      title={mounted ? `Catppuccin ${isDark ? "Mocha" : "Latte"}` : undefined}
+      aria-label={`Switch to ${isDark ? "Latte light" : "Mocha dark"} theme`}
+      title={`Catppuccin ${isDark ? "Mocha" : "Latte"}`}
     >
-      {mounted && (isDark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />)}
+      {isDark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
     </button>
   );
 }

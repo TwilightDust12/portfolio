@@ -41,14 +41,17 @@ For environments where Turbopack's local worker ports are restricted, Next.js al
 
 Copy `.env.example` to `.env.local` and supply your own Last.fm and Letterboxd settings to enable the feeds. Secrets stay in server routes. The personal section labels curated responses and handles unavailable feeds and failed artwork.
 
-The portrait glitch is skipped for reduced-motion users. Native anchor navigation, visible keyboard focus, 44px controls, dialog focus return, and system-aware theme switching are supported.
+The existing Motion library drives portrait parallax, orbiting artwork, a drifting typographic interlude, project entrances, and reading progress, with a JavaScript fallback in browsers without native scroll timelines. A sticky project index follows the current project on desktop. Content remains readable without JavaScript. Portraits and screenshot previews crossfade without blocking repeated clicks. Screenshots open in a full-size, scrollable viewer. Reduced-motion users get short fades without movement; keyboard-triggered switches and dialogs skip motion. Native anchor navigation, visible keyboard focus, 44px controls, dialog focus return, and system-aware theme switching are supported.
 
 ## Verification
 
 ```bash
 npx tsc --noEmit
+node tests/project-content.cjs
 npm run build
 ```
+
+The browser regression check is `tests/motion.browser.cjs`. It starts a production preview on port 3108 and requires Playwright with its browser binaries installed in your environment. Run `node tests/motion.browser.cjs` after building; set `BROWSER_ENGINE=firefox` or `BROWSER_ENGINE=webkit` for those engines. `DISABLE_SCROLL_TIMELINES=1` exercises the JavaScript scroll fallback in Chromium.
 
 The refinement plan and verification record are in [docs/superpowers/plans/2026-10-08-portfolio-refinement.md](docs/superpowers/plans/2026-10-08-portfolio-refinement.md).
 
