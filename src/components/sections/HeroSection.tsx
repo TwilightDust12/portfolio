@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { ArrowDownRight, ArrowUpRight, RefreshCw } from "lucide-react";
-import { useReducedMotion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 
 const AVATARS = [
@@ -14,27 +13,15 @@ const AVATARS = [
 
 export default function HeroSection() {
   const [avatarIndex, setAvatarIndex] = useState(0);
-  const [glitching, setGlitching] = useState(false);
-  const reduceMotion = useReducedMotion();
-  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
-  useEffect(() => () => timers.current.forEach(clearTimeout), []);
-
-  function cycleAvatar() {
-    if (glitching) return;
-    if (reduceMotion) {
-      setAvatarIndex((index) => (index + 1) % AVATARS.length);
-      return;
-    }
-    setGlitching(true);
-    timers.current = [
-      setTimeout(() => setAvatarIndex((index) => (index + 1) % AVATARS.length), 90),
-      setTimeout(() => setGlitching(false), 220),
-    ];
-  }
+  const [animate, setAnimate] = useState(true);
 
   const avatar = AVATARS[avatarIndex];
   return (
     <section id="hero" className="hero content-width">
+      <div className="hero-field" aria-hidden="true">
+        <span className="hero-watermark">twilight</span>
+        <span className="hero-orbit" />
+      </div>
       <div className="hero-grid">
         <div>
           <h1 className="hero-name">Jose Raphael<br />Jaro<span className="hero-alias">/ twilight</span></h1>
@@ -51,11 +38,16 @@ export default function HeroSection() {
           </div>
         </div>
         <figure className="hero-portrait">
+          <span className="portrait-coordinate" aria-hidden="true">13.93° N / 121.62° E</span>
           <div className="portrait-frame">
-            <button type="button" className="portrait-button" onClick={cycleAvatar} aria-label={`Change portrait. Currently ${avatar.label}, ${avatarIndex + 1} of ${AVATARS.length}`}>
-              <Image src={avatar.src} alt={avatar.label} fill sizes="(max-width: 767px) 360px, 440px" priority className="portrait-photo" />
+            <button type="button" className="portrait-button" data-motion={animate} onClick={(event) => {
+              setAnimate(event.detail !== 0);
+              setAvatarIndex((index) => (index + 1) % AVATARS.length);
+            }} aria-label={`Change portrait. Currently ${avatar.label}, ${avatarIndex + 1} of ${AVATARS.length}`}>
+              {AVATARS.map((item, index) => (
+                <Image key={item.src} src={item.src} alt={index === avatarIndex ? item.label : ""} aria-hidden={index !== avatarIndex} fill sizes="(max-width: 767px) 360px, 440px" priority={index === 0} className="portrait-photo" data-active={index === avatarIndex} />
+              ))}
               <span className="portrait-rail kanji-rail" lang="ja">黄昏</span>
-              {glitching && <span className="avatar-glitch" aria-hidden="true">{Array.from({ length: 64 }, (_, index) => <span key={index} style={{ opacity: ((index * 37 + avatarIndex * 19) % 10) / 10 }} />)}</span>}
             </button>
             <figcaption className="portrait-caption">
               <span>{avatarIndex === 2 ? "Reze · Chainsaw Man" : "A face behind the code"}</span>
@@ -65,6 +57,7 @@ export default function HeroSection() {
           <p className="mt-3 text-xs text-muted text-right">Click the portrait to switch.</p>
         </figure>
       </div>
+      <a href="#works" className="hero-scroll-link"><span>Explore the work</span><ArrowDownRight size={18} aria-hidden="true" /></a>
     </section>
   );
 }
