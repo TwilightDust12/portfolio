@@ -5,7 +5,7 @@ A personal portfolio for full-stack internship opportunities, built with Next.js
 ## Page structure
 
 1. **Introduction:** portrait switching, consistent internship availability, project and email actions.
-2. **Selected projects:** WebC and Lily Chou-Chou with desktop/mobile screenshots; Sphere8 (in development) and Wayland rice as supporting projects. Case studies open directly from each project.
+2. **Selected projects:** WebC, OwlSet, Sphere8, and The Ether film tribute with current screenshots; Wayland rice as supporting work. OwlSet’s case study includes its app demo video. Case studies open directly from each project.
 3. **Skills:** readable categories with links to relevant project evidence.
 4. **About:** background and concise education.
 5. **Personal interests:** music, cinema, anime, and games in one section.

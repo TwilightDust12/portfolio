@@ -22,14 +22,14 @@ export function ProjectModal({ project, open, onOpenChange, onCloseAutoFocus }: 
             <div className="flex items-start justify-between gap-4 mb-6">
               <div>
                 <Dialog.Title className="project-title">{project.title}</Dialog.Title>
-                <Dialog.Description className="text-sm text-muted mt-2">{project.subtitle}{project.id === "sphere8" ? " · In development" : ""}</Dialog.Description>
+                <Dialog.Description className="text-sm text-muted mt-2">{project.subtitle}</Dialog.Description>
               </div>
               <Dialog.Close asChild><button type="button" className="dialog-close btn-press" aria-label="Close case study"><X size={20} aria-hidden="true" /></button></Dialog.Close>
             </div>
-            <ProjectMedia project={project} />
+            <ProjectMedia project={project} showVideo />
             <div className="dialog-details">
               <div><h3>The problem</h3><p>{project.problem}</p></div>
-              <div><h3>My role</h3><p>{project.role}</p>{project.isTeamProject && <p className="mt-2">Built as part of a capstone team at STI College Lucena.</p>}</div>
+              <div><h3>My role</h3><p>{project.role}</p>{project.id === "webc" && <p className="mt-2">Built as part of a capstone team at STI College Lucena.</p>}</div>
               <div><h3>The result</h3><p>{project.outcome}</p></div>
               <div><h3>Built with</h3><p>{project.stack.join(" · ")}</p></div>
             </div>
