@@ -24,3 +24,15 @@ export interface CinemaData {
   profileUrl?: string;
   isFallback: boolean;
 }
+
+export interface GithubContributionDay {
+  date: string;
+  count: number;
+}
+
+export interface GithubContributionsData {
+  total: number;
+  contributions: GithubContributionDay[];
+  username: string;
+  isFallback: boolean;
+}

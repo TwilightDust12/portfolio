@@ -9,6 +9,17 @@ export function ChronicleSection() {
           <p>I’m Jose, a Computer Science student in Lucena City. I enjoy building useful web applications, working through the details of an interface, and understanding the systems underneath it.</p>
           <p className="text-muted">My work includes a student clearance capstone, a construction company’s web presence, a hackathon Android app for freelancers, and personal experiments with sound and the web. Outside the browser, I spend time tuning my CachyOS and Hyprland environment.</p>
           <blockquote className="mt-7 font-mono text-accent-text text-base">“Doing things, little by little.”</blockquote>
+          {portfolioData.personal.now && (
+            <div className="now-card mt-8">
+              <div className="now-header">
+                <span className="now-label">
+                  Now <span className="text-muted font-normal" lang="ja">/ 現在</span>
+                </span>
+                <span className="now-date">{portfolioData.personal.now.updated}</span>
+              </div>
+              <p className="now-note">{portfolioData.personal.now.note}</p>
+            </div>
+          )}
         </div>
         <div>
           {portfolioData.education.slice(0, 2).map((education) => (

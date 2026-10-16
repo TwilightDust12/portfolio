@@ -11,6 +11,13 @@ export interface ProjectScreenshot {
   mobileUrl?: string;
 }
 
+export interface ProjectStory {
+  contribution?: string;
+  difficultDecision?: string;
+  learned?: string;
+  improvement?: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -30,6 +37,7 @@ export interface Project {
   demoUrl?: string;
   githubUrl?: string;
   highlights?: string[];
+  story?: ProjectStory;
 }
 
 export interface SkillItem {
@@ -75,16 +83,35 @@ export interface RiceSpec {
   audioTuning: string;
 }
 
+export interface CuratedAnimeNote {
+  title: string;
+  reaction: string;
+  spoilerContent?: string;
+  quote?: string;
+}
+
 export interface AnimeInterests {
   description: string;
   favorites: string[];
   genres: string[];
+  notes?: CuratedAnimeNote[];
+}
+
+export interface CuratedGameNote {
+  title: string;
+  note: string;
 }
 
 export interface GamingInterests {
   description: string;
   genres: string[];
   favorites?: string[];
+  notes?: CuratedGameNote[];
+}
+
+export interface NowUpdate {
+  note: string;
+  updated: string;
 }
 
 export interface PortfolioConfig {
@@ -97,6 +124,7 @@ export interface PortfolioConfig {
     email: string;
     availability: string;
     avatars: string[];
+    now?: NowUpdate;
   };
   socials: SocialLink[];
   experience: Experience[];

@@ -16,7 +16,11 @@ export const portfolioData: PortfolioConfig = {
       "/assets/profile.jpg",
       "/assets/profile2.jpg",
       "/assets/reze.jpg"
-    ]
+    ],
+    now: {
+      note: "Lately, I’m learning to trust the process—coding whatever comes to mind, playing games, and watching a few anime. Taking things little by little and following my curiosity.",
+      updated: "October 2026"
+    }
   },
 
   socials: [
@@ -149,7 +153,11 @@ export const portfolioData: PortfolioConfig = {
         "Role-based clearance routing for students, departments, and administrators",
         "Microsoft Azure MSAL single sign-on integration for institutional accounts",
         "High-performance database operations powered by Drizzle ORM and Supabase PostgreSQL"
-      ]
+      ],
+      story: {
+        contribution: "I spent a lot of time trying out features and reworking WebC’s UI/UX. The visual style kept bothering me, so I kept changing it. I’m kind of satisfied with where it is now—for now.",
+        learned: "Every time I thought I was satisfied, I eventually found something else to improve. WebC taught me that being happy with a version doesn’t mean there’s nothing left to work on."
+      }
     },
     {
       id: "owlset",
@@ -369,11 +377,25 @@ export const portfolioData: PortfolioConfig = {
   animeInterests: {
     description: "Avid anime watcher with a deep love for slice-of-life and rom-com narratives.",
     favorites: ["Bocchi the Rock!", "Chainsaw Man", "Jujutsu Kaisen", "Neon Genesis Evangelion"],
-    genres: ["Slice of Life", "Rom-Com", "Action", "Psychological"]
+    genres: ["Slice of Life", "Rom-Com", "Action", "Psychological"],
+    notes: [
+      {
+        title: "Re:Zero",
+        reaction: "Just finished watching, and honestly, it was peak.",
+        spoilerContent: "Seeing Subaru begin to accept himself and try to love himself more really stayed with me.",
+        quote: "“You really are an amazing guy, Natsuki Subaru.”"
+      }
+    ]
   },
 
   gamingInterests: {
     description: "Lifelong gaming enthusiast balancing competitive tactical shooters with immersive single-player stories.",
-    genres: ["Competitive Shooters", "Single-Player Narrative", "Action RPGs", "Rhythm Games"]
+    genres: ["Competitive Shooters", "Single-Player Narrative", "Action RPGs", "Rhythm Games"],
+    notes: [
+      {
+        title: "Apex Legends",
+        note: "I keep coming back for the ranked climb, even if I’ve been hardstuck for a while. Lately, I’m learning when to step back and give myself a break. The rank can wait."
+      }
+    ]
   }
 };

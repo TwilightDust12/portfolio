@@ -86,8 +86,31 @@ export function MoodSection() {
         </div>
       </div>
       <div className="interest-note">
-        <p><strong>Anime.</strong> {portfolioData.animeInterests.description} Favorites include {portfolioData.animeInterests.favorites.join(", ")}.</p>
-        <p><strong>Games.</strong> {portfolioData.gamingInterests.description}</p>
+        <div className="interest-entry">
+          <p><strong>Anime.</strong> {portfolioData.animeInterests.description} Favorites include {portfolioData.animeInterests.favorites.join(", ")}.</p>
+          {portfolioData.animeInterests.notes?.map((note) => (
+            <div key={note.title} className="curated-note">
+              <p><strong>{note.title}</strong> — {note.reaction}</p>
+              {(note.spoilerContent || note.quote) && (
+                <details className="spoiler-disclosure">
+                  <summary className="spoiler-summary">Show spoilers</summary>
+                  <div className="spoiler-body">
+                    {note.spoilerContent && <p>{note.spoilerContent}</p>}
+                    {note.quote && <blockquote className="spoiler-quote">{note.quote}</blockquote>}
+                  </div>
+                </details>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="interest-entry">
+          <p><strong>Games.</strong> {portfolioData.gamingInterests.description}</p>
+          {portfolioData.gamingInterests.notes?.map((note) => (
+            <div key={note.title} className="curated-note">
+              <p><strong>{note.title}</strong> — {note.note}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

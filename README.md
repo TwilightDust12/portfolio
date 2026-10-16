@@ -38,6 +38,7 @@ For environments where Turbopack's local worker ports are restricted, Next.js al
 - `src/app/globals.css`: both palettes, editorial layout, responsive styles, and interaction motion.
 - `src/app/api/music/route.ts`: Last.fm recent music, cached server responses, and curated fallback.
 - `src/app/api/cinema/route.ts`: Letterboxd RSS diary, cached server responses, and curated fallback.
+- `src/components/sections/GithubSection.tsx`: interactive 2D/3D contribution skyline powered by `/api/github` using real public contribution history from the GitHub profile. No token is required, with cached responses and offline fallback. A profile link remains available.
 
 Copy `.env.example` to `.env.local` and supply your own Last.fm and Letterboxd settings to enable the feeds. Secrets stay in server routes. The personal section labels curated responses and handles unavailable feeds and failed artwork.
 
@@ -45,11 +46,18 @@ The existing Motion library drives portrait parallax, orbiting artwork, a drifti
 
 ## Verification
 
+The page uses UI Capsule's MIT-licensed [Background Pixel Stars](https://21st.dev/@uicapsule/components/background-pixel-stars), adapted to the Catppuccin palette. A single fixed, viewport-sized canvas stays behind all sections as visitors scroll. Stars twinkle at up to 16 FPS with occasional shooting stars; rendering pauses in a hidden tab. Reduced-motion users receive a still starfield. The component and a standalone demo are in `src/components/ui/background-pixel-stars.tsx` and `background-pixel-stars-demo.tsx`; no additional dependencies or assets are needed. The existing skyline demo remains separate.
+
+Run `node tests/pixel-stars.browser.cjs` after a production build to verify animation, theme switching, reduced motion, and responsive sizing. It uses the same `PLAYWRIGHT_MODULE` and `CHROMIUM_PATH` overrides as the GitHub browser check.
+
 ```bash
 npx tsc --noEmit
 node tests/project-content.cjs
 npm run build
+node tests/github.browser.cjs
 ```
+
+The GitHub browser check requires Playwright and Chromium. If installed outside this project, set `PLAYWRIGHT_MODULE` to the Playwright package path and `CHROMIUM_PATH` to the browser executable.
 
 The browser regression check is `tests/motion.browser.cjs`. It starts a production preview on port 3108 and requires Playwright with its browser binaries installed in your environment. Run `node tests/motion.browser.cjs` after building; set `BROWSER_ENGINE=firefox` or `BROWSER_ENGINE=webkit` for those engines. `DISABLE_SCROLL_TIMELINES=1` exercises the JavaScript scroll fallback in Chromium.
 
