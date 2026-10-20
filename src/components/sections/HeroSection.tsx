@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowDownRight, ArrowUpRight, RefreshCw } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Download, RefreshCw } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 
 const AVATARS = [
@@ -31,6 +31,7 @@ export default function HeroSection() {
           <div className="hero-actions">
             <a href="#works" className="primary-button">View projects <ArrowDownRight size={18} aria-hidden="true" /></a>
             <a href={`mailto:${portfolioData.personal.email}`} className="secondary-button">Contact me <ArrowUpRight size={18} aria-hidden="true" /></a>
+            <a href="/cv.pdf" download="Jose-Raphael-Jaro-Resume.pdf" className="secondary-button">Download Resume <span className="sr-only">(PDF)</span><Download size={18} aria-hidden="true" /></a>
           </div>
           <div className="hero-location">
             <span>Lucena City, Philippines</span>
