@@ -55,7 +55,7 @@ export default function HeroSection() {
               <span className="inline-flex items-center gap-2" aria-hidden="true"><RefreshCw size={12} /> {avatarIndex + 1} / {AVATARS.length}</span>
             </figcaption>
           </div>
-          <p className="mt-3 text-xs text-muted text-right">Click the portrait to switch.</p>
+          <p className="mt-3 text-xs text-muted text-right">Click the portrait to switch profiles.</p>
         </figure>
       </div>
       <a href="#works" className="hero-scroll-link"><span>Explore the work</span><ArrowDownRight size={18} aria-hidden="true" /></a>
