@@ -1,7 +1,7 @@
 const { spawn } = require('node:child_process');
 const path = require('node:path');
 const assert = require('node:assert/strict');
-const { chromium } = require('playwright');
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 
 const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'start', '--port', '3109'], {
   cwd: path.resolve(__dirname, '..'), stdio: ['ignore', 'pipe', 'inherit'],
@@ -14,7 +14,7 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
       server.on('exit', (code) => reject(new Error(`Preview exited: ${code}`)));
       setTimeout(() => reject(new Error('Preview startup timed out')), 15000).unref();
     });
-    browser = await chromium.launch();
+    browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
     const hydrationErrors = [];
     for (const theme of ['light', 'dark']) {
       const context = await browser.newContext();

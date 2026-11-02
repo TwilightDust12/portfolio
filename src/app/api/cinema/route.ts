@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { CinemaData, FilmItem } from "@/types/telemetry";
+import { FilmItem } from "@/types/telemetry";
 
 export const dynamic = "force-dynamic";
 

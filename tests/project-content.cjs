@@ -19,6 +19,7 @@ for (const project of projects) {
   const media = (project.screenshots ?? []).flatMap((screen) =>
     [screen.desktopUrl, screen.mobileUrl].filter(Boolean));
   if (project.videoUrl) media.push(project.videoUrl);
+  if (project.image) media.push(project.image);
   for (const url of media) assert(fs.existsSync(path.join(root, 'public', url)), `Missing media: ${url}`);
   if (project.featured && project.id !== 'webc') {
     assert.equal(new URL(project.demoUrl).protocol, 'https:');

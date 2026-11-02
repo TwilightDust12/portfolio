@@ -71,7 +71,7 @@ export function ProjectsSection() {
         <article key={project.id} className="project-feature" id={`project-${project.id}`}>
           <div className="project-stage">
             <span className="project-ordinal" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-            <ProjectMedia project={project} />
+            <ProjectMedia project={project} showVideo />
           </div>
           <div className="project-copy">
             <p className="project-kind">{project.subtitle}</p>

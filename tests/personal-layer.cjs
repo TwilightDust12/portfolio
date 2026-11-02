@@ -37,8 +37,9 @@ assert.equal(apex.note, 'I keep coming back for the ranked climb, even if I’ve
 const webc = data.projects.find((p) => p.id === 'webc');
 assert(webc, 'WebC project must exist');
 assert(webc.story, 'WebC story must exist');
-assert.equal(webc.story.contribution, 'I spent a lot of time trying out features and reworking WebC’s UI/UX. The visual style kept bothering me, so I kept changing it. I’m kind of satisfied with where it is now—for now.');
-assert.equal(webc.story.learned, 'Every time I thought I was satisfied, I eventually found something else to improve. WebC taught me that being happy with a version doesn’t mean there’s nothing left to work on.');
+assert.match(webc.story.contribution, /student, department, and admin dashboards/);
+assert.match(webc.story.contribution, /four-person team as Project Manager and Quality Officer/);
+assert.match(webc.story.learned, /a working version can still need refinement/);
 assert(!webc.story.difficultDecision, 'Unspecified difficultDecision must remain absent');
 assert(!webc.story.improvement, 'Unspecified improvement must remain absent');
 

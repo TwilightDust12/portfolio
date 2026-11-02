@@ -16,7 +16,6 @@ export function SwissFrame({
   className = "",
   tag,
   showCrosshairs = false,
-  showCalipers = false,
   accentBorder = "none",
 }: SwissFrameProps) {
   const accentBorderClass = {

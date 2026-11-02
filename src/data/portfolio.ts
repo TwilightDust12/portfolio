@@ -11,7 +11,7 @@ export const portfolioData: PortfolioConfig = {
     ],
     location: "Lucena City, Quezon Province, Philippines",
     email: "jyrum12@gmail.com",
-    availability: "Seeking full-stack internship opportunities",
+    availability: "Seeking full-stack internships; junior roles also welcome",
     avatars: [
       "/assets/profile.jpg",
       "/assets/profile2.jpg",
@@ -59,9 +59,9 @@ export const portfolioData: PortfolioConfig = {
   experience: [
     {
       id: "thesis-webc",
-      role: "Full-Stack Developer (Team Project)",
+      role: "Full-Stack Developer, Project Manager & Quality Officer",
       company: "STI College Lucena (Capstone Thesis)",
-      period: "2024 - Present",
+      period: "2025 - Present",
       location: "Lucena City, Philippines",
       description: [
         "Engineered the WebC student clearance system for STI College Lucena with role-based routing.",
@@ -74,13 +74,13 @@ export const portfolioData: PortfolioConfig = {
       id: "sphere8-dev",
       role: "Lead Frontend Developer",
       company: "Sphere8 Construction Company",
-      period: "2024",
+      period: "October 2026",
       location: "Remote / Lucena City",
       description: [
         "Designed and implemented modern corporate web portal and project showcase.",
         "Created streamlined quotation inquiry flows and responsive mobile layouts."
       ],
-      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+      technologies: ["React", "Vite", "TypeScript", "Tailwind CSS"]
     }
   ],
 
@@ -126,7 +126,7 @@ export const portfolioData: PortfolioConfig = {
       title: "WebC - Student Clearance System",
       subtitle: "Capstone Thesis (Team Project)",
       problem: "Manual, paper-reliant academic clearance workflows cause delays, lost clearance filings, and administrative friction across college departments.",
-      role: "Full-Stack Developer (Team Project)",
+      role: "Full-Stack Developer, Project Manager & Quality Officer (Team Project)",
       stack: ["Next.js 15", "TypeScript", "Supabase", "Drizzle ORM", "Azure MSAL", "Tailwind CSS"],
       outcome: "Centralized multi-role web portal featuring role-based dashboards (Student, Department, Admin), automated clearance approval pipelines, and institutional Azure login.",
       isTeamProject: true,
@@ -152,11 +152,12 @@ export const portfolioData: PortfolioConfig = {
       highlights: [
         "Role-based clearance routing for students, departments, and administrators",
         "Microsoft Azure MSAL single sign-on integration for institutional accounts",
-        "High-performance database operations powered by Drizzle ORM and Supabase PostgreSQL"
+        "Relational data access with Drizzle ORM and Supabase PostgreSQL",
+        "Four-person capstone team led as Project Manager and Quality Officer"
       ],
       story: {
-        contribution: "I spent a lot of time trying out features and reworking WebC’s UI/UX. The visual style kept bothering me, so I kept changing it. I’m kind of satisfied with where it is now—for now.",
-        learned: "Every time I thought I was satisfied, I eventually found something else to improve. WebC taught me that being happy with a version doesn’t mean there’s nothing left to work on."
+        contribution: "I developed and iterated on the student, department, and admin dashboards and clearance interface as part of our capstone team. I also led our four-person team as Project Manager and Quality Officer, applying the ISO Process Approach and continual improvement principles.",
+        learned: "Revisiting WebC’s interface taught me that a working version can still need refinement. I kept trying features and reviewing the UI as the project developed, rather than treating the first complete version as the end."
       }
     },
     {
@@ -186,6 +187,7 @@ export const portfolioData: PortfolioConfig = {
       ],
       githubUrl: "https://github.com/chimkenchrls/appbuildersph-hackathon",
       demoUrl: "https://owlsetph.vercel.app/",
+      image: "/assets/project screenshots/OwlSetPH/OwlSet app preview.jpg",
       screenshots: [
         {
           label: "Product website",

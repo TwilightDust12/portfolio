@@ -16,6 +16,8 @@ export interface ProjectModalProps {
 
 export function ProjectModal({ project, open, onOpenChange, onCloseAutoFocus, animate = true }: ProjectModalProps) {
   const [keyboardDismiss, setKeyboardDismiss] = useState(false);
+  // Reset each externally controlled opening while retaining Radix's pointer exit animation.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { if (open) setKeyboardDismiss(false); }, [open]);
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>

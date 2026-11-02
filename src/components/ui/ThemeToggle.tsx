@@ -7,6 +7,8 @@ import { Sun, Moon } from "lucide-react";
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+  // next-themes needs a post-hydration render before showing a theme-dependent control.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
   const isDark = resolvedTheme === "dark";
 

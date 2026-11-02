@@ -18,7 +18,7 @@ export function ProjectMedia({ project, compact = false, showVideo = false }: { 
   if (project.videoUrl && (showVideo || !screen)) {
     return (
       <figure className="project-media">
-        <video src={project.videoUrl} controls playsInline preload="none" className="w-full max-h-[440px] bg-black" aria-label={`${project.title} demo video`} />
+        <video src={project.videoUrl} poster={project.image} controls playsInline preload="none" className="w-full max-h-[440px] bg-black" aria-label={`${project.title} demo video`} />
         <figcaption className="media-caption">{project.title} · Demo video</figcaption>
       </figure>
     );

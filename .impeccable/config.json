@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-10-16T14:54:02.602Z",
         "reason": "Agent reviewed L181: .spoiler-body uses a neutral var(--line) 2px separator within a native spoiler disclosure, not a colored card accent. Preserve this existing disclosure styling; unrelated to the pixel-star integration."
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/components/ui/contribution-skyline.tsx"
+        ],
+        "createdAt": "2026-11-02T17:33:16.454Z",
+        "reason": "Agent triage: lines 1302 and 1303 are transparent borders on a zero-sized tooltip arrow; they form its pointer and are not card accent borders."
       }
     ]
   }

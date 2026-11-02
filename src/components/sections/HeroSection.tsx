@@ -46,7 +46,7 @@ export default function HeroSection() {
               setAvatarIndex((index) => (index + 1) % AVATARS.length);
             }} aria-label={`Change portrait. Currently ${avatar.label}, ${avatarIndex + 1} of ${AVATARS.length}`}>
               {AVATARS.map((item, index) => (
-                <Image key={item.src} src={item.src} alt={index === avatarIndex ? item.label : ""} aria-hidden={index !== avatarIndex} fill sizes="(max-width: 767px) 360px, 440px" priority={index === 0} className="portrait-photo" data-active={index === avatarIndex} />
+                <Image key={item.src} src={item.src} alt={index === avatarIndex ? item.label : ""} aria-hidden={index !== avatarIndex} fill sizes="(max-width: 767px) 176px, 380px" priority={index === 0} className="portrait-photo" data-active={index === avatarIndex} />
               ))}
               <span className="portrait-rail kanji-rail" lang="ja">黄昏</span>
             </button>
@@ -58,7 +58,6 @@ export default function HeroSection() {
           <p className="mt-3 text-xs text-muted text-right">Click the portrait to switch profiles.</p>
         </figure>
       </div>
-      <a href="#works" className="hero-scroll-link"><span>Explore the work</span><ArrowDownRight size={18} aria-hidden="true" /></a>
     </section>
   );
 }

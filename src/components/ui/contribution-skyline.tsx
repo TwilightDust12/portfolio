@@ -484,15 +484,17 @@ export default function ContributionSkyline({
   const dfy = React.useMemo(() => new Intl.DateTimeFormat(locale, { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }), [locale])
   const dfl = React.useMemo(() => new Intl.DateTimeFormat(locale, { weekday: "long", month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }), [locale])
   const noun = (n: number) => (n === 1 ? unit : plural)
-  const describe = (i: number) => {
+  const describe = React.useCallback((i: number) => {
     const c = model.cells[i]
     if (!c) return ""
-    return (c.count ? nf.format(c.count) + " " + noun(c.count) : "No " + plural) + " on " + dfl.format(dayMs(c.date))
-  }
+    return (c.count ? nf.format(c.count) + " " + (c.count === 1 ? unit : plural) : "No " + plural) + " on " + dfl.format(dayMs(c.date))
+  }, [model, nf, unit, plural, dfl])
 
-  // Everything the render loop reads, refreshed every render so the loop never closes over stale props.
+  // Publish committed props before the render loop or engine effects read them.
   const cfg = React.useRef({ model, duration, heightScale, orbit, palette, legendLevel, onCellClick, target: view === "3d" ? 1 : 0, setActive, setWidth, setTheme, setAnnounce, describe })
-  cfg.current = { model, duration, heightScale, orbit, palette, legendLevel, onCellClick, target: view === "3d" ? 1 : 0, setActive, setWidth, setTheme, setAnnounce, describe }
+  React.useLayoutEffect(() => {
+    cfg.current = { model, duration, heightScale, orbit, palette, legendLevel, onCellClick, target: view === "3d" ? 1 : 0, setActive, setWidth, setTheme, setAnnounce, describe }
+  }, [model, duration, heightScale, orbit, palette, legendLevel, onCellClick, view, describe])
 
   React.useEffect(() => {
     const root = rootRef.current
@@ -1119,7 +1121,6 @@ export default function ContributionSkyline({
       engine.current = null
     }
     // The loop reads everything else through cfg; it is built once per mount.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locale])
 
   React.useEffect(() => {
@@ -1189,7 +1190,7 @@ export default function ContributionSkyline({
           >
             <span
               aria-hidden="true"
-              className="absolute top-0.5 bottom-0.5 left-0.5 w-8 rounded transition-transform duration-500 motion-reduce:transition-none"
+              className="absolute top-0.5 bottom-0.5 left-0.5 w-11 rounded transition-transform duration-500 motion-reduce:transition-none"
               style={{
                 background: "var(--accent-text, var(--color-foreground, #171717))",
                 transform: is3d ? "translateX(100%)" : "translateX(0)",
@@ -1204,7 +1205,7 @@ export default function ContributionSkyline({
                 aria-label={v === "2d" ? "Flat heat map" : "3D skyline"}
                 title={v === "2d" ? "Flat heat map" : "3D skyline"}
                 onClick={() => setView(v)}
-                className="relative z-10 grid h-7 w-8 cursor-pointer place-items-center rounded border-0 bg-transparent p-0 transition-colors duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none"
+                className="relative z-10 grid h-11 w-11 cursor-pointer place-items-center rounded border-0 bg-transparent p-0 transition-colors duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none"
                 style={{
                   color: view === v ? "var(--on-accent, var(--color-background, #ffffff))" : MUTED,
                   outlineColor: "var(--accent-text, var(--color-foreground, #171717))",
@@ -1345,8 +1346,8 @@ export default function ContributionSkyline({
             <span className="flex-1">{footer}</span>
           )}
           {showLegend && (
-            <div className="flex items-center gap-1.5" onMouseLeave={() => setLegendLevel(-1)}>
-              <span className="mr-0.5">Less</span>
+            <div className="flex items-center" onMouseLeave={() => setLegendLevel(-1)}>
+              <span className="sr-only sm:not-sr-only sm:mr-1">Less</span>
               {theme.swatches.map((c, i) => (
                 <button
                   key={i}
@@ -1358,15 +1359,15 @@ export default function ContributionSkyline({
                   onFocus={() => setLegendLevel(i)}
                   onBlur={() => setLegendLevel(-1)}
                   onClick={() => setLegendLevel((l) => (l === i ? -1 : i))}
-                  className="h-[11px] w-[11px] cursor-pointer rounded-[2px] border-0 p-0 transition-[background-color,transform] duration-500 hover:scale-125 focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none"
+                  className="group grid h-11 w-11 cursor-pointer place-items-center rounded border-0 bg-transparent p-0 focus-visible:outline-2 focus-visible:outline-offset-1"
                   style={{
-                    background: c,
                     outlineColor: "var(--accent-text, var(--color-foreground, #171717))",
-                    boxShadow: "inset 0 0 0 1px rgba(127,127,127,0.12)",
                   }}
-                />
+                >
+                  <span aria-hidden="true" className="h-[11px] w-[11px] rounded-[2px] transition-transform group-hover:scale-125 motion-reduce:transform-none" style={{ background: c, boxShadow: "inset 0 0 0 1px rgba(127,127,127,0.12)" }} />
+                </button>
               ))}
-              <span className="ml-0.5">More</span>
+              <span className="sr-only sm:not-sr-only sm:ml-1">More</span>
             </div>
           )}
         </div>

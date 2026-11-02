@@ -2,7 +2,7 @@
 const { spawn } = require('node:child_process');
 const path = require('node:path');
 const assert = require('node:assert/strict');
-const { chromium, firefox, webkit } = require('playwright');
+const { chromium, firefox, webkit } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const engine = process.env.BROWSER_ENGINE || 'chromium';
 
 const root = path.resolve(__dirname, '..');
@@ -18,7 +18,7 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
       server.on('exit', (code) => reject(new Error(`Preview exited: ${code}`)));
       setTimeout(() => reject(new Error('Preview startup timed out')), 15000).unref();
     });
-    browser = await ({ chromium, firefox, webkit }[engine]).launch();
+    browser = await ({ chromium, firefox, webkit }[engine]).launch({ executablePath: engine === 'chromium' ? process.env.CHROMIUM_PATH || undefined : undefined });
     const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
     if (process.env.DISABLE_SCROLL_TIMELINES) {
       await page.addInitScript(() => { delete window.ScrollTimeline; delete window.ViewTimeline; });
@@ -47,9 +47,11 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     await page.locator('#project-owlset').evaluate((el) => scrollTo({ top: scrollY + el.getBoundingClientRect().top - 200, behavior: 'instant' }));
     await page.waitForTimeout(100);
     assert.match(await page.locator('.project-index [aria-current]').getAttribute('href'), /owlset/);
-    assert.notEqual(await page.locator('.interlude-track').evaluate((el) => getComputedStyle(el).transform), interludeBefore, 'Typographic strip follows scrolling');
     assert.equal(await page.locator('#project-owlset .project-stage').evaluate((el) => Number(getComputedStyle(el).opacity)), 1, 'Project entrance settles into a readable state');
     await page.screenshot({ path: `/tmp/portfolio-creative-projects-${engine}.png` });
+    await page.locator('.creative-interlude').evaluate((el) => scrollTo({ top: scrollY + el.getBoundingClientRect().top - innerHeight / 2, behavior: 'instant' }));
+    await page.waitForTimeout(100);
+    assert.notEqual(await page.locator('.interlude-track').evaluate((el) => getComputedStyle(el).transform), interludeBefore, 'Typographic strip follows scrolling');
     await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
     await page.waitForTimeout(100);
     await page.screenshot({ path: `/tmp/portfolio-creative-hero-${engine}.png` });

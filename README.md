@@ -1,17 +1,17 @@
 # Jose Raphael Jaro / Twilight
 
-A personal portfolio for full-stack internship opportunities, built with Next.js 16, React 19, TypeScript, and Tailwind CSS 3. The visual identity combines Catppuccin Latte/Mocha, restrained Wayland navigation, and Japanese editorial details.
+A personal portfolio at [twilightdust.me](https://twilightdust.me), primarily for full-stack internships, with junior roles also welcome. Built with Next.js 16, React 19, TypeScript, and Tailwind CSS 3. The visual identity combines Catppuccin Latte/Mocha, restrained Wayland navigation, and Japanese editorial details.
 
 ## Page structure
 
 1. **Introduction:** portrait switching, consistent internship availability, project and email actions.
-2. **Selected projects:** WebC, OwlSet, Sphere8, and The Ether film tribute with current screenshots; Wayland rice as supporting work. OwlSet’s case study includes its app demo video. Case studies open directly from each project.
+2. **Selected projects:** WebC, OwlSet, Sphere8, and The Ether film tribute; Wayland rice as supporting work. WebC presents both implementation and project leadership/QA responsibilities. OwlSet’s app demo appears directly in the gallery and its case study, with on-demand playback. Case studies open directly from each project.
 3. **Skills:** readable categories with links to relevant project evidence.
 4. **About:** background and concise education.
 5. **Personal interests:** music, cinema, anime, and games in one section.
 6. **Contact:** email, working clipboard feedback, and social profiles.
 
-The existing CV PDF is a placeholder and is deliberately not linked. Replace it with the real résumé before restoring a download action.
+The real one-page résumé is available from the introduction's download action at `public/cv.pdf`.
 
 ## Development
 
@@ -38,7 +38,8 @@ For environments where Turbopack's local worker ports are restricted, Next.js al
 - `src/app/globals.css`: both palettes, editorial layout, responsive styles, and interaction motion.
 - `src/app/api/music/route.ts`: Last.fm recent music, cached server responses, and curated fallback.
 - `src/app/api/cinema/route.ts`: Letterboxd RSS diary, cached server responses, and curated fallback.
-- `src/components/sections/GithubSection.tsx`: interactive 2D/3D contribution skyline powered by `/api/github` using real public contribution history from the GitHub profile. No token is required, with cached responses and offline fallback. A profile link remains available.
+- `src/components/sections/GithubSection.tsx`: interactive 2D/3D contribution skyline powered by `/api/github`. Pending, failed, and invalid responses retain a dated, labeled snapshot of real public history. Generated sample data is reserved for the separate skyline demo. No token is required.
+- `src/app/layout.tsx` and `src/app/opengraph-image.tsx`: canonical and social-sharing metadata for `https://twilightdust.me`, with a generated preview image.
 
 Copy `.env.example` to `.env.local` and supply your own Last.fm and Letterboxd settings to enable the feeds. Secrets stay in server routes. The personal section labels curated responses and handles unavailable feeds and failed artwork.
 
@@ -52,12 +53,16 @@ Run `node tests/pixel-stars.browser.cjs` after a production build to verify anim
 
 ```bash
 npx tsc --noEmit
+npm run lint
 node tests/project-content.cjs
+node tests/personal-layer.cjs
 npm run build
 node tests/github.browser.cjs
 ```
 
 The GitHub browser check requires Playwright and Chromium. If installed outside this project, set `PLAYWRIGHT_MODULE` to the Playwright package path and `CHROMIUM_PATH` to the browser executable.
+
+With a production server running, `node tests/portfolio-hiring.browser.cjs` checks feed failures and malformed data, touch targets, earlier project visibility, inline app media, and sharing metadata. After building, run `npm run start -- --port 3120` in another terminal. Set `PORTFOLIO_BASE_URL` to the server URL (defaults to `http://localhost:3120`); the same Playwright and Chromium overrides apply. Production mode is required for the public image URL assertion because Next.js deliberately uses localhost for generated image metadata in development.
 
 The browser regression check is `tests/motion.browser.cjs`. It starts a production preview on port 3108 and requires Playwright with its browser binaries installed in your environment. Run `node tests/motion.browser.cjs` after building; set `BROWSER_ENGINE=firefox` or `BROWSER_ENGINE=webkit` for those engines. `DISABLE_SCROLL_TIMELINES=1` exercises the JavaScript scroll fallback in Chromium.
 

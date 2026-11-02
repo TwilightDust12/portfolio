@@ -20,10 +20,10 @@ export default function Home() {
       <WaybarHeader />
       <main id="main-content">
         <HeroSection />
+        <ProjectsSection />
         <div className="creative-interlude" aria-hidden="true">
           <div className="interlude-track"><span>Build for people.</span><span className="interlude-outline">Make it personal.</span></div>
         </div>
-        <ProjectsSection />
         <GithubSection />
         <ArsenalSection />
         <ChronicleSection />

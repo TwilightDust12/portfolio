@@ -20,7 +20,7 @@ export function ScrollEffects() {
     }
 
     function connect(element: HTMLElement, keyframes: DOMKeyframesDefinition, options: Parameters<typeof scroll>[1] = {}) {
-      const animation = animate(element, keyframes, { duration: 1, ease: "linear", autoplay: false });
+      const animation = animate(element, keyframes, { duration: 1, ease: "linear" });
       const stopScroll = scroll(animation, options);
       cleanups.push(() => { stopScroll(); animation.cancel(); });
     }

@@ -22,17 +22,25 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://twilightdust.me"),
+  alternates: { canonical: "/" },
   title: "Jose Raphael Jaro (Twilight) | Aspiring Full-Stack Developer",
   description:
-    "Personal portfolio of Jose Raphael Jaro (Twilight), Aspiring Full-Stack Developer & Systems Enthusiast in Lucena City, Philippines. Available for OJT / Internship opportunities.",
+    "Jose Raphael Jaro (Twilight), a full-stack developer and Computer Science student in Lucena City, Philippines. Seeking internships; junior roles also welcome.",
   openGraph: {
     title: "Jose Raphael Jaro (Twilight) | Aspiring Full-Stack Developer",
     description:
-      "Personal portfolio of Jose Raphael Jaro (Twilight), Aspiring Full-Stack Developer & Systems Enthusiast in Lucena City, Philippines. Available for OJT / Internship opportunities.",
-    url: "https://twilightdust.dev",
+      "Campus workflows, client websites, and creative experiments. Seeking full-stack internships; junior roles also welcome.",
+    url: "/",
     siteName: "Jose Raphael Jaro Portfolio",
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jose Raphael Jaro (Twilight) | Full-Stack Developer",
+    description: "Campus workflows, client websites, and creative experiments. Seeking full-stack internships; junior roles also welcome.",
+    images: ["/opengraph-image"],
   },
 };
 
