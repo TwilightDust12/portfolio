@@ -1,21 +1,8 @@
-"use client";
-
-import { useState } from "react";
-import Image from "next/image";
-import { ArrowDownRight, ArrowUpRight, Download, RefreshCw } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Download } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
-
-const AVATARS = [
-  { src: "/assets/profile.jpg", label: "Jose Raphael Jaro" },
-  { src: "/assets/profile2.jpg", label: "Jose Raphael Jaro, alternate portrait" },
-  { src: "/assets/reze.jpg", label: "Reze from Chainsaw Man" },
-];
+import { PortraitDeck } from "@/components/ui/PortraitDeck";
 
 export default function HeroSection() {
-  const [avatarIndex, setAvatarIndex] = useState(0);
-  const [animate, setAnimate] = useState(true);
-
-  const avatar = AVATARS[avatarIndex];
   return (
     <section id="hero" className="hero content-width">
       <div className="hero-field" aria-hidden="true">
@@ -39,32 +26,7 @@ export default function HeroSection() {
             <a href="https://github.com/TwilightDust12" target="_blank" rel="noopener noreferrer" className="hover:underline">GitHub <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <figure className="hero-portrait">
-          <span className="portrait-coordinate" aria-hidden="true">13.93° N / 121.62° E</span>
-          <div className="portrait-sheets" aria-hidden="true">
-            {[2, 1].map((offset) => (
-              <span key={offset} className={`portrait-sheet portrait-sheet-${offset}`}>
-                <Image src={AVATARS[(avatarIndex + offset) % AVATARS.length].src} alt="" fill sizes="(max-width: 767px) 112px, 340px" className="portrait-sheet-photo" />
-              </span>
-            ))}
-          </div>
-          <div className="portrait-frame">
-            <button type="button" className="portrait-button" data-motion={animate} onClick={(event) => {
-              setAnimate(event.detail !== 0);
-              setAvatarIndex((index) => (index + 1) % AVATARS.length);
-            }} aria-label={`Change portrait. Currently ${avatar.label}, ${avatarIndex + 1} of ${AVATARS.length}`}>
-              {AVATARS.map((item, index) => (
-                <Image key={item.src} src={item.src} alt={index === avatarIndex ? item.label : ""} aria-hidden={index !== avatarIndex} fill sizes="(max-width: 767px) 112px, 340px" priority={index === 0} className="portrait-photo" data-active={index === avatarIndex} />
-              ))}
-              <span className="portrait-rail kanji-rail" lang="ja">黄昏</span>
-            </button>
-            <figcaption className="portrait-caption">
-              <span>{avatarIndex === 2 ? "Reze · Chainsaw Man" : "A face behind the code"}</span>
-              <span className="inline-flex items-center gap-2" aria-hidden="true"><RefreshCw size={12} /> {avatarIndex + 1} / {AVATARS.length}</span>
-            </figcaption>
-          </div>
-          <p className="mt-3 text-xs text-muted text-right">Click the portrait to switch profiles.</p>
-        </figure>
+        <PortraitDeck />
       </div>
     </section>
   );

@@ -66,8 +66,8 @@ export function ScrollEffects() {
         const sheets = portrait.querySelectorAll<HTMLElement>(".portrait-sheet");
         sheets.forEach((sheet) => {
           const near = sheet.classList.contains("portrait-sheet-1");
-          const from = near ? (compact.matches ? "translate(7px, -4px) rotate(5deg)" : "translate(16px, -9px) rotate(5deg)") : (compact.matches ? "translate(-7px, -6px) rotate(-6deg)" : "translate(-18px, -13px) rotate(-6deg)");
-          const to = near ? (compact.matches ? "translate(11px, -6px) rotate(5deg)" : "translate(42px, -22px) rotate(10deg)") : (compact.matches ? "translate(-11px, -8px) rotate(-6deg)" : "translate(-38px, -30px) rotate(-12deg)");
+          const from = "translateY(0px)";
+          const to = `translateY(${(near ? -10 : -20) / (compact.matches ? 3 : 1)}px)`;
           connect(sheet, { transform: [from, to] }, { target: hero, offset: ["start start", "end start"] });
         });
       }

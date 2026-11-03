@@ -123,7 +123,7 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     assert.equal(await page.locator('.project-stage').first().evaluate((el) => getComputedStyle(el).animationName), 'none');
     assert.equal(await page.locator('.interlude-track').evaluate((el) => getComputedStyle(el).animationName), 'none');
     await portrait.click();
-    assert.equal(await portrait.locator('[data-active=true]').evaluate((el) => getComputedStyle(el).transitionDuration), '0.12s');
+    assert.equal(await portrait.locator('.portrait-card[data-slot="0"]').evaluate((el) => getComputedStyle(el).transitionDuration), '0s', 'Reduced motion changes the selected card without travel');
     await study.click();
     assert.equal(await page.getByRole('dialog').evaluate((el) => getComputedStyle(el).animationName), 'overlay-in');
     await page.keyboard.press('Escape');

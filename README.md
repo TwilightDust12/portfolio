@@ -4,7 +4,7 @@ A personal portfolio at [twilightdust.me](https://twilightdust.me), primarily fo
 
 ## Page structure
 
-1. **Introduction:** portrait switching, consistent internship availability, project and email actions.
+1. **Introduction:** a shuffling portrait deck with a pixel color reveal on hover, consistent internship availability, project and email actions.
 2. **Selected projects:** WebC, OwlSet, Sphere8, and The Ether film tribute; Wayland rice as supporting work. WebC presents both implementation and project leadership/QA responsibilities. OwlSet’s app demo appears directly in the gallery and its case study, with on-demand playback. Case studies open directly from each project.
 3. **Skills:** readable categories with links to relevant project evidence.
 4. **About:** background and concise education.
@@ -69,6 +69,8 @@ The browser regression check is `tests/motion.browser.cjs`. It starts a producti
 With a production server running, `node tests/scrollcraft.browser.cjs` checks the opening on visits/reloads and early dismissal, independent portrait planes, profile switching, compact layouts, live motion-preference changes, once-only fade-up progression, keyboard cancellation, composited text contrast, no-JavaScript reading, and the résumé download. It also captures six positions in each scene at desktop, phone, compact-phone, and reduced-motion settings. Screenshots, contact sheets, and state records are written to `/tmp/portfolio-scrollcraft` (override with `SCROLLCRAFT_SHOTS`). It uses the same browser and server environment overrides as the hiring checks; `SCROLLCRAFT_VARIANT` selects one screenshot setting, and `DISABLE_SCROLL_TIMELINES=1` exercises the fallback.
 
 The current entrance recipe, focused verification, and read-only opportunity review are in [docs/animation-opportunities.md](docs/animation-opportunities.md).
+
+`src/components/ui/PortraitDeck.tsx` owns the portrait cards. Click/tap tucks the front card behind the next; fine-pointer hover reveals color through a staggered SVG pixel mask. Keyboard selection is immediate, and reduced motion keeps static card placement with a short color fade. The photographs stay mounted and keep their image sources while shuffling; scroll depth lives on separate parent planes.
 
 The refinement plan and verification record are in [docs/superpowers/plans/2026-10-08-portfolio-refinement.md](docs/superpowers/plans/2026-10-08-portfolio-refinement.md).
 

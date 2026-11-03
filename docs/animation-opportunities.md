@@ -2,7 +2,7 @@
 
 ## Implemented refinement
 
-Applied the local [apple-design skill](../.agents/skills/apple-design/SKILL.md) and Emil Kowalski's upstream [animate skill](https://github.com/emilkowalski/skills/blob/main/skills/animate/SKILL.md), including its fade/stagger and once-only scroll recipes. `animate` was read upstream because it was not installed locally. The subsequent [find-animation-opportunities pass](../.agents/skills/find-animation-opportunities/SKILL.md) is read-only: the suggestions below have not been implemented.
+Applied the local [apple-design skill](../.agents/skills/apple-design/SKILL.md) and Emil Kowalski's upstream [animate skill](https://github.com/emilkowalski/skills/blob/main/skills/animate/SKILL.md), including its fade/stagger and once-only scroll recipes. `animate` was read upstream because it was not installed locally. The subsequent [find-animation-opportunities pass](../.agents/skills/find-animation-opportunities/SKILL.md) was read-only. A later user request supersedes opportunity 1 with the portrait shuffle described below; opportunity 2 remains unimplemented.
 
 Gate: occasional portfolio visits; purpose is preventing jarring section appearances. The existing `ScrollEffects.tsx` owns the behavior, so no component, dependency, or parallel animation engine was added.
 
@@ -23,6 +23,16 @@ CSS starts the sequence before hydration and clears it even with JavaScript disa
 
 Verification before the duration adjustment: nine focused browser checks passed across the opening, existing fade-up/portrait behavior, compact layouts, keyboard input, live reduced motion, and no-JavaScript reading/PDF download. The existing Chromium motion interaction suite also passed. One no-JavaScript test was corrected to wait outside the page because its original RAF polling cannot run with JavaScript disabled. The final 1.5-second version passed production build/TypeScript, lint, content checks, and all four focused opening/no-JavaScript browser checks. Desktop and phone title cards were inspected; `opening-first.png` and `opening-reload.png` are saved in the evidence folder. Real devices and other browser engines remain untested.
 
+## Portrait interaction revision
+
+The user requested a physical card shuffle on click and a smooth pixelated return to color on hover. `PortraitDeck.tsx` now owns three persistent cards containing their photographs, frames, and captions. A 250ms transform transition lifts the departing card to the side, then tucks it behind the next card over 250ms. Input remains enabled and CSS transitions retarget from the current rendered position during rapid clicks. No photograph changes its source or fades away to imitate a shuffle.
+
+Fine-pointer hover reveals the active card's color through an 8 × 10 SVG mask. Tile opacity transitions use the existing ease-out curve over 160ms, with deterministic 0–150ms delays. Pointer exit reverses from current opacity over 160ms without the stagger. Both image layers use the same optimized source, and the mask stops animating once settled. Touch does not activate hover. Keyboard selection is immediate; reduced motion removes card travel and substitutes a 120ms whole-image color fade. Live preference changes settle the active shuffle.
+
+Scroll depth belongs to parent planes, separate from the child card transforms. This preserves the opening choreography and allows the entire card to move without competing animation owners. The hero's static copy returns to a server component, with the deck as its interactive client island.
+
+Verification: production build/TypeScript, lint, content checks, ten focused Chromium browser checks, and the existing motion interaction suite passed. Three further checks passed with native scroll timelines disabled, covering layer independence, rapid shuffle/keyboard input, and motion-preference cleanup. The focused checks measure card travel and persistent sources, rapid clicks, keyboard selection, live preferences, rendered color change through the pixel mask, hover reversal, 320/360/390px touch layouts throughout a shuffle, opening/reload behavior, and no-JavaScript reading. Mid-shuffle, mid-mask, full-color, and compact screenshots were inspected and saved in the evidence folder as `portrait-shuffle-middle.png`, `portrait-pixel-middle.png`, `portrait-color.png`, and `portrait-touch.png`. Real devices, Firefox, and WebKit remain untested.
+
 ## Earlier fade-up verification
 
 - Production build and TypeScript passed. Lint and diff formatting passed.
@@ -33,6 +43,8 @@ Verification before the duration adjustment: nine focused browser checks passed 
 Preview: `http://127.0.0.1:3135`. These focused checks supersede the earlier scroll-craft report for the changed entrance behavior. The previous 264-sample capture remains historical evidence, not a new run of this revision.
 
 ## Opportunities table
+
+Historical review: row 1 is superseded by the implemented portrait shuffle above. Row 2 remains a possible later refinement.
 
 Recon: Next.js 16 / React 19, existing Motion 14 scroll drivers, native WAAPI entrances, Radix dialogs, Sonner feedback, and CSS state transitions. The house curves live in `src/app/globals.css:25–27`. Personality remains melancholy, restrained, and personal. Navigation is frequent; preview switching is occasional; asynchronous personal feeds load once per mount. No new hover motion is proposed.
 
@@ -54,6 +66,6 @@ Sweep coverage: existing press controls already have subtle feedback; asynchrono
 
 ## Verdict
 
-The portfolio now has enough page motion. The highest-value remaining refinement is the rear portrait crossfade because it would complete the existing signature interaction. Keep both suggestions optional and bounded. Handoff: `improve-animations plan crossfade the rear portrait sheets using opportunity 1 in docs/animation-opportunities.md`.
+The portfolio now has enough page motion. The requested card shuffle resolves the portrait state seam. The remaining feed handoff in row 2 is optional and should stay short. Handoff: `improve-animations plan smooth the personal feed handoff using opportunity 2 in docs/animation-opportunities.md`.
 
 Not deployed. Validation used Chromium with emulated touch and deterministic feeds; real devices, Firefox, WebKit, and physical frame pacing were not tested.

@@ -107,7 +107,7 @@ test('opening yields immediately to pointer, keyboard, scrolling, and motion pre
 test('reduced motion gets a short opening fade without movement or later replay', async () => {
   const page = await open({ reducedMotion: 'reduce' }, 'domcontentloaded');
   try {
-    for (const selector of ['.opening-lockup', '.opening-rule', '.hero-name', '.portrait-frame', '.portrait-sheets']) {
+    for (const selector of ['.opening-lockup', '.opening-rule', '.hero-name', '.portrait-card[data-slot="0"] .portrait-frame', '.portrait-deck']) {
       assert.equal(await page.locator(selector).evaluate((el) => getComputedStyle(el).animationName), 'none');
     }
     await page.waitForFunction(() => document.querySelector('.page-shell').hasAttribute('data-opening-complete'));
@@ -140,11 +140,103 @@ test('portrait planes move independently and the real profile switch remains usa
     await portrait.focus();
     await page.keyboard.press('Enter');
     assert.match(await portrait.getAttribute('aria-label'), /1 of 3/);
-    assert.equal(await page.locator('.portrait-sheets img').evaluateAll((imgs) => imgs.every((img) => img.alt === '' && img.closest('[aria-hidden=true]'))), true);
+    assert.equal(await page.locator('.portrait-plane[aria-hidden=true] img').evaluateAll((imgs) => imgs.every((img) => img.alt === '' && img.closest('[aria-hidden=true]'))), true);
     assert.equal(await page.locator('.hero img').evaluateAll((imgs) => imgs.every((img) => img.complete && img.naturalWidth > 0)), true);
     await page.getByRole('link', { name: 'View projects' }).click();
     await page.waitForTimeout(600);
     assert.equal(new URL(page.url()).hash, '#works');
+  } finally { await page.close(); }
+});
+
+test('portrait cards shuffle physically, accept rapid input, and keep their images', async () => {
+  const page = await open();
+  try {
+    const deck = page.getByRole('button', { name: /Change portrait/ });
+    const sources = await deck.locator('.portrait-photo').evaluateAll((images) => images.map((img) => img.getAttribute('src')));
+    await page.mouse.click(20, 100);
+    await deck.click();
+    const departing = page.locator('.portrait-card[data-departing=true]');
+    await departing.waitFor();
+    const travel = await departing.evaluate((el) => {
+      const animation = el.getAnimations().find((a) => a.transitionProperty === 'transform');
+      animation.pause();
+      animation.currentTime = 125;
+      const matrix = new DOMMatrixReadOnly(getComputedStyle(el).transform);
+      return { x: matrix.m41, opacity: getComputedStyle(el).opacity, depth: getComputedStyle(el.parentElement).zIndex };
+    });
+    assert(travel.x < -20, 'The actual front card travels sideways');
+    assert.equal(travel.opacity, '1', 'Shuffling does not fade the card away');
+    assert.equal(travel.depth, '4', 'The departing card stays in front until it is tucked behind');
+    await page.screenshot({ path: path.join(out, 'portrait-shuffle-middle.png') });
+    await departing.evaluate((el) => el.getAnimations()[0].finish());
+    await page.waitForFunction(() => !document.querySelector('.portrait-card[data-departing=true]'));
+    for (let i = 0; i < 7; i++) await deck.click({ delay: 0 });
+    assert.match(await deck.getAttribute('aria-label'), /3 of 3/);
+    await page.waitForFunction(() => !document.querySelector('.portrait-card[data-departing=true]'));
+    await page.waitForTimeout(300);
+    assert.deepEqual(await deck.locator('.portrait-photo').evaluateAll((images) => images.map((img) => img.getAttribute('src'))), sources, 'Each persistent card retains its own photograph');
+    assert.equal(await deck.locator('[data-active=true]').count(), 1);
+    await deck.focus();
+    await page.keyboard.press('Enter');
+    assert.match(await deck.getAttribute('aria-label'), /1 of 3/);
+    assert.equal(await deck.locator('.portrait-card').evaluateAll((cards) => cards.reduce((n, el) => n + el.getAnimations().length, 0)), 0, 'Keyboard selection is immediate');
+    await deck.click();
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.waitForFunction(() => !document.querySelector('.portrait-card[data-departing=true]'));
+    assert.equal(await deck.locator('[data-departing=true]').count(), 0);
+    assert.equal(await deck.locator('.portrait-card').evaluateAll((cards) => cards.reduce((n, el) => n + el.getAnimations().length, 0)), 0, 'A live motion preference change settles every card');
+  } finally { await page.close(); }
+});
+
+test('portrait color returns through a pixel mask and reverses cleanly on pointer exit', async () => {
+  const page = await open();
+  try {
+    await page.mouse.click(20, 100);
+    const deck = page.getByRole('button', { name: /Change portrait/ });
+    const photo = page.locator('.portrait-card[data-slot="0"] .portrait-window');
+    const chroma = async (buffer) => {
+      const { data, info } = await sharp(buffer).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+      let total = 0;
+      for (let i = 0; i < data.length; i += info.channels) total += Math.max(data[i], data[i + 1], data[i + 2]) - Math.min(data[i], data[i + 1], data[i + 2]);
+      return total / (info.width * info.height);
+    };
+    const gray = await chroma(await photo.screenshot());
+    await deck.hover();
+    const mixed = await photo.locator('.portrait-pixel').evaluateAll((tiles) => {
+      for (const tile of tiles) for (const animation of tile.getAnimations()) { animation.pause(); animation.currentTime = 80; }
+      return tiles.map((tile) => Number(getComputedStyle(tile).opacity));
+    });
+    assert(mixed.some((opacity) => opacity > 0) && mixed.some((opacity) => opacity === 0), 'Color arrives in staggered pixels');
+    await page.screenshot({ path: path.join(out, 'portrait-pixel-middle.png') });
+    await photo.locator('.portrait-pixel').evaluateAll((tiles) => { for (const tile of tiles) for (const animation of tile.getAnimations()) animation.play(); });
+    await page.waitForTimeout(350);
+    const color = await chroma(await photo.screenshot({ path: path.join(out, 'portrait-color.png') }));
+    assert(color > gray + 5, `Rendered color becomes visible: ${gray.toFixed(2)} → ${color.toFixed(2)}`);
+    await page.mouse.move(20, 100);
+    await page.waitForTimeout(200);
+    assert(Math.abs(await chroma(await photo.screenshot()) - gray) < 1, 'Pointer exit returns to the same monochrome image');
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    assert.equal(await photo.locator('.portrait-color-photo').evaluate((el) => getComputedStyle(el).maskImage), 'none');
+    await deck.hover();
+    await page.waitForTimeout(150);
+    assert.equal(await photo.locator('.portrait-color-photo').evaluate((el) => getComputedStyle(el).opacity), '1', 'Reduced motion keeps a short, unmasked color fade');
+  } finally { await page.close(); }
+});
+
+test('touch portrait shuffles fit compact screens without sticky pixel hover', async () => {
+  const page = await open({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  try {
+    const deck = page.getByRole('button', { name: /Change portrait/ });
+    for (const width of [390, 360, 320]) {
+      await page.setViewportSize({ width, height: 844 });
+      await deck.tap();
+      for (let step = 0; step < 6; step++) {
+        assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Shuffle stays within ${width}px at sample ${step}`);
+        await page.waitForTimeout(90);
+      }
+      assert.equal(await deck.locator('.portrait-pixel').evaluateAll((tiles) => tiles.every((tile) => getComputedStyle(tile).opacity === '0')), true, 'Touch does not enable the hover effect');
+    }
+    await page.screenshot({ path: path.join(out, 'portrait-touch.png') });
   } finally { await page.close(); }
 });
 
@@ -154,7 +246,7 @@ test('compact portrait composition keeps the introduction and projects clear', a
     for (const width of [390, 360, 320]) {
       await page.setViewportSize({ width, height: 844 });
       await jump(page, 0);
-      const portrait = await page.locator('.portrait-frame').boundingBox();
+      const portrait = await page.locator('.portrait-card[data-slot="0"] .portrait-frame').boundingBox();
       const intro = await page.locator('.hero-intro').boundingBox();
       assert(portrait.y + portrait.height <= intro.y, `Portrait clears introductory copy at ${width}px`);
       assert((await page.locator('#works h2').boundingBox()).y < 1000, `Projects arrive early at ${width}px`);
