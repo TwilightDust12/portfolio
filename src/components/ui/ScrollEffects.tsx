@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { animate, scroll, type DOMKeyframesDefinition } from "framer-motion";
+import { animateMini, scroll, type DOMKeyframesDefinition } from "framer-motion";
 
 export function ScrollEffects() {
   const progressRef = useRef<HTMLDivElement>(null);
@@ -12,7 +12,32 @@ export function ScrollEffects() {
     if (!progress || !page) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const desktop = window.matchMedia("(min-width: 1001px)");
+    const compact = window.matchMedia("(max-width: 767px)");
+    const opening = page.querySelector<HTMLElement>(".opening-sequence");
+    const entered = new WeakSet<Element>();
     let cleanups: (() => void)[] = [];
+
+    function disconnectOpening() {
+      opening?.removeEventListener("animationend", onOpeningEnd);
+      document.removeEventListener("keydown", finishOpening);
+      document.removeEventListener("pointerdown", finishOpening);
+      document.removeEventListener("wheel", finishOpening);
+      reduceMotion.removeEventListener("change", finishOpening);
+    }
+    function finishOpening() {
+      page?.setAttribute("data-opening-complete", "");
+      disconnectOpening();
+    }
+    function onOpeningEnd(event: AnimationEvent) {
+      if (event.target === opening) finishOpening();
+    }
+    opening?.addEventListener("animationend", onOpeningEnd);
+    document.addEventListener("keydown", finishOpening);
+    document.addEventListener("pointerdown", finishOpening);
+    document.addEventListener("wheel", finishOpening, { passive: true });
+    reduceMotion.addEventListener("change", finishOpening);
+    // CSS can finish before hydration on a slow connection.
+    if (opening?.getAnimations().every((animation) => animation.playState === "finished")) finishOpening();
 
     function reset() {
       cleanups.forEach((cleanup) => cleanup());
@@ -20,9 +45,11 @@ export function ScrollEffects() {
     }
 
     function connect(element: HTMLElement, keyframes: DOMKeyframesDefinition, options: Parameters<typeof scroll>[1] = {}) {
-      const animation = animate(element, keyframes, { duration: 1, ease: "linear" });
+      const original = { transform: element.style.transform, opacity: element.style.opacity, clipPath: element.style.clipPath };
+      const animation = animateMini(element, keyframes, { duration: 1, ease: "linear" });
       const stopScroll = scroll(animation, options);
-      cleanups.push(() => { stopScroll(); animation.cancel(); });
+      // Cancel before detaching; reduced motion already hides the progress bar.
+      cleanups.push(() => { animation.cancel(); stopScroll(); Object.assign(element.style, original); });
     }
 
     function setup() {
@@ -34,37 +61,96 @@ export function ScrollEffects() {
       const orbit = page.querySelector<HTMLElement>(".hero-orbit");
       if (hero && portrait) {
         connect(portrait, {
-          transform: ["translateY(0px) rotate(0deg)", desktop.matches ? "translateY(110px) rotate(4deg)" : "translateY(24px) rotate(0deg)"],
+          transform: ["translateY(0px) rotate(0deg)", desktop.matches ? "translateY(72px) rotate(2deg)" : "translateY(14px) rotate(0deg)"],
         }, { target: hero, offset: ["start start", "end start"] });
+        const sheets = portrait.querySelectorAll<HTMLElement>(".portrait-sheet");
+        sheets.forEach((sheet) => {
+          const near = sheet.classList.contains("portrait-sheet-1");
+          const from = near ? (compact.matches ? "translate(7px, -4px) rotate(5deg)" : "translate(16px, -9px) rotate(5deg)") : (compact.matches ? "translate(-7px, -6px) rotate(-6deg)" : "translate(-18px, -13px) rotate(-6deg)");
+          const to = near ? (compact.matches ? "translate(11px, -6px) rotate(5deg)" : "translate(42px, -22px) rotate(10deg)") : (compact.matches ? "translate(-11px, -8px) rotate(-6deg)" : "translate(-38px, -30px) rotate(-12deg)");
+          connect(sheet, { transform: [from, to] }, { target: hero, offset: ["start start", "end start"] });
+        });
       }
       if (hero && orbit) {
         connect(orbit, { transform: ["rotate(0deg)", "rotate(90deg)"] }, { target: hero, offset: ["start start", "end start"] });
+      }
+      if (hero) {
+        for (const [selector, travel] of [[".hero-watermark", -24], [".hero-kanji", -48]] as const) {
+          const plane = hero.querySelector<HTMLElement>(selector);
+          if (plane) connect(plane, { transform: ["translateY(0px)", `translateY(${compact.matches ? travel / 3 : travel}px)`] }, { target: hero, offset: ["start start", "end start"] });
+        }
       }
       const interlude = page.querySelector<HTMLElement>(".creative-interlude");
       const track = page.querySelector<HTMLElement>(".interlude-track");
       if (interlude && track) {
         connect(track, { transform: ["translateX(3%)", "translateX(-9%)"] }, { target: interlude, offset: ["start end", "end start"] });
       }
-      page.querySelectorAll<HTMLElement>(".project-feature").forEach((project, index) => {
-        const stage = project.querySelector<HTMLElement>(".project-stage");
-        if (!stage) return;
-        const tilt = desktop.matches ? (index % 2 ? 1 : -1) : 0;
-        connect(stage, {
-          opacity: [0.7, 1],
-          transform: [`translateY(36px) scale(0.97) rotate(${tilt}deg)`, "translateY(0px) scale(1) rotate(0deg)"],
-        }, { target: project, offset: ["start end", "start 0.55"] });
+      const activeEntrances = new Map<Element, Animation>();
+      const easing = getComputedStyle(page).getPropertyValue("--ease-out").trim();
+      let keyboard = false;
+      const entrances = new IntersectionObserver((entries) => {
+        let stagger = 0;
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entrances.unobserve(entry.target);
+          if (entered.has(entry.target)) return;
+          entered.add(entry.target);
+          // Keyboard travel and already-scrolled content must be ready to read.
+          if (keyboard || entry.target.matches(":focus-within") || entry.boundingClientRect.bottom <= 0) return;
+          const animation = entry.target.animate([
+            { opacity: 0, transform: "translateY(8px)" },
+            { opacity: 1, transform: "translateY(0px)" },
+          ], { duration: 300, delay: Math.min(stagger++, 2) * 50, easing, fill: "backwards" });
+          activeEntrances.set(entry.target, animation);
+          animation.onfinish = () => activeEntrances.delete(entry.target);
+        });
+      }, { rootMargin: "0px 0px -8% 0px" });
+      page.querySelectorAll(".section-heading, .project-stage, .skill-row, .about-grid > *, .personal-panel, .contact-grid").forEach((element) => entrances.observe(element));
+
+      function cancelEntrances() {
+        activeEntrances.forEach((animation) => animation.cancel());
+        activeEntrances.clear();
+      }
+      function onKeyDown(event: KeyboardEvent) {
+        if (!["Tab", "Enter", " ", "ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End"].includes(event.key)) return;
+        keyboard = true;
+        cancelEntrances();
+      }
+      function onPointer() { keyboard = false; }
+      document.addEventListener("keydown", onKeyDown);
+      document.addEventListener("pointerdown", onPointer);
+      document.addEventListener("wheel", onPointer, { passive: true });
+      cleanups.push(() => {
+        entrances.disconnect();
+        cancelEntrances();
+        document.removeEventListener("keydown", onKeyDown);
+        document.removeEventListener("pointerdown", onPointer);
+        document.removeEventListener("wheel", onPointer);
       });
     }
 
     setup();
     reduceMotion.addEventListener("change", setup);
     desktop.addEventListener("change", setup);
+    compact.addEventListener("change", setup);
     return () => {
       reset();
+      disconnectOpening();
       reduceMotion.removeEventListener("change", setup);
       desktop.removeEventListener("change", setup);
+      compact.removeEventListener("change", setup);
     };
   }, []);
 
-  return <div ref={progressRef} className="reading-progress" aria-hidden="true" />;
+  return <>
+    <div className="opening-sequence" aria-hidden="true">
+      <div className="opening-lockup">
+        <span className="opening-kanji" lang="ja">黄昏</span>
+        <span className="opening-wordmark">twilight</span>
+        <span className="opening-rule" />
+        <span className="opening-domain">twilightdust.me</span>
+      </div>
+    </div>
+    <div ref={progressRef} className="reading-progress" aria-hidden="true" />
+  </>;
 }

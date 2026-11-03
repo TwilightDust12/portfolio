@@ -1,0 +1,338 @@
+[
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": ".hero-name",
+    "ratio": 11.92
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": ".hero-name",
+    "ratio": 11.58
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": ".hero-name",
+    "ratio": 9.23
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": ".hero-intro",
+    "ratio": 12.97
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": ".hero-intro",
+    "ratio": 12.97
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": ".hero-availability",
+    "ratio": 8.42
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": "#project-webc .project-description",
+    "ratio": 8.42
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": "#project-webc .project-description",
+    "ratio": 8.42
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 11.26
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 12.97
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 12.97
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "selector": "#comms .contact-email",
+    "ratio": 12.97
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": ".hero-name",
+    "ratio": 11.44
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": ".hero-name",
+    "ratio": 11.39
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": ".hero-name",
+    "ratio": 4.79
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": ".hero-intro",
+    "ratio": 7.06
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": ".hero-intro",
+    "ratio": 7.06
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": ".hero-availability",
+    "ratio": 5.53
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": "#project-webc .project-description",
+    "ratio": 5.53
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": "#project-webc .project-description",
+    "ratio": 5.53
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 6.7
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 7.06
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 7.06
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "selector": "#comms .contact-email",
+    "ratio": 7.06
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": ".hero-name",
+    "ratio": 12
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": ".hero-name",
+    "ratio": 14.8
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": ".hero-name",
+    "ratio": 9.23
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": ".hero-intro",
+    "ratio": 12.71
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": ".hero-intro",
+    "ratio": 12.97
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": ".hero-availability",
+    "ratio": 8.42
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": ".hero-availability",
+    "ratio": 8.42
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": "#project-webc .project-description",
+    "ratio": 8.42
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": "#project-webc .project-description",
+    "ratio": 8.42
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": "#project-webc .project-description",
+    "ratio": 6.76
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 12.97
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 12.97
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 12.97
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 10.41
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 10.23
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "selector": "#comms .contact-email",
+    "ratio": 12.97
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": ".hero-name",
+    "ratio": 9.93
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": ".hero-name",
+    "ratio": 11.93
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": ".hero-name",
+    "ratio": 4.79
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": ".hero-intro",
+    "ratio": 5.76
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": ".hero-intro",
+    "ratio": 7.06
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": ".hero-availability",
+    "ratio": 5.53
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": ".hero-availability",
+    "ratio": 5.53
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": "#project-webc .project-description",
+    "ratio": 5.53
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": "#project-webc .project-description",
+    "ratio": 5.53
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": "#project-webc .project-description",
+    "ratio": 5.3
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 7.06
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 7.06
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 7.06
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 6.77
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": "#about .about-copy > p:first-child",
+    "ratio": 6.73
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "selector": "#comms .contact-email",
+    "ratio": 7.06
+  }
+]

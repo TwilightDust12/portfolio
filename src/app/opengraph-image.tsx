@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { portfolioData } from "@/data/portfolio";
 
-export const alt = "Jose Raphael Jaro / Twilight — Full-stack developer. Seeking internships; junior roles welcome.";
+export const alt = "Jose Raphael Jaro / Twilight: Full-stack developer. Seeking internships; junior roles welcome.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

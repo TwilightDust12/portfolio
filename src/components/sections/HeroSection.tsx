@@ -21,12 +21,13 @@ export default function HeroSection() {
       <div className="hero-field" aria-hidden="true">
         <span className="hero-watermark">twilight</span>
         <span className="hero-orbit" />
+        <span className="hero-kanji" lang="ja">黄昏</span>
       </div>
       <div className="hero-grid">
-        <div>
+        <div className="hero-copy">
           <h1 className="hero-name">Jose Raphael<br />Jaro<span className="hero-alias">/ twilight</span></h1>
           <p className="hero-intro">I build web applications for campus workflows and client businesses.</p>
-          <p className="mt-3 text-sm text-muted leading-relaxed max-w-md">Computer Science student working with Next.js, TypeScript, and Supabase. At home in a browser—and a Linux terminal.</p>
+          <p className="mt-3 text-sm text-muted leading-relaxed max-w-md">Computer Science student working with Next.js, TypeScript, and Supabase. At home in a browser and a Linux terminal.</p>
           <p className="hero-availability"><span className="status-dot" aria-hidden="true" />{portfolioData.personal.availability}</p>
           <div className="hero-actions">
             <a href="#works" className="primary-button">View projects <ArrowDownRight size={18} aria-hidden="true" /></a>
@@ -40,13 +41,20 @@ export default function HeroSection() {
         </div>
         <figure className="hero-portrait">
           <span className="portrait-coordinate" aria-hidden="true">13.93° N / 121.62° E</span>
+          <div className="portrait-sheets" aria-hidden="true">
+            {[2, 1].map((offset) => (
+              <span key={offset} className={`portrait-sheet portrait-sheet-${offset}`}>
+                <Image src={AVATARS[(avatarIndex + offset) % AVATARS.length].src} alt="" fill sizes="(max-width: 767px) 112px, 340px" className="portrait-sheet-photo" />
+              </span>
+            ))}
+          </div>
           <div className="portrait-frame">
             <button type="button" className="portrait-button" data-motion={animate} onClick={(event) => {
               setAnimate(event.detail !== 0);
               setAvatarIndex((index) => (index + 1) % AVATARS.length);
             }} aria-label={`Change portrait. Currently ${avatar.label}, ${avatarIndex + 1} of ${AVATARS.length}`}>
               {AVATARS.map((item, index) => (
-                <Image key={item.src} src={item.src} alt={index === avatarIndex ? item.label : ""} aria-hidden={index !== avatarIndex} fill sizes="(max-width: 767px) 176px, 380px" priority={index === 0} className="portrait-photo" data-active={index === avatarIndex} />
+                <Image key={item.src} src={item.src} alt={index === avatarIndex ? item.label : ""} aria-hidden={index !== avatarIndex} fill sizes="(max-width: 767px) 112px, 340px" priority={index === 0} className="portrait-photo" data-active={index === avatarIndex} />
               ))}
               <span className="portrait-rail kanji-rail" lang="ja">黄昏</span>
             </button>

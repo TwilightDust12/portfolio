@@ -30,6 +30,7 @@ export function ContactSection() {
   return (
     <section id="comms" className="contact-section content-width">
       <span id="contact" className="anchor-alias" aria-hidden="true" />
+      <div className="contact-signoff" aria-hidden="true"><span>twilight</span><span lang="ja">黄昏</span></div>
       <div className="contact-grid">
         <div>
           <h2 className="section-title">Let’s work together.</h2>

@@ -18,7 +18,7 @@ export const portfolioData: PortfolioConfig = {
       "/assets/reze.jpg"
     ],
     now: {
-      note: "Lately, I’m learning to trust the process—coding whatever comes to mind, playing games, and watching a few anime. Taking things little by little and following my curiosity.",
+      note: "Lately, I’m learning to trust the process: coding whatever comes to mind, playing games, and watching a few anime. Taking things little by little and following my curiosity.",
       updated: "October 2026"
     }
   },
@@ -241,7 +241,7 @@ export const portfolioData: PortfolioConfig = {
     },
     {
       id: "lily-chou-chou",
-      title: "The Ether — Lily Chou-Chou",
+      title: "The Ether: Lily Chou-Chou",
       subtitle: "Interactive film tribute",
       problem: "A film tribute needed to convey the atmosphere of All About Lily Chou-Chou through more than a conventional information page.",
       role: "Creator & Designer",

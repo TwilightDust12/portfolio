@@ -1143,16 +1143,16 @@ export default function ContributionSkyline({
 
   const { stats } = model
   const range = (a: string | null, b: string | null, withYear = false) => {
-    if (!a || !b) return "—"
+    if (!a || !b) return "No dates"
     const f = withYear ? dfy : df
-    return f.format(dayMs(a)) + " — " + f.format(dayMs(b))
+    return f.format(dayMs(a)) + " to " + f.format(dayMs(b))
   }
   const is3d = view === "3d"
   const corners = showStats && width >= 560
   const bigSize = Math.round(Math.max(30, Math.min(56, width * 0.058)))
   const statBlocks = [
     { label: "1 year total", value: nf.format(stats.total), unit: noun(stats.total), sub: range(stats.first, stats.last, true) },
-    { label: "Busiest day", value: nf.format(stats.busiest.count), unit: noun(stats.busiest.count), sub: stats.busiest.date ? df.format(dayMs(stats.busiest.date)) : "—" },
+    { label: "Busiest day", value: nf.format(stats.busiest.count), unit: noun(stats.busiest.count), sub: stats.busiest.date ? df.format(dayMs(stats.busiest.date)) : "None" },
     { label: "Longest streak", value: nf.format(stats.longest.days), unit: stats.longest.days === 1 ? "day" : "days", sub: range(stats.longest.start, stats.longest.end) },
     { label: "Current streak", value: nf.format(stats.current.days), unit: stats.current.days === 1 ? "day" : "days", sub: range(stats.current.start, stats.current.end) },
   ]

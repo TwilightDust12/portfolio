@@ -1,0 +1,707 @@
+[
+  {
+    "scene": "#hero",
+    "step": 0,
+    "scrollY": 1,
+    "top": 76.59375,
+    "height": 600.125,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Freze.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile2.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile2.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Freze.jpg&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#hero",
+    "step": 1,
+    "scrollY": 70,
+    "top": 7.59375,
+    "height": 600.125,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Freze.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile2.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile2.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Freze.jpg&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#hero",
+    "step": 2,
+    "scrollY": 138,
+    "top": -60.40625,
+    "height": 600.125,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Freze.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile2.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile2.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Freze.jpg&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#hero",
+    "step": 3,
+    "scrollY": 207,
+    "top": -129.40625,
+    "height": 600.125,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Freze.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile2.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fprofile2.jpg&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Freze.jpg&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#hero",
+    "step": 4,
+    "scrollY": 276,
+    "top": -198.40625,
+    "height": 600.125,
+    "images": []
+  },
+  {
+    "scene": "#hero",
+    "step": 5,
+    "scrollY": 345,
+    "top": -267.40625,
+    "height": 600.125,
+    "images": []
+  },
+  {
+    "scene": "#project-webc",
+    "step": 0,
+    "scrollY": 947,
+    "top": 76.9375,
+    "height": 936.640625,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FWebC%2Fstudent%20new%20UI.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FWebC%2Ffaculty%E2%81%84staff%20NEW%20UI.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FWebC%2Fadmin%20NEW%20UI.png&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#project-webc",
+    "step": 1,
+    "scrollY": 1083,
+    "top": -59.0625,
+    "height": 936.640625,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FWebC%2Fstudent%20new%20UI.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FWebC%2Ffaculty%E2%81%84staff%20NEW%20UI.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FWebC%2Fadmin%20NEW%20UI.png&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#project-webc",
+    "step": 2,
+    "scrollY": 1219,
+    "top": -195.0625,
+    "height": 936.640625,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FWebC%2Fstudent%20new%20UI.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FWebC%2Ffaculty%E2%81%84staff%20NEW%20UI.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FWebC%2Fadmin%20NEW%20UI.png&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#project-webc",
+    "step": 3,
+    "scrollY": 1356,
+    "top": -332.0625,
+    "height": 936.640625,
+    "images": []
+  },
+  {
+    "scene": "#project-webc",
+    "step": 4,
+    "scrollY": 1492,
+    "top": -468.0625,
+    "height": 936.640625,
+    "images": []
+  },
+  {
+    "scene": "#project-webc",
+    "step": 5,
+    "scrollY": 1628,
+    "top": -604.0625,
+    "height": 936.640625,
+    "images": []
+  },
+  {
+    "scene": "#project-owlset",
+    "step": 0,
+    "scrollY": 1884,
+    "top": 76.578125,
+    "height": 946.453125,
+    "images": []
+  },
+  {
+    "scene": "#project-owlset",
+    "step": 1,
+    "scrollY": 2022,
+    "top": -61.421875,
+    "height": 946.453125,
+    "images": []
+  },
+  {
+    "scene": "#project-owlset",
+    "step": 2,
+    "scrollY": 2160,
+    "top": -199.421875,
+    "height": 946.453125,
+    "images": []
+  },
+  {
+    "scene": "#project-owlset",
+    "step": 3,
+    "scrollY": 2298,
+    "top": -337.421875,
+    "height": 946.453125,
+    "images": []
+  },
+  {
+    "scene": "#project-owlset",
+    "step": 4,
+    "scrollY": 2436,
+    "top": -475.421875,
+    "height": 946.453125,
+    "images": []
+  },
+  {
+    "scene": "#project-owlset",
+    "step": 5,
+    "scrollY": 2574,
+    "top": -613.421875,
+    "height": 946.453125,
+    "images": []
+  },
+  {
+    "scene": "#project-sphere8",
+    "step": 0,
+    "scrollY": 2830,
+    "top": 77.03125,
+    "height": 958.046875,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FSphere8%2FSphere8%20Landing.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FSphere8%2FSphere8%20Mobile.png&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#project-sphere8",
+    "step": 1,
+    "scrollY": 2971,
+    "top": -63.96875,
+    "height": 958.046875,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FSphere8%2FSphere8%20Landing.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FSphere8%2FSphere8%20Mobile.png&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#project-sphere8",
+    "step": 2,
+    "scrollY": 3111,
+    "top": -203.96875,
+    "height": 958.046875,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FSphere8%2FSphere8%20Landing.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2FSphere8%2FSphere8%20Mobile.png&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#project-sphere8",
+    "step": 3,
+    "scrollY": 3251,
+    "top": -343.96875,
+    "height": 958.046875,
+    "images": []
+  },
+  {
+    "scene": "#project-sphere8",
+    "step": 4,
+    "scrollY": 3392,
+    "top": -484.96875,
+    "height": 958.046875,
+    "images": []
+  },
+  {
+    "scene": "#project-sphere8",
+    "step": 5,
+    "scrollY": 3532,
+    "top": -624.96875,
+    "height": 958.046875,
+    "images": []
+  },
+  {
+    "scene": "#project-lily-chou-chou",
+    "step": 0,
+    "scrollY": 3788,
+    "top": 77.078125,
+    "height": 958.046875,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2Flily-chou-chou-themed-portfolio%2Fnew%20UI.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2Flily-chou-chou-themed-portfolio%2FUI%20REDESIGN%20MOBILE.PNG&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#project-lily-chou-chou",
+    "step": 1,
+    "scrollY": 3929,
+    "top": -63.921875,
+    "height": 958.046875,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2Flily-chou-chou-themed-portfolio%2Fnew%20UI.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2Flily-chou-chou-themed-portfolio%2FUI%20REDESIGN%20MOBILE.PNG&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#project-lily-chou-chou",
+    "step": 2,
+    "scrollY": 4069,
+    "top": -203.921875,
+    "height": 958.046875,
+    "images": [
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2Flily-chou-chou-themed-portfolio%2Fnew%20UI.png&w=3840&q=75",
+        "loaded": true
+      },
+      {
+        "src": "/_next/image?url=%2Fassets%2Fproject%20screenshots%2Flily-chou-chou-themed-portfolio%2FUI%20REDESIGN%20MOBILE.PNG&w=3840&q=75",
+        "loaded": true
+      }
+    ]
+  },
+  {
+    "scene": "#project-lily-chou-chou",
+    "step": 3,
+    "scrollY": 4210,
+    "top": -344.921875,
+    "height": 958.046875,
+    "images": []
+  },
+  {
+    "scene": "#project-lily-chou-chou",
+    "step": 4,
+    "scrollY": 4350,
+    "top": -484.921875,
+    "height": 958.046875,
+    "images": []
+  },
+  {
+    "scene": "#project-lily-chou-chou",
+    "step": 5,
+    "scrollY": 4490,
+    "top": -624.921875,
+    "height": 958.046875,
+    "images": []
+  },
+  {
+    "scene": ".creative-interlude",
+    "step": 0,
+    "scrollY": 5069,
+    "top": 76.6875,
+    "height": 72.390625,
+    "images": []
+  },
+  {
+    "scene": ".creative-interlude",
+    "step": 1,
+    "scrollY": 5069,
+    "top": 76.6875,
+    "height": 72.390625,
+    "images": []
+  },
+  {
+    "scene": ".creative-interlude",
+    "step": 2,
+    "scrollY": 5069,
+    "top": 76.6875,
+    "height": 72.390625,
+    "images": []
+  },
+  {
+    "scene": ".creative-interlude",
+    "step": 3,
+    "scrollY": 5069,
+    "top": 76.6875,
+    "height": 72.390625,
+    "images": []
+  },
+  {
+    "scene": ".creative-interlude",
+    "step": 4,
+    "scrollY": 5069,
+    "top": 76.6875,
+    "height": 72.390625,
+    "images": []
+  },
+  {
+    "scene": ".creative-interlude",
+    "step": 5,
+    "scrollY": 5069,
+    "top": 76.6875,
+    "height": 72.390625,
+    "images": []
+  },
+  {
+    "scene": "#github",
+    "step": 0,
+    "scrollY": 5141,
+    "top": 77.078125,
+    "height": 903.09375,
+    "images": []
+  },
+  {
+    "scene": "#github",
+    "step": 1,
+    "scrollY": 5271,
+    "top": -52.921875,
+    "height": 903.09375,
+    "images": []
+  },
+  {
+    "scene": "#github",
+    "step": 2,
+    "scrollY": 5400,
+    "top": -181.921875,
+    "height": 903.09375,
+    "images": []
+  },
+  {
+    "scene": "#github",
+    "step": 3,
+    "scrollY": 5530,
+    "top": -311.921875,
+    "height": 903.09375,
+    "images": []
+  },
+  {
+    "scene": "#github",
+    "step": 4,
+    "scrollY": 5659,
+    "top": -440.921875,
+    "height": 903.09375,
+    "images": []
+  },
+  {
+    "scene": "#github",
+    "step": 5,
+    "scrollY": 5788,
+    "top": -569.921875,
+    "height": 903.09375,
+    "images": []
+  },
+  {
+    "scene": "#arsenal",
+    "step": 0,
+    "scrollY": 6044,
+    "top": 77.171875,
+    "height": 1207.34375,
+    "images": []
+  },
+  {
+    "scene": "#arsenal",
+    "step": 1,
+    "scrollY": 6235,
+    "top": -113.828125,
+    "height": 1207.34375,
+    "images": []
+  },
+  {
+    "scene": "#arsenal",
+    "step": 2,
+    "scrollY": 6425,
+    "top": -303.828125,
+    "height": 1207.34375,
+    "images": []
+  },
+  {
+    "scene": "#arsenal",
+    "step": 3,
+    "scrollY": 6615,
+    "top": -493.828125,
+    "height": 1207.34375,
+    "images": []
+  },
+  {
+    "scene": "#arsenal",
+    "step": 4,
+    "scrollY": 6805,
+    "top": -683.828125,
+    "height": 1207.34375,
+    "images": []
+  },
+  {
+    "scene": "#arsenal",
+    "step": 5,
+    "scrollY": 6996,
+    "top": -874.828125,
+    "height": 1207.34375,
+    "images": []
+  },
+  {
+    "scene": "#about",
+    "step": 0,
+    "scrollY": 7252,
+    "top": 76.515625,
+    "height": 1118.53125,
+    "images": []
+  },
+  {
+    "scene": "#about",
+    "step": 1,
+    "scrollY": 7424,
+    "top": -95.484375,
+    "height": 1118.53125,
+    "images": []
+  },
+  {
+    "scene": "#about",
+    "step": 2,
+    "scrollY": 7597,
+    "top": -268.484375,
+    "height": 1118.53125,
+    "images": []
+  },
+  {
+    "scene": "#about",
+    "step": 3,
+    "scrollY": 7769,
+    "top": -440.484375,
+    "height": 1118.53125,
+    "images": []
+  },
+  {
+    "scene": "#about",
+    "step": 4,
+    "scrollY": 7942,
+    "top": -613.484375,
+    "height": 1118.53125,
+    "images": []
+  },
+  {
+    "scene": "#about",
+    "step": 5,
+    "scrollY": 8114,
+    "top": -785.484375,
+    "height": 1118.53125,
+    "images": []
+  },
+  {
+    "scene": "#mood",
+    "step": 0,
+    "scrollY": 8370,
+    "top": 77.046875,
+    "height": 1201.859375,
+    "images": []
+  },
+  {
+    "scene": "#mood",
+    "step": 1,
+    "scrollY": 8559,
+    "top": -111.953125,
+    "height": 1201.859375,
+    "images": []
+  },
+  {
+    "scene": "#mood",
+    "step": 2,
+    "scrollY": 8749,
+    "top": -301.953125,
+    "height": 1201.859375,
+    "images": []
+  },
+  {
+    "scene": "#mood",
+    "step": 3,
+    "scrollY": 8938,
+    "top": -490.953125,
+    "height": 1201.859375,
+    "images": []
+  },
+  {
+    "scene": "#mood",
+    "step": 4,
+    "scrollY": 9127,
+    "top": -679.953125,
+    "height": 1201.859375,
+    "images": []
+  },
+  {
+    "scene": "#mood",
+    "step": 5,
+    "scrollY": 9316,
+    "top": -868.953125,
+    "height": 1201.859375,
+    "images": []
+  },
+  {
+    "scene": "#comms",
+    "step": 0,
+    "scrollY": 9620,
+    "top": 76.90625,
+    "height": 645.21875,
+    "images": []
+  },
+  {
+    "scene": "#comms",
+    "step": 1,
+    "scrollY": 9698,
+    "top": -1.09375,
+    "height": 645.21875,
+    "images": []
+  },
+  {
+    "scene": "#comms",
+    "step": 2,
+    "scrollY": 9776,
+    "top": -79.09375,
+    "height": 645.21875,
+    "images": []
+  },
+  {
+    "scene": "#comms",
+    "step": 3,
+    "scrollY": 9854,
+    "top": -157.09375,
+    "height": 645.21875,
+    "images": []
+  },
+  {
+    "scene": "#comms",
+    "step": 4,
+    "scrollY": 9931,
+    "top": -234.09375,
+    "height": 645.21875,
+    "images": []
+  },
+  {
+    "scene": "#comms",
+    "step": 5,
+    "scrollY": 9951,
+    "top": -254.09375,
+    "height": 645.21875,
+    "images": []
+  }
+]

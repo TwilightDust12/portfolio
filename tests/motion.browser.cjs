@@ -47,7 +47,11 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     await page.locator('#project-owlset').evaluate((el) => scrollTo({ top: scrollY + el.getBoundingClientRect().top - 200, behavior: 'instant' }));
     await page.waitForTimeout(100);
     assert.match(await page.locator('.project-index [aria-current]').getAttribute('href'), /owlset/);
-    assert.equal(await page.locator('#project-owlset .project-stage').evaluate((el) => Number(getComputedStyle(el).opacity)), 1, 'Project entrance settles into a readable state');
+    await page.waitForFunction(() => {
+      const stage = document.querySelector('#project-owlset .project-stage');
+      return getComputedStyle(stage).opacity === '1' && stage.getAnimations().every((animation) => animation.playState !== 'running');
+    });
+    assert.equal(await page.locator('#project-owlset .project-stage').evaluate((el) => el.getAnimations().filter((animation) => animation.playState === 'running').length), 0, 'Project entrance settles once into a readable state');
     await page.screenshot({ path: `/tmp/portfolio-creative-projects-${engine}.png` });
     await page.locator('.creative-interlude').evaluate((el) => scrollTo({ top: scrollY + el.getBoundingClientRect().top - innerHeight / 2, behavior: 'instant' }));
     await page.waitForTimeout(100);
@@ -84,6 +88,7 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     await page.screenshot({ path: `/tmp/portfolio-screenshot-viewer-${engine}.png` });
     await page.keyboard.press('Escape');
     await viewer.waitFor({ state: 'hidden' });
+    await page.waitForFunction((el) => el === document.activeElement, await preview.elementHandle());
     assert(await preview.evaluate((el) => el === document.activeElement), 'Viewer restores focus');
 
     const study = webc.getByRole('button', { name: 'Read WebC case study' });
@@ -95,6 +100,7 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     await page.keyboard.press('Escape');
     await page.waitForTimeout(150);
     assert.equal(await page.getByRole('dialog').count(), 1);
+    await page.waitForFunction((el) => el === document.activeElement, await caseStudy.getByRole('button', { name: /Enlarge/ }).elementHandle());
     assert(await caseStudy.getByRole('button', { name: /Enlarge/ }).evaluate((el) => el === document.activeElement), 'Nested focus returns inside case study');
     await caseStudy.getByRole('button', { name: /Enlarge/ }).click();
     await page.getByRole('button', { name: 'Close screenshot' }).click();
@@ -102,6 +108,7 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     assert.equal(await page.getByRole('dialog').count(), 1, 'Pointer close preserves parent dialog');
     await page.keyboard.press('Escape');
     await caseStudy.waitFor({ state: 'hidden' });
+    await page.waitForFunction((el) => el === document.activeElement, await study.elementHandle());
     assert(await study.evaluate((el) => el === document.activeElement));
     await study.focus();
     await page.keyboard.press('Enter');

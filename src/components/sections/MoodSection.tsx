@@ -90,7 +90,7 @@ export function MoodSection() {
           <p><strong>Anime.</strong> {portfolioData.animeInterests.description} Favorites include {portfolioData.animeInterests.favorites.join(", ")}.</p>
           {portfolioData.animeInterests.notes?.map((note) => (
             <div key={note.title} className="curated-note">
-              <p><strong>{note.title}</strong> — {note.reaction}</p>
+              <p><strong>{note.title}.</strong> {note.reaction}</p>
               {(note.spoilerContent || note.quote) && (
                 <details className="spoiler-disclosure">
                   <summary className="spoiler-summary">Show spoilers</summary>
@@ -107,7 +107,7 @@ export function MoodSection() {
           <p><strong>Games.</strong> {portfolioData.gamingInterests.description}</p>
           {portfolioData.gamingInterests.notes?.map((note) => (
             <div key={note.title} className="curated-note">
-              <p><strong>{note.title}</strong> — {note.note}</p>
+              <p><strong>{note.title}.</strong> {note.note}</p>
             </div>
           ))}
         </div>
