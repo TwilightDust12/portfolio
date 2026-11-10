@@ -13,7 +13,7 @@ const WORKSPACES = [
   { id: "comms", label: "Contact" },
 ];
 
-export function WaybarHeader() {
+export function WaybarHeader({ essentials = false, onToggleMode }: { essentials?: boolean; onToggleMode?: () => void }) {
   const [activeId, setActiveId] = useState("hero");
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export function WaybarHeader() {
       if (section) observer.observe(section);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [essentials]);
 
   return (
     <>
@@ -38,14 +38,15 @@ export function WaybarHeader() {
             <span>twilight<span className="text-muted">@cachyos</span></span>
           </a>
           <nav className="waybar-links" aria-label="Main navigation">
-            {WORKSPACES.map((item, index) => (
+            {WORKSPACES.filter((item) => !essentials || item.id !== "mood").map((item, index) => (
               <a key={item.id} href={`#${item.id}`} className="workspace-link" aria-current={activeId === item.id ? "location" : undefined}>
                 <span className="workspace-number" aria-hidden="true">{index + 1}</span>{item.label}
               </a>
             ))}
           </nav>
           <div className="flex items-center gap-3">
-            <div className="waybar-clock"><ManilaClock /></div>
+            {onToggleMode && <button type="button" className="mode-toggle" aria-pressed={essentials} onClick={onToggleMode}><span className="mode-toggle-mark" aria-hidden="true">{essentials ? "+" : "−"}</span>{essentials ? "Bring back the bloat" : "Remove the bloat"}</button>}
+            {!essentials && <div className="waybar-clock"><ManilaClock /></div>}
             <ThemeToggle />
           </div>
         </div>

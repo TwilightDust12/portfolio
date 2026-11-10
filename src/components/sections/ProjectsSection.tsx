@@ -6,6 +6,7 @@ import { portfolioData } from "@/data/portfolio";
 import type { Project } from "@/types/portfolio";
 import { ProjectMedia } from "@/components/ui/ProjectMedia";
 import { ProjectModal } from "@/components/ui/ProjectModal";
+import { useEssentials } from "@/components/providers/PortfolioExperience";
 
 const DISPLAY_NAMES: Record<string, string> = {
   webc: "WebC",
@@ -16,6 +17,7 @@ const DISPLAY_NAMES: Record<string, string> = {
 };
 
 export function ProjectsSection() {
+  const essentials = useEssentials();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [open, setOpen] = useState(false);
   const [animate, setAnimate] = useState(true);
@@ -55,7 +57,7 @@ export function ProjectsSection() {
     <section ref={sectionRef} id="works" className="portfolio-section projects-gallery content-width">
       <span id="projects" className="anchor-alias" aria-hidden="true" />
       <div className="section-heading">
-        <h2 className="section-title">Selected projects.</h2>
+        <div><p className="section-eyebrow">01 / From the workspace</p><h2 className="section-title">Selected projects.</h2></div>
         <p className="section-note">Campus workflows, client work, a hackathon app, and creative experiments.</p>
       </div>
       <nav className="project-index" aria-label="Selected project index">
@@ -69,13 +71,13 @@ export function ProjectsSection() {
       </nav>
       {featured.map((project, index) => (
         <article key={project.id} className="project-feature" id={`project-${project.id}`}>
-          <div className="project-stage">
+          {!essentials && <div className="project-stage">
             <div className="project-reveal">
-              <span className="project-ordinal" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <div className="project-scene-label" aria-hidden="true"><span className="project-ordinal">{String(index + 1).padStart(2, "0")}</span><span>{project.id === "webc" ? "A clearer path through campus" : project.id === "owlset" ? "A little clarity for freelancers" : project.id === "sphere8" ? "Built for the real world" : "Somewhere inside the ether"}</span></div>
               <ProjectMedia project={project} showVideo />
             </div>
-          </div>
-          <div className="project-copy">
+          </div>}
+          <div className="project-copy" style={{ viewTransitionName: `copy-${project.id}` }}>
             <p className="project-kind">{project.subtitle}</p>
             <h3 className="project-title">{DISPLAY_NAMES[project.id]}</h3>
             <p className="project-description">{project.description}</p>

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { animateMini, scroll, type DOMKeyframesDefinition } from "framer-motion";
 
-export function ScrollEffects() {
+export function ScrollEffects({ essentials = false }: { essentials?: boolean }) {
   const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -13,31 +13,8 @@ export function ScrollEffects() {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const desktop = window.matchMedia("(min-width: 1001px)");
     const compact = window.matchMedia("(max-width: 767px)");
-    const opening = page.querySelector<HTMLElement>(".opening-sequence");
     const entered = new WeakSet<Element>();
     let cleanups: (() => void)[] = [];
-
-    function disconnectOpening() {
-      opening?.removeEventListener("animationend", onOpeningEnd);
-      document.removeEventListener("keydown", finishOpening);
-      document.removeEventListener("pointerdown", finishOpening);
-      document.removeEventListener("wheel", finishOpening);
-      reduceMotion.removeEventListener("change", finishOpening);
-    }
-    function finishOpening() {
-      page?.setAttribute("data-opening-complete", "");
-      disconnectOpening();
-    }
-    function onOpeningEnd(event: AnimationEvent) {
-      if (event.target === opening) finishOpening();
-    }
-    opening?.addEventListener("animationend", onOpeningEnd);
-    document.addEventListener("keydown", finishOpening);
-    document.addEventListener("pointerdown", finishOpening);
-    document.addEventListener("wheel", finishOpening, { passive: true });
-    reduceMotion.addEventListener("change", finishOpening);
-    // CSS can finish before hydration on a slow connection.
-    if (opening?.getAnimations().every((animation) => animation.playState === "finished")) finishOpening();
 
     function reset() {
       cleanups.forEach((cleanup) => cleanup());
@@ -54,36 +31,37 @@ export function ScrollEffects() {
 
     function setup() {
       reset();
-      if (reduceMotion.matches || !page || !progress) return;
+      if (essentials || reduceMotion.matches || !page || !progress) return;
       connect(progress, { transform: ["scaleX(0)", "scaleX(1)"] });
       const hero = page.querySelector<HTMLElement>(".hero");
       const portrait = page.querySelector<HTMLElement>(".hero-portrait");
       const orbit = page.querySelector<HTMLElement>(".hero-orbit");
       if (hero && portrait) {
         connect(portrait, {
-          transform: ["translateY(0px) rotate(0deg)", desktop.matches ? "translateY(72px) rotate(2deg)" : "translateY(14px) rotate(0deg)"],
+          transform: ["translateY(0px) rotate(0deg)", desktop.matches ? "translateY(40px) rotate(2deg)" : "translateY(10px) rotate(0deg)"],
         }, { target: hero, offset: ["start start", "end start"] });
         const sheets = portrait.querySelectorAll<HTMLElement>(".portrait-sheet");
         sheets.forEach((sheet) => {
           const near = sheet.classList.contains("portrait-sheet-1");
           const from = "translateY(0px)";
-          const to = `translateY(${(near ? -10 : -20) / (compact.matches ? 3 : 1)}px)`;
+          const to = `translateY(${(near ? -8 : -20) / (compact.matches ? 3 : 1)}px)`;
           connect(sheet, { transform: [from, to] }, { target: hero, offset: ["start start", "end start"] });
         });
       }
       if (hero && orbit) {
-        connect(orbit, { transform: ["rotate(0deg)", "rotate(90deg)"] }, { target: hero, offset: ["start start", "end start"] });
+        connect(orbit, { transform: ["rotate(0deg)", "rotate(30deg)"] }, { target: hero, offset: ["start start", "end start"] });
       }
       if (hero) {
-        for (const [selector, travel] of [[".hero-watermark", -24], [".hero-kanji", -48]] as const) {
+        for (const [selector, travel] of [[".hero-watermark", -16]] as const) {
           const plane = hero.querySelector<HTMLElement>(selector);
           if (plane) connect(plane, { transform: ["translateY(0px)", `translateY(${compact.matches ? travel / 3 : travel}px)`] }, { target: hero, offset: ["start start", "end start"] });
         }
       }
-      const interlude = page.querySelector<HTMLElement>(".creative-interlude");
-      const track = page.querySelector<HTMLElement>(".interlude-track");
-      if (interlude && track) {
-        connect(track, { transform: ["translateX(3%)", "translateX(-9%)"] }, { target: interlude, offset: ["start end", "end start"] });
+      if (desktop.matches) {
+        page.querySelectorAll<HTMLElement>(".project-scene-label").forEach((label) => {
+          const project = label.closest<HTMLElement>(".project-feature");
+          if (project) connect(label, { transform: ["translateY(12px)", "translateY(-12px)"] }, { target: project, offset: ["start end", "end start"] });
+        });
       }
       const activeEntrances = new Map<Element, Animation>();
       const easing = getComputedStyle(page).getPropertyValue("--ease-out").trim();
@@ -135,22 +113,11 @@ export function ScrollEffects() {
     compact.addEventListener("change", setup);
     return () => {
       reset();
-      disconnectOpening();
       reduceMotion.removeEventListener("change", setup);
       desktop.removeEventListener("change", setup);
       compact.removeEventListener("change", setup);
     };
-  }, []);
+  }, [essentials]);
 
-  return <>
-    <div className="opening-sequence" aria-hidden="true">
-      <div className="opening-lockup">
-        <span className="opening-kanji" lang="ja">黄昏</span>
-        <span className="opening-wordmark">twilight</span>
-        <span className="opening-rule" />
-        <span className="opening-domain">twilightdust.me</span>
-      </div>
-    </div>
-    <div ref={progressRef} className="reading-progress" aria-hidden="true" />
-  </>;
+  return <div ref={progressRef} className="reading-progress" aria-hidden="true" />;
 }
