@@ -1,3 +1,5 @@
+> **Current direction — November 10, 2026:** The portfolio now uses a restrained Catppuccin workspace presentation with a large typographic introduction, layered portrait, project-specific compositions, native scrolling, and desktop sticky previews. “Remove the bloat” transforms the same content into a compact essentials layout. Project media, the star canvas, GitHub activity, and personal feeds unmount in essentials; case studies, skills, about, and contact remain available. The switch keeps the current reading section and theme, uses native View Transitions where available, and changes immediately for reduced motion or unsupported browsers. Mode choice lasts for the current visit. The opening veil, scrolling slogan, and résumé download button have been removed. WebC and Sphere8 desktop galleries use the supplied November screenshots, without older mobile counterparts. Earlier specifications below are historical where they differ. Verification: `tests/essentials.browser.cjs`, `tests/motion.browser.cjs`, and `tests/scrollcraft.browser.cjs`.
+
 # Portfolio Redesign Specification: Neo-Tokyo Cyber-Editorial
 
 ## 1. Executive Summary & Purpose

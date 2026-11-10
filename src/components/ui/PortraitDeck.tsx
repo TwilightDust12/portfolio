@@ -3,6 +3,7 @@
 import { useEffect, useId, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { RefreshCw } from "lucide-react";
+import { useEssentials } from "@/components/providers/PortfolioExperience";
 
 const PORTRAITS = [
   { src: "/assets/profile.jpg", label: "Jose Raphael Jaro" },
@@ -11,26 +12,30 @@ const PORTRAITS = [
 ];
 
 export function PortraitDeck() {
+  const essentials = useEssentials();
   const id = useId().replaceAll(":", "");
   const [deck, setDeck] = useState({ active: 0, departing: null as number | null, motion: true });
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const settle = () => setDeck((current) => ({ ...current, departing: null, motion: false }));
+    // A mode change cancels any in-flight card shuffle before its layers unmount.
+    if (essentials) settle();
     preference.addEventListener("change", settle);
     return () => preference.removeEventListener("change", settle);
-  }, []);
+  }, [essentials]);
 
   return (
     <figure className="hero-portrait">
       <span className="portrait-coordinate" aria-hidden="true">13.93° N / 121.62° E</span>
       <button type="button" className="portrait-deck" data-motion={deck.motion}
         onClick={(event) => {
-          const motion = event.detail !== 0 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          const motion = !essentials && event.detail !== 0 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
           setDeck((current) => ({ active: (current.active + 1) % PORTRAITS.length, departing: motion ? current.active : null, motion }));
         }}
         aria-label={`Change portrait. Currently ${PORTRAITS[deck.active].label}, ${deck.active + 1} of ${PORTRAITS.length}`}>
         {PORTRAITS.map((portrait, index) => {
+          if (essentials && index !== deck.active) return null;
           const slot = (index - deck.active + PORTRAITS.length) % PORTRAITS.length;
           const departing = deck.departing === index;
           const maskId = `${id}-portrait-${index}`;
@@ -43,8 +48,8 @@ export function PortraitDeck() {
                 }}>
                 <span className="portrait-frame">
                   <span className="portrait-window">
-                    <Image src={portrait.src} alt={slot === 0 ? portrait.label : ""} aria-hidden={slot !== 0} fill sizes="(max-width: 767px) 112px, 340px" priority={index === 0} className="portrait-photo" data-active={slot === 0} />
-                    <svg className="portrait-masks" width="0" height="0" aria-hidden="true" focusable="false">
+                    <Image src={portrait.src} alt={slot === 0 ? portrait.label : ""} aria-hidden={slot !== 0} fill sizes="(max-width: 767px) 240px, 380px" priority={index === 0} className="portrait-photo" data-active={slot === 0} />
+                    {!essentials && <><svg className="portrait-masks" width="0" height="0" aria-hidden="true" focusable="false">
                       <defs>
                         <mask id={maskId} maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox" x="0" y="0" width="1" height="1" style={{ maskType: "alpha" }}>
                           {Array.from({ length: 80 }, (_, tile) => (
@@ -53,7 +58,7 @@ export function PortraitDeck() {
                         </mask>
                       </defs>
                     </svg>
-                    <Image src={portrait.src} alt="" aria-hidden="true" fill sizes="(max-width: 767px) 112px, 340px" className="portrait-color-photo" style={{ maskImage: `url(#${maskId})` }} />
+                    <Image src={portrait.src} alt="" aria-hidden="true" fill sizes="(max-width: 767px) 240px, 380px" className="portrait-color-photo" style={{ maskImage: `url(#${maskId})` }} /></>}
                     <span className="portrait-rail kanji-rail" lang="ja" aria-hidden="true">黄昏</span>
                   </span>
                   <span className="portrait-caption">

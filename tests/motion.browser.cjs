@@ -42,7 +42,6 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     assert.notEqual(heroAfter, heroBefore, 'Hero artwork follows scrolling');
     assert.notEqual(await page.locator('.reading-progress').evaluate((el) => getComputedStyle(el).transform), progressBefore, 'Reading progress follows scrolling');
     assert.notEqual(await page.locator('.hero-orbit').evaluate((el) => getComputedStyle(el).transform), orbitBefore, 'Orbit follows scrolling');
-    const interludeBefore = await page.locator('.interlude-track').evaluate((el) => getComputedStyle(el).transform);
     assert.equal(await page.locator('.project-stage').count(), 4);
     await page.locator('#project-owlset').evaluate((el) => scrollTo({ top: scrollY + el.getBoundingClientRect().top - 200, behavior: 'instant' }));
     await page.waitForTimeout(100);
@@ -53,9 +52,6 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     });
     assert.equal(await page.locator('#project-owlset .project-stage').evaluate((el) => el.getAnimations().filter((animation) => animation.playState === 'running').length), 0, 'Project entrance settles once into a readable state');
     await page.screenshot({ path: `/tmp/portfolio-creative-projects-${engine}.png` });
-    await page.locator('.creative-interlude').evaluate((el) => scrollTo({ top: scrollY + el.getBoundingClientRect().top - innerHeight / 2, behavior: 'instant' }));
-    await page.waitForTimeout(100);
-    assert.notEqual(await page.locator('.interlude-track').evaluate((el) => getComputedStyle(el).transform), interludeBefore, 'Typographic strip follows scrolling');
     await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
     await page.waitForTimeout(100);
     await page.screenshot({ path: `/tmp/portfolio-creative-hero-${engine}.png` });
@@ -70,7 +66,7 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     assert.equal(await portrait.locator('[data-active=true]').evaluate((el) => getComputedStyle(el).transitionDuration), '0s');
 
     const webc = page.locator('#project-webc');
-    for (const name of ['Faculty', 'Admin', 'Student', 'Admin']) await webc.getByRole('button', { name, exact: true }).click();
+    for (const name of ['Department', 'Admin', 'Student', 'Admin']) await webc.getByRole('button', { name, exact: true }).click();
     assert.equal(await webc.locator('.media-image-frame[data-active=true]').count(), 1);
     assert.match(await webc.locator('.media-expand').getAttribute('aria-label'), /Admin Dashboard/);
     await webc.getByRole('button', { name: 'Student', exact: true }).focus();
@@ -121,7 +117,6 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     assert.equal(await heroPortrait.evaluate((el) => el.getAnimations().length), 0, 'Reduced motion cancels scroll animations');
     assert.equal(await heroPortrait.evaluate((el) => getComputedStyle(el).animationName), 'none');
     assert.equal(await page.locator('.project-stage').first().evaluate((el) => getComputedStyle(el).animationName), 'none');
-    assert.equal(await page.locator('.interlude-track').evaluate((el) => getComputedStyle(el).animationName), 'none');
     await portrait.click();
     assert.equal(await portrait.locator('.portrait-card[data-slot="0"]').evaluate((el) => getComputedStyle(el).transitionDuration), '0s', 'Reduced motion changes the selected card without travel');
     await study.click();
@@ -138,9 +133,8 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     await mobile.waitForTimeout(100);
     assert.notEqual(await mobilePortrait.evaluate((el) => getComputedStyle(el).transform), mobileBefore, 'Parallax works at phone width');
     const sphere = mobile.locator('#project-sphere8');
-    await sphere.getByRole('button', { name: 'Mobile', exact: true }).tap();
     await sphere.getByRole('button', { name: /Enlarge/ }).tap();
-    assert.match(await mobile.getByRole('dialog').locator('img').getAttribute('src'), /Sphere8 Mobile/);
+    assert.match(await mobile.getByRole('dialog').locator('img').getAttribute('src'), /company-website-2026/);
     await mobile.getByRole('button', { name: 'Close screenshot' }).tap();
     await mobile.getByRole('dialog').waitFor({ state: 'hidden' });
     assert.equal(await sphere.locator('.media-expand-hint').evaluate((el) => getComputedStyle(el).opacity), '1');

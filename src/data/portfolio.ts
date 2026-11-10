@@ -138,15 +138,15 @@ export const portfolioData: PortfolioConfig = {
       screenshots: [
         {
           label: "Student Dashboard",
-          desktopUrl: "/assets/project screenshots/WebC/student new UI.png",
+          desktopUrl: "/assets/project screenshots/WebC/student-clearance-2026.png",
         },
         {
-          label: "Faculty Dashboard",
-          desktopUrl: "/assets/project screenshots/WebC/faculty⁄staff NEW UI.png",
+          label: "Department Dashboard",
+          desktopUrl: "/assets/project screenshots/WebC/department-dashboard-2026.png",
         },
         {
           label: "Admin Dashboard",
-          desktopUrl: "/assets/project screenshots/WebC/admin NEW UI.png",
+          desktopUrl: "/assets/project screenshots/WebC/admin-dashboard-2026.png",
         },
       ],
       highlights: [
@@ -229,8 +229,7 @@ export const portfolioData: PortfolioConfig = {
       screenshots: [
         {
           label: "Company website",
-          desktopUrl: "/assets/project screenshots/Sphere8/Sphere8 Landing.png",
-          mobileUrl: "/assets/project screenshots/Sphere8/Sphere8 Mobile.png"
+          desktopUrl: "/assets/project screenshots/Sphere8/company-website-2026.png",
         }
       ],
       highlights: [

@@ -44,83 +44,20 @@ async function jump(page, top) {
   await page.waitForTimeout(160);
 }
 
-test('opening title appears on a fresh visit and reload, then clears itself', async () => {
+test('the introduction is available immediately without an opening veil', async () => {
   const page = await open({}, 'domcontentloaded');
   try {
-    for (const visit of ['first', 'reload']) {
-      if (visit === 'reload') {
-        await page.getByRole('button', { name: /Switch to Latte light/ }).click();
-        await page.reload({ waitUntil: 'domcontentloaded' });
-        assert.equal(await page.locator('html').evaluate((el) => el.classList.contains('dark')), false, 'Reload retains the selected light theme');
-      }
-      const opening = page.locator('.opening-sequence');
-      await page.waitForFunction(() => document.querySelector('.opening-sequence').getAnimations().some((a) => a.animationName === 'opening-veil'));
-      const start = await opening.evaluate((el) => {
-        const animation = el.getAnimations()[0];
-        animation.pause();
-        animation.currentTime = 200;
-        return { opacity: Number(getComputedStyle(el).opacity), pointerEvents: getComputedStyle(el).pointerEvents, duration: animation.effect.getTiming().duration };
-      });
-      assert.equal(start.opacity, 1, `${visit}: opening is visible`);
-      assert.equal(start.pointerEvents, 'none', 'The opening never captures input');
-      assert.equal(start.duration, 1500);
-      assert.equal(await opening.getAttribute('aria-hidden'), 'true');
-      await page.screenshot({ path: path.join(out, `opening-${visit}.png`) });
-      const middle = await opening.evaluate((el) => {
-        el.getAnimations()[0].currentTime = 900;
-        return Number(getComputedStyle(el).opacity);
-      });
-      assert(middle > 0 && middle < 1, 'The title dissolves instead of disappearing abruptly');
-      await opening.evaluate((el) => { el.getAnimations()[0].finish(); });
-      await page.waitForFunction(() => document.querySelector('.page-shell').hasAttribute('data-opening-complete'));
-      assert.equal(await opening.evaluate((el) => getComputedStyle(el).display), 'none');
-      assert.equal(await page.locator('.hero-name').evaluate((el) => getComputedStyle(el).opacity), '1');
-      await page.setViewportSize({ width: 390, height: 844 });
-      assert.equal(await opening.evaluate((el) => el.getAnimations().length), 0, 'Resizing does not replay the opening');
-    }
-  } finally { await page.close(); }
-});
-
-test('opening yields immediately to pointer, keyboard, scrolling, and motion preferences', async () => {
-  const page = await open({}, 'domcontentloaded');
-  try {
-    for (const input of ['pointer', 'keyboard', 'wheel', 'preference']) {
-      if (input !== 'pointer') await page.reload({ waitUntil: 'domcontentloaded' });
-      await page.locator('.opening-sequence').evaluate((el) => {
-        const animation = el.getAnimations()[0];
-        if (animation) { animation.pause(); animation.currentTime = 200; }
-      });
-      await page.getByRole('button', { name: /Switch to Latte light/ }).waitFor();
-      if (input === 'pointer') {
-        await page.getByRole('link', { name: 'View projects' }).click({ force: true });
-        assert.equal(new URL(page.url()).hash, '#works', 'Underlying navigation works during the opening');
-      } else if (input === 'keyboard') await page.keyboard.press('Tab');
-      else if (input === 'wheel') await page.mouse.wheel(0, 120);
-      else await page.emulateMedia({ reducedMotion: 'reduce' });
-      await page.waitForFunction(() => document.querySelector('.page-shell').hasAttribute('data-opening-complete'));
-      assert.equal(await page.locator('.opening-sequence').evaluate((el) => getComputedStyle(el).display), 'none', `${input}: opening dismisses`);
-      assert.equal(await page.locator('.hero-name').evaluate((el) => el.getAnimations().length), 0, `${input}: content is immediately settled`);
-    }
-  } finally { await page.close(); }
-});
-
-test('reduced motion gets a short opening fade without movement or later replay', async () => {
-  const page = await open({ reducedMotion: 'reduce' }, 'domcontentloaded');
-  try {
-    for (const selector of ['.opening-lockup', '.opening-rule', '.hero-name', '.portrait-card[data-slot="0"] .portrait-frame', '.portrait-deck']) {
-      assert.equal(await page.locator(selector).evaluate((el) => getComputedStyle(el).animationName), 'none');
-    }
-    await page.waitForFunction(() => document.querySelector('.page-shell').hasAttribute('data-opening-complete'));
-    await page.emulateMedia({ reducedMotion: 'no-preference' });
-    assert.equal(await page.locator('.opening-sequence').evaluate((el) => getComputedStyle(el).display), 'none');
-    assert.equal(await page.locator('.hero-name').evaluate((el) => el.getAnimations().length), 0, 'Preference changes do not restart the opening');
+    assert.equal(await page.locator('.opening-sequence').count(), 0);
+    assert.equal(await page.locator('.hero-name').evaluate((el) => getComputedStyle(el).opacity), '1');
+    await page.getByRole('link', { name: 'View projects', exact: true }).click();
+    assert.equal(new URL(page.url()).hash, '#works');
   } finally { await page.close(); }
 });
 
 test('portrait planes move independently and the real profile switch remains usable', async () => {
   const page = await open();
   try {
-    const selectors = ['.hero-portrait', '.portrait-sheet-1', '.portrait-sheet-2', '.hero-watermark', '.hero-kanji'];
+    const selectors = ['.hero-portrait', '.portrait-sheet-1', '.portrait-sheet-2', '.hero-watermark'];
     const initial = await Promise.all(selectors.map((s) => transform(page, s)));
     await page.screenshot({ path: path.join(out, 'hero-opening.png') });
     await jump(page, 300);
@@ -248,8 +185,8 @@ test('compact portrait composition keeps the introduction and projects clear', a
       await jump(page, 0);
       const portrait = await page.locator('.portrait-card[data-slot="0"] .portrait-frame').boundingBox();
       const intro = await page.locator('.hero-intro').boundingBox();
-      assert(portrait.y + portrait.height <= intro.y, `Portrait clears introductory copy at ${width}px`);
-      assert((await page.locator('#works h2').boundingBox()).y < 1000, `Projects arrive early at ${width}px`);
+      assert(portrait.y >= intro.y + intro.height, `Portrait follows introductory copy at ${width}px`);
+      assert((await page.locator('#works h2').boundingBox()).y < 1600, `Projects arrive after the introduction at ${width}px`);
       assert((await page.getByRole('link', { name: 'View projects' }).boundingBox()).y < 700);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `No overflow at ${width}px`);
       await page.getByRole('button', { name: /Change portrait/ }).click();
@@ -268,7 +205,7 @@ test('motion preference changes restore a stable, complete scene', async () => {
     await jump(page, 300);
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.waitForTimeout(100);
-    const selector = '.hero-portrait, .portrait-sheet, .hero-kanji, .hero-watermark, .project-stage, .project-reveal, .interlude-track, .skill-row, .personal-panel';
+    const selector = '.hero-portrait, .portrait-sheet, .hero-watermark, .project-stage, .project-reveal, .skill-row, .personal-panel';
     assert.equal(await page.locator(selector).evaluateAll((els) => els.reduce((n, el) => n + el.getAnimations().length, 0)), 0);
     const stable = await transform(page, '.portrait-sheet-1');
     await jump(page, 0);
@@ -406,26 +343,21 @@ test('essential copy clears contrast over the composited scene in both themes', 
   } finally { await page.close(); }
 });
 
-test('the page remains complete without JavaScript and the résumé download is a real PDF', async () => {
+test('the page remains complete without JavaScript', async () => {
   const page = await open({ javaScriptEnabled: false });
   try {
-    // RAF polling cannot run in the JavaScript-disabled browser context.
-    await page.waitForTimeout(1600);
-    assert.equal(await page.locator('.opening-sequence').evaluate((el) => getComputedStyle(el).opacity), '0', 'The CSS opening clears without JavaScript');
-    assert.equal(await page.locator('.opening-sequence').evaluate((el) => getComputedStyle(el).pointerEvents), 'none', 'The CSS opening clears without JavaScript');
+    assert.equal(await page.locator('.opening-sequence').count(), 0, 'No opening blocks the static page');
     assert.equal(await page.getByRole('heading', { level: 1 }).count(), 1);
     assert.equal(await page.locator('.project-feature').count(), 4);
     assert.equal(await page.locator('.hero img').evaluateAll((imgs) => imgs.every((img) => img.complete && img.naturalWidth > 0)), true);
     assert.equal(await transform(page, '.hero-portrait'), 'none');
     assert.equal(await page.locator('#comms a[href^="mailto:"]').count(), 2);
-    const pdf = await page.request.get(`${base}/cv.pdf`);
-    assert.equal(pdf.status(), 200);
-    assert.equal((await pdf.body()).subarray(0, 5).toString(), '%PDF-');
+    assert.equal(await page.locator('a[download]').count(), 0);
   } finally { await page.close(); }
 });
 
 // Six positions per scene, including each project's intermediate reveal.
-const scenes = ['#hero', '#project-webc', '#project-owlset', '#project-sphere8', '#project-lily-chou-chou', '.creative-interlude', '#github', '#arsenal', '#about', '#mood', '#comms'];
+const scenes = ['#hero', '#project-webc', '#project-owlset', '#project-sphere8', '#project-lily-chou-chou', '#github', '#arsenal', '#about', '#mood', '#comms'];
 const variants = process.env.SCROLLCRAFT_VARIANT ? [process.env.SCROLLCRAFT_VARIANT] : ['desktop', 'phone', 'compact', 'reduced'];
 for (const variant of variants) {
   test(`${variant}: inspect every scene at six scroll positions`, async () => {
