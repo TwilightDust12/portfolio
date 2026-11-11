@@ -464,6 +464,9 @@ img { display: block; }
 .hero-bottom .hero-scroll-link { margin-top: 0; }
 .hero-period { color: var(--accent-text); }
 .hero-surname { font-weight: 600; }
+.workspace-interlude { max-width: 760px; }
+.workspace-note { margin: .75rem 0 1.5rem; color: var(--muted); line-height: 1.75; max-width: 62ch; }
+.workspace-link { margin-top: 1rem; }
 .section-eyebrow { font-family: var(--font-mono), monospace; font-size: .7rem; color: var(--muted); margin-bottom: 1.2rem; }
 .mode-toggle { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; padding: .5rem .7rem; border: 1px solid var(--line); border-radius: 5px; white-space: nowrap; font-family: var(--font-mono), monospace; font-size: .7rem; color: var(--ink); transition: background-color 160ms; }
 .mode-toggle:hover { background: var(--surface-raised); }

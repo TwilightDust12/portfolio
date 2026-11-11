@@ -121,3 +121,22 @@ test('both compositions fit small screens and keep navigation and the theme usab
     await page.screenshot({ path: '/tmp/portfolio-essentials-light.png' });
   } finally { await page.close(); }
 });
+
+test('workspace interlude sits between tools and about', async () => {
+  const page = await open();
+  try {
+    const order = await page.evaluate(() => [...document.querySelectorAll('main section[id]')].map((s) => s.id));
+    assert(order.indexOf('arsenal') < order.indexOf('workspace') && order.indexOf('workspace') < order.indexOf('about'), order.join());
+  } finally { await page.close(); }
+});
+
+test('essentials from workspace anchors to about', async () => {
+  const page = await open();
+  try {
+    await page.locator('#workspace').scrollIntoViewIfNeeded();
+    await switchMode(page, true);
+    assert.equal(await page.locator('#workspace').count(), 0);
+    const top = await page.locator('#about').evaluate((e) => e.getBoundingClientRect().top);
+    assert(top >= 0 && top < 400, `about near top, got ${top}`);
+  } finally { await page.close(); }
+});

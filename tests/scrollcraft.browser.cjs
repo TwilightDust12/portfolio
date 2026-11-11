@@ -357,7 +357,7 @@ test('the page remains complete without JavaScript', async () => {
 });
 
 // Six positions per scene, including each project's intermediate reveal.
-const scenes = ['#hero', '#project-webc', '#project-owlset', '#project-sphere8', '#project-lily-chou-chou', '#github', '#arsenal', '#about', '#mood', '#comms'];
+const scenes = ['#hero', '#project-webc', '#project-owlset', '#project-sphere8', '#project-lily-chou-chou', '#github', '#arsenal', '#workspace', '#about', '#mood', '#comms'];
 const variants = process.env.SCROLLCRAFT_VARIANT ? [process.env.SCROLLCRAFT_VARIANT] : ['desktop', 'phone', 'compact', 'reduced'];
 for (const variant of variants) {
   test(`${variant}: inspect every scene at six scroll positions`, async () => {
