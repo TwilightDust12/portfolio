@@ -60,9 +60,15 @@ h1, h2, h3 { text-wrap: balance; }
 p { text-wrap: pretty; }
 img { display: block; }
 
+@property --accent-text { syntax: '<color>'; inherits: true; initial-value: #cba6f7; }
+.sky-dot { display: inline-block; width: .5rem; height: .5rem; margin-right: .5rem; border-radius: 50%; background: var(--accent-text); }
+.sky-line { font-family: var(--font-mono), monospace; font-size: .75rem; color: var(--accent-text); }
+@media (prefers-reduced-motion: no-preference) {
+  html[data-sky-transition] { transition: --accent-text 2s ease; }
+}
+
 .dot-matrix-bg { background-image: radial-gradient(color-mix(in srgb, var(--ink) 9%, transparent) .7px, transparent .7px); background-size: 28px 28px; }
 .page-shell { position: relative; isolation: isolate; min-height: 100dvh; overflow-wrap: break-word; }
-.page-shell::before { content: ""; position: absolute; inset: 0 0 auto; height: 60rem; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at 80% 30%, color-mix(in srgb, var(--accent-text) 8%, transparent), transparent 62%); }
 .page-stars { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .06; }
 .dark .page-stars { opacity: .12; }
 .content-width { width: min(100% - 3rem, 1120px); margin-inline: auto; }

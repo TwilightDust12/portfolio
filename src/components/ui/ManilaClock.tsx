@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { skyBandAt } from "@/lib/sky";
 
 export function ManilaClock() {
   const [time, setTime] = useState("--:--:--");
@@ -13,10 +14,28 @@ export function ManilaClock() {
       second: "2-digit",
       hour12: false,
     });
-    const tick = () => setTime(fmt.format(new Date()));
+    const root = document.documentElement;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    const tick = () => {
+      const now = new Date();
+      setTime(fmt.format(now));
+      const band = skyBandAt(now);
+      if (root.dataset.sky !== band) {
+        if (!reduced.matches) {
+          root.setAttribute("data-sky-transition", "");
+          clearTimeout(timeout);
+          timeout = setTimeout(() => root.removeAttribute("data-sky-transition"), 2100);
+        }
+        root.dataset.sky = band;
+      }
+    };
     tick();
     const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
+    return () => {
+      clearInterval(id);
+      clearTimeout(timeout);
+    };
   }, []);
 
   return (
@@ -24,6 +43,7 @@ export function ManilaClock() {
       suppressHydrationWarning
       className="font-mono text-xs text-muted whitespace-nowrap tabular-nums"
     >
+      <span className="sky-dot" aria-hidden="true" />
       {time} PHT
     </time>
   );

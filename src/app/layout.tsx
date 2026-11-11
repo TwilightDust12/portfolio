@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Plus_Jakarta_Sans, Noto_Sans_JP } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { skyCss, skyScript } from "@/lib/sky";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -61,6 +62,10 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${jetbrainsMono.variable} ${plusJakarta.variable} ${notoSansJP.variable}`}
     >
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: skyCss() }} />
+        <script dangerouslySetInnerHTML={{ __html: skyScript() }} />
+      </head>
       <body className="antialiased relative min-h-screen">
         <a
           href="#main-content"

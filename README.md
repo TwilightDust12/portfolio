@@ -45,7 +45,11 @@ Copy `.env.example` to `.env.local` and supply your own Last.fm and Letterboxd s
 
 The existing Motion library drives layered portrait parallax, orbiting artwork, a drifting typographic interlude, project reveals, quiet section entrances, and reading progress, with a JavaScript fallback in browsers without native scroll timelines. The scroll-craft direction is recorded in `scrollcraft/builds/twilight-workspace/BRIEF.md` and `SCORE.md`. The mobile portrait sits beside the name so projects remain early. A sticky project index follows the current project on desktop. Content remains readable without JavaScript. Portraits and screenshot previews crossfade without blocking repeated clicks. Screenshots open in a full-size, scrollable viewer. Reduced-motion users get a complete static scene and short interaction fades; keyboard-triggered switches and dialogs skip motion. Native anchor navigation, visible keyboard focus, 44px controls, dialog focus return, and system-aware theme switching are supported.
 
+`src/lib/sky.ts` colors the site by the current time in Lucena City (Asia/Manila), whatever the visitor's timezone. Seven bands (dawn 05:00, morning 07:00, midday 11:00, afternoon 15:00, sunset 17:30, evening 19:00, night 22:00) each set an accent for Mocha and Latte. An inline head script sets `<html data-sky>` before first paint; `ManilaClock` updates it while the page is open, fading the accent over 2s unless reduced motion is requested. Without JS the default accent applies.
+
 ## Verification
+
+Run `node tests/sky.cjs` for the band logic and `node tests/sky.browser.cjs` (against a running production server) for pre-paint colouring, live band changes, themes and the no-JS fallback.
 
 The page uses UI Capsule's MIT-licensed [Background Pixel Stars](https://21st.dev/@uicapsule/components/background-pixel-stars), adapted to the Catppuccin palette. A single fixed, viewport-sized canvas stays behind all sections as visitors scroll. Stars twinkle at up to 16 FPS with occasional shooting stars; rendering pauses in a hidden tab. Reduced-motion users receive a still starfield. The component and a standalone demo are in `src/components/ui/background-pixel-stars.tsx` and `background-pixel-stars-demo.tsx`; no additional dependencies or assets are needed. The existing skyline demo remains separate.
 
