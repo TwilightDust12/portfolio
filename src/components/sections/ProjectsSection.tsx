@@ -6,15 +6,8 @@ import { portfolioData } from "@/data/portfolio";
 import type { Project } from "@/types/portfolio";
 import { ProjectMedia } from "@/components/ui/ProjectMedia";
 import { ProjectModal } from "@/components/ui/ProjectModal";
+import { DISPLAY_NAMES } from "@/data/display-names";
 import { useEssentials } from "@/components/providers/PortfolioExperience";
-
-const DISPLAY_NAMES: Record<string, string> = {
-  webc: "WebC",
-  owlset: "OwlSet",
-  "lily-chou-chou": "All About Lily Chou-Chou",
-  sphere8: "Sphere8 Construction",
-  "wayland-rice": "Wayland rice & dotfiles",
-};
 
 // Each chapter shares the three beats but gets its own composition (see globals.css).
 const CHAPTER_LAYOUTS: Record<string, string> = {

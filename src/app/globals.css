@@ -177,7 +177,6 @@ img { display: block; }
 .skill-row { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 2rem; padding-block: 1.8rem; border-top: 1px solid var(--line); align-items: start; }
 .skill-row h3 { font-size: 1rem; font-weight: 600; }
 .skill-list { display: flex; flex-wrap: wrap; gap: .55rem .9rem; font-family: var(--font-mono), monospace; font-size: .85rem; }
-.skill-evidence { font-size: .8rem; color: var(--muted); }
 .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 5rem; }
 .about-copy { font-size: 1rem; line-height: 1.8; max-width: 65ch; }
 .about-copy p + p { margin-top: 1rem; }
@@ -275,7 +274,6 @@ img { display: block; }
   .section-heading { align-items: start; flex-direction: column; gap: .75rem; margin-bottom: 1.75rem; }
   .section-note { max-width: 50ch; }
   .skill-row { grid-template-columns: 1fr; gap: .8rem; }
-  .skill-evidence .inline-link { min-height: 32px; }
   .about-grid, .personal-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
   .personal-grid > :last-child { margin-top: 0; }
   .interest-note { grid-template-columns: 1fr; gap: 1rem; }

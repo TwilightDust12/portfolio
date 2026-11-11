@@ -6,7 +6,7 @@ A personal portfolio at [twilightdust.me](https://twilightdust.me), primarily fo
 
 1. **Introduction:** a shuffling portrait deck with a pixel color reveal on hover, consistent internship availability, project and email actions.
 2. **Selected projects:** WebC, OwlSet, Sphere8, and The Ether film tribute, each told as a three-beat chapter (what it asked of me, what I had to figure out, what shipped) with its own layout: media-left, phone, media-right, and full-bleed. Role stays on one line under the title, and media sits with “What shipped”. In essentials mode the media is omitted and each chapter keeps its three beats. OwlSet’s app demo plays on demand, and case studies open directly from each project. The Wayland rice moves to the workspace interlude.
-3. **Skills:** readable categories with links to relevant project evidence.
+3. **Picked up along the way:** tools grouped by the project chapter that first used them, each linking back to its chapter, plus an “Also worked with” group for the rest.
 4. **About:** background and concise education.
 5. **Personal interests:** music, cinema, anime, and games in one section.
 6. **Contact:** email, working clipboard feedback, and social profiles.
