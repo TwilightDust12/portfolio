@@ -42,16 +42,11 @@ export function ProjectModal({ project, open, onOpenChange, onCloseAutoFocus, an
             </div>
             <ProjectMedia key={project.id} project={project} showVideo />
             <div className="dialog-details">
-              <div><h3>The problem</h3><p>{project.problem}</p></div>
               <div><h3>My role</h3><p>{project.role}</p>{project.id === "webc" && <p className="mt-2">Built as part of a capstone team at STI College Lucena.</p>}</div>
               <div><h3>The result</h3><p>{project.outcome}</p></div>
               <div><h3>Built with</h3><p>{project.stack.join(" · ")}</p></div>
             </div>
             {project.longDescription && <div className="mb-6"><h3 className="text-sm font-semibold mb-2">Inside the project</h3><p className="text-sm text-muted leading-relaxed">{project.longDescription}</p></div>}
-            {project.story?.contribution && <div className="mb-6"><h3 className="text-sm font-semibold mb-2">My contribution</h3><p className="text-sm text-muted leading-relaxed">{project.story.contribution}</p></div>}
-            {project.story?.difficultDecision && <div className="mb-6"><h3 className="text-sm font-semibold mb-2">Difficult decision</h3><p className="text-sm text-muted leading-relaxed">{project.story.difficultDecision}</p></div>}
-            {project.story?.learned && <div className="mb-6"><h3 className="text-sm font-semibold mb-2">What I learned</h3><p className="text-sm text-muted leading-relaxed">{project.story.learned}</p></div>}
-            {project.story?.improvement && <div className="mb-6"><h3 className="text-sm font-semibold mb-2">What I would improve</h3><p className="text-sm text-muted leading-relaxed">{project.story.improvement}</p></div>}
             {project.highlights?.length ? <div className="mb-6"><h3 className="text-sm font-semibold mb-3">Implementation details</h3><ul className="space-y-2 pl-4 list-disc text-sm text-muted leading-relaxed">{project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul></div> : null}
             <div className="flex flex-wrap items-center gap-6 border-t fine-rule pt-4">
               {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-link">{project.id === "wayland-rice" ? "GitHub profile" : "GitHub repository"} <ArrowUpRight size={16} aria-hidden="true" /></a>}

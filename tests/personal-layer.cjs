@@ -33,21 +33,15 @@ const apex = data.gamingInterests.notes.find((n) => n.title === 'Apex Legends');
 assert(apex, 'Apex Legends note must exist');
 assert.equal(apex.note, 'I keep coming back for the ranked climb, even if I’ve been hardstuck for a while. Lately, I’m learning when to step back and give myself a break. The rank can wait.');
 
-// 4. Project story (WebC) verification
+// 4. Project chapter (WebC) verification
 const webc = data.projects.find((p) => p.id === 'webc');
 assert(webc, 'WebC project must exist');
-assert(webc.story, 'WebC story must exist');
-assert.match(webc.story.contribution, /student, department, and admin dashboards/);
-assert.match(webc.story.contribution, /four-person team as Project Manager and Quality Officer/);
-assert.match(webc.story.learned, /a working version can still need refinement/);
-assert(!webc.story.difficultDecision, 'Unspecified difficultDecision must remain absent');
-assert(!webc.story.improvement, 'Unspecified improvement must remain absent');
+assert.match(webc.chapter.asked, /four-person capstone team as Project Manager and Quality Officer/);
+assert.match(webc.chapter.figuredOut, /a working version can still need refinement/);
 
-// 5. Other projects must not have stories fabricated
+// 5. No project carries a legacy story
 for (const project of data.projects) {
-  if (project.id !== 'webc') {
-    assert(!project.story, `Project ${project.id} must not have fabricated story`);
-  }
+  assert(!('story' in project), `Project ${project.id} must not have a story key`);
 }
 
 // 6. Component checks: ensure ChronicleSection, MoodSection, ProjectModal include personal layer markup
@@ -62,8 +56,7 @@ assert(moodSource.includes('<details'), 'MoodSection must use native details');
 assert(moodSource.includes('Show spoilers'), 'MoodSection must have Show spoilers summary');
 
 const modalSource = fs.readFileSync(path.join(root, 'src/components/ui/ProjectModal.tsx'), 'utf8');
-assert(modalSource.includes('project.story?.contribution'), 'ProjectModal must render contribution if present');
-assert(modalSource.includes('project.story?.learned'), 'ProjectModal must render learned if present');
+assert(!modalSource.includes('project.story'), 'ProjectModal must not render project.story');
 
 // 7. Github contributions & Skyline verification
 const githubSectionSource = fs.readFileSync(path.join(root, 'src/components/sections/GithubSection.tsx'), 'utf8');

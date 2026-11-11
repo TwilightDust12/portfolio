@@ -11,11 +11,10 @@ export interface ProjectScreenshot {
   mobileUrl?: string;
 }
 
-export interface ProjectStory {
-  contribution?: string;
-  difficultDecision?: string;
-  learned?: string;
-  improvement?: string;
+export interface ProjectChapter {
+  asked: string;
+  figuredOut: string;
+  shipped: string;
 }
 
 export interface Project {
@@ -37,7 +36,7 @@ export interface Project {
   demoUrl?: string;
   githubUrl?: string;
   highlights?: string[];
-  story?: ProjectStory;
+  chapter?: ProjectChapter;
 }
 
 export interface SkillItem {

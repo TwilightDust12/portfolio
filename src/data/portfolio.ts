@@ -155,9 +155,10 @@ export const portfolioData: PortfolioConfig = {
         "Relational data access with Drizzle ORM and Supabase PostgreSQL",
         "Four-person capstone team led as Project Manager and Quality Officer"
       ],
-      story: {
-        contribution: "I developed and iterated on the student, department, and admin dashboards and clearance interface as part of our capstone team. I also led our four-person team as Project Manager and Quality Officer, applying the ISO Process Approach and continual improvement principles.",
-        learned: "Revisiting WebC’s interface taught me that a working version can still need refinement. I kept trying features and reviewing the UI as the project developed, rather than treating the first complete version as the end."
+      chapter: {
+        asked: "Not just building the student, department and admin dashboards, but leading our four-person capstone team as Project Manager and Quality Officer, applying the ISO Process Approach.",
+        figuredOut: "That a working version can still need refinement — I kept testing features and reviewing the UI as the project developed instead of treating the first complete version as the end.",
+        shipped: "Centralized multi-role web portal featuring role-based dashboards (Student, Department, Admin), automated clearance approval pipelines, and institutional Azure login."
       }
     },
     {
@@ -176,6 +177,11 @@ export const portfolioData: PortfolioConfig = {
       ],
       outcome: "An Android test build that drafts project scope, stores confirmed agreements, compares new requests, and prepares editable change proposals.",
       isTeamProject: true,
+      chapter: {
+        asked: "Our first hackathon outside STI College Lucena, built around an idea none of us knew how to build yet: AI that runs on the phone itself.",
+        figuredOut: "How to run a language model locally on Android. We had the app download a small model that runs on ordinary phones, then ran it inside the app with llama.rn, so the scope checks work without a server or an internet connection.",
+        shipped: "An Android test build that drafts project scope, stores confirmed agreements, and checks new client requests against them."
+      },
       featured: true,
       description: "A hackathon Android app helping freelancers turn client conversations into clear scope and review new requests against it.",
       longDescription: "Built with a hackathon team. Projects and versioned agreements stay in a local SQLite database. On-device AI suggests scope and request classifications for the freelancer to review; the user confirms terms and supplies prices and deadlines. The website presents a prepared interactive demo.",
@@ -215,6 +221,11 @@ export const portfolioData: PortfolioConfig = {
         "Netlify Forms"
       ],
       outcome: "A live company website with 25 project images, category filters, a lightbox, and an inquiry form with an email fallback.",
+      chapter: {
+        asked: "Nobody asked. I wanted another project, so I offered to build my cousin’s construction company a website they could show clients. That made it my first build for a real business.",
+        figuredOut: "Building it was the familiar part. Shipping it wasn’t. I deployed it on Netlify, set up the inquiry form for real client messages, and learned that launching a site and getting it found are two different jobs. Search visibility is what I’m working on next.",
+        shipped: "A live company site with 25 project photos, category filters, a lightbox, and an inquiry form."
+      },
       featured: true,
       description: "A design-and-build company website showcasing real projects and making client inquiries easier.",
       longDescription: "Built for Sphere8 Construction Corp. in Lucena City. The static site is prerendered at build time, includes company structured data, and uses Netlify Forms without a custom server.",
@@ -251,6 +262,11 @@ export const portfolioData: PortfolioConfig = {
         "Web Audio API"
       ],
       outcome: "An interactive film tribute with a still gallery, nine-track Discman listening room, and real-time audio visualizations.",
+      chapter: {
+        asked: "Nothing, except that I couldn’t stop thinking about the film: the music, the cinematography, and the way it captures what different people are feeling without saying it. I wanted to make something that felt like the film, not a page about it.",
+        figuredOut: "Making the Discman listening room feel smooth instead of broken. It was my first time with the Web Audio API, and I kept tinkering with the playback and the real-time visualizer until switching tracks felt like using a real Discman.",
+        shipped: "An interactive tribute with a still gallery, a nine-track Discman listening room, and real-time audio visualizations."
+      },
       featured: true,
       description: "A cinematic fan tribute exploring film landscapes, music, and imagined message-board conversations.",
       longDescription: "Built with native browser features and no runtime JavaScript dependencies. Visitors can change the opening landscape, explore film stills, and control a Discman-style HTML5 audio player with waveform and frequency views.",
