@@ -473,6 +473,8 @@ img { display: block; }
 .mode-toggle-mark { color: var(--accent-text); font-size: 1rem; }
 @media (max-width: 767px) {
   .hero-kicker { padding-bottom: 2rem; font-size: .6rem; }
+  .hero-kicker { flex-wrap: wrap; row-gap: .4rem; }
+  .hero-kicker .sky-line { order: 3; flex-basis: 100%; }
   .hero-bottom { margin-top: 2.5rem; }
   .hero-bottom > p { display: none; }
   .waybar { position: sticky; top: 0; margin-top: 0; padding-block: .5rem; background: var(--bg); }
