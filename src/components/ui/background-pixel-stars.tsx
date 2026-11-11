@@ -42,6 +42,7 @@ export const BackgroundPixelStars = memo(function BackgroundPixelStars() {
     let visible = false;
     let density = 1;
     let scrollFrame = 0;
+    let paletteTimer = 0;
 
     function createStar(): BackgroundStar {
       return {
@@ -138,6 +139,8 @@ export const BackgroundPixelStars = memo(function BackgroundPixelStars() {
     function onSkyOrTheme() {
       updatePalette();
       if (skyDensity() !== density) { populate(); draw(performance.now()); }
+      // --accent-text eases for 2s after a band change (ManilaClock); re-read once it settles.
+      if (document.documentElement.hasAttribute("data-sky-transition")) { clearTimeout(paletteTimer); paletteTimer = window.setTimeout(updatePalette, 2150); }
     }
 
     function resize() {
@@ -171,6 +174,7 @@ export const BackgroundPixelStars = memo(function BackgroundPixelStars() {
     return () => {
       cancelAnimationFrame(frame);
       cancelAnimationFrame(scrollFrame);
+      clearTimeout(paletteTimer);
       window.removeEventListener("scroll", onScroll);
       sizeObserver.disconnect();
       visibilityObserver.disconnect();

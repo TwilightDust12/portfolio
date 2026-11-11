@@ -16,7 +16,7 @@ export function WorkspaceInterlude() {
       <h2 className="section-title">{DISPLAY_NAMES[rice.id]}.</h2>
       <p className="workspace-note">{rice.description}</p>
       <ProjectMedia project={rice} showVideo />
-      {rice.githubUrl && <p className="workspace-link"><a className="inline-link" href={rice.githubUrl} target="_blank" rel="noopener noreferrer">GitHub profile <ArrowUpRight size={14} aria-hidden="true" /></a></p>}
+      {rice.githubUrl && <p className="workspace-github"><a className="inline-link" href={rice.githubUrl} target="_blank" rel="noopener noreferrer">GitHub profile <ArrowUpRight size={14} aria-hidden="true" /></a></p>}
     </section>
   );
 }
