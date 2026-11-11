@@ -48,6 +48,8 @@ test('the portfolio transforms, keeps its core content, and restores the workspa
     assert.equal(await page.locator('#github, #mood, .project-stage, .pixel-stars').count(), 0);
     assert.equal(await page.locator('.waybar-links a[href="#mood"]').count(), 0);
     assert.equal(await page.locator('.project-feature').count(), 4);
+    for (const chapter of await page.locator('.project-feature').all()) assert.equal(await chapter.locator('.chapter-beats dt').count(), 3, 'Each chapter keeps its three beats');
+    assert.equal(await page.locator('.project-feature :is(video, img)').count(), 0, 'Essentials chapters carry no media');
     assert.equal(await page.locator('.hero-portrait').evaluate((el) => el.getAnimations().length), 0);
     await page.screenshot({ path: '/tmp/portfolio-essentials-desktop.png' });
     const study = page.getByRole('button', { name: 'Read WebC case study' });

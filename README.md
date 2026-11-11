@@ -5,7 +5,7 @@ A personal portfolio at [twilightdust.me](https://twilightdust.me), primarily fo
 ## Page structure
 
 1. **Introduction:** a shuffling portrait deck with a pixel color reveal on hover, consistent internship availability, project and email actions.
-2. **Selected projects:** WebC, OwlSet, Sphere8, and The Ether film tribute; Wayland rice as supporting work. WebC presents both implementation and project leadership/QA responsibilities. OwlSet’s app demo appears directly in the gallery and its case study, with on-demand playback. Case studies open directly from each project.
+2. **Selected projects:** WebC, OwlSet, Sphere8, and The Ether film tribute, each told as a three-beat chapter (what it asked of me, what I had to figure out, what shipped) with its own layout: media-left, phone, media-right, and full-bleed. Role stays on one line under the title, and media sits with “What shipped”. In essentials mode the media is omitted and each chapter keeps its three beats. OwlSet’s app demo plays on demand, and case studies open directly from each project. The Wayland rice moves to the workspace interlude.
 3. **Skills:** readable categories with links to relevant project evidence.
 4. **About:** background and concise education.
 5. **Personal interests:** music, cinema, anime, and games in one section.

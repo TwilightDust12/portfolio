@@ -298,7 +298,7 @@ test('essential copy clears contrast over the composited scene in both themes', 
       await page.setViewportSize({ width, height: 1000 });
       for (const theme of ['dark', 'light']) {
         await page.evaluate((mode) => document.documentElement.classList.toggle('dark', mode === 'dark'), theme);
-        for (const selector of ['.hero-name', '.hero-intro', '.hero-availability', '#project-webc .project-description', '#about .about-copy > p:first-child', '#comms .contact-email']) {
+        for (const selector of ['.hero-name', '.hero-intro', '.hero-availability', '#project-webc [data-beat=asked] dd', '#about .about-copy > p:first-child', '#comms .contact-email']) {
           const el = page.locator(selector);
           await el.scrollIntoViewIfNeeded();
           await page.waitForTimeout(200);

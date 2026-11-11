@@ -6,7 +6,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Expand, Monitor, Smartphone, X } from "lucide-react";
 import type { Project } from "@/types/portfolio";
 
-export function ProjectMedia({ project, compact = false, showVideo = false }: { project: Project; compact?: boolean; showVideo?: boolean }) {
+export function ProjectMedia({ project, compact = false, showVideo = false, sizes = "(max-width: 767px) 90vw, 700px" }: { project: Project; compact?: boolean; showVideo?: boolean; sizes?: string }) {
   const [screenIndex, setScreenIndex] = useState(0);
   const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
   const [viewerOpen, setViewerOpen] = useState(false);
@@ -49,7 +49,7 @@ export function ProjectMedia({ project, compact = false, showVideo = false }: { 
           <button type="button" id={viewportId} className={`media-viewport media-expand ${compact ? "media-viewport-compact" : ""}`} data-motion={animate} aria-label={`Enlarge ${project.title}: ${screen.label}, ${device} view`} onClick={(event) => setAnimate(event.detail !== 0)}>
             {screens.flatMap((item, index) => (["desktop", ...(item.mobileUrl ? ["mobile"] : [])] as const).map((view) => (
               <span key={`${index}-${view}`} className={`media-image-frame ${view === "mobile" ? "mobile" : ""}`} data-active={screenIndex === index && device === view} aria-hidden="true">
-                <Image src={view === "mobile" ? item.mobileUrl! : item.desktopUrl} alt="" fill sizes={view === "mobile" ? "190px" : "(max-width: 767px) 90vw, 700px"} className="media-image" />
+                <Image src={view === "mobile" ? item.mobileUrl! : item.desktopUrl} alt="" fill sizes={view === "mobile" ? "190px" : sizes} className="media-image" />
               </span>
             )))}
             <span className="media-expand-hint" aria-hidden="true"><Expand size={14} /> View full screenshot</span>
