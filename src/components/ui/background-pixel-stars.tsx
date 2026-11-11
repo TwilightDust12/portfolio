@@ -9,9 +9,15 @@ type BackgroundStar = {
   opacity: number;
   speed: number;
   phase: number;
+  depth: number;
 };
 
 type ShootingStar = { x: number; y: number; angle: number; speed: number };
+
+// Scroll parallax per layer (equal thirds) and how many stars the sky shows by Lucena time band.
+const DEPTHS = [0.03, 0.08, 0.15];
+const DENSITY: Record<string, number> = { dawn: 0.6, sunset: 0.6, morning: 0.35, midday: 0.35, afternoon: 0.35 };
+const skyDensity = () => DENSITY[document.documentElement.dataset.sky ?? ""] ?? 1;
 
 // Adapted from UI Capsule's MIT-licensed Background Pixel Stars on 21st.dev.
 export const BackgroundPixelStars = memo(function BackgroundPixelStars() {
@@ -34,6 +40,9 @@ export const BackgroundPixelStars = memo(function BackgroundPixelStars() {
     let lastRegeneration = 0;
     let nextShootingStar = 0;
     let visible = false;
+    let density = 1;
+    let scrollFrame = 0;
+    let paletteTimer = 0;
 
     function createStar(): BackgroundStar {
       return {
@@ -43,15 +52,18 @@ export const BackgroundPixelStars = memo(function BackgroundPixelStars() {
         opacity: 0.18 + Math.random() * 0.27,
         speed: 2 + Math.random() * 2,
         phase: Math.random() * Math.PI * 2,
+        depth: DEPTHS[Math.floor(Math.random() * DEPTHS.length)],
       };
     }
 
     function draw(timestamp: number) {
+      const scroll = reducedMotion.matches ? 0 : window.scrollY;
+      surface.dataset.scrollOffset = String(Math.round(scroll));
       ctx.clearRect(0, 0, width, height);
       for (const star of stars) {
         ctx.fillStyle = colors[star.color];
         ctx.globalAlpha = star.opacity * (reducedMotion.matches ? 1 : 0.65 + Math.sin(timestamp / 1000 / star.speed + star.phase) * 0.35);
-        ctx.fillRect(star.x, star.y, 3, 3);
+        ctx.fillRect(star.x, ((star.y - scroll * star.depth) % height + height) % height, 3, 3);
       }
       ctx.globalAlpha = 1;
       for (const star of shootingStars) {
@@ -69,6 +81,7 @@ export const BackgroundPixelStars = memo(function BackgroundPixelStars() {
     }
 
     function animate(timestamp: number) {
+      if (reducedMotion.matches) return syncAnimation(); // a late preference change must not leave the loop running
       if (timestamp - lastRender >= 1000 / 16) {
         // Cap elapsed time so returning to the tab never jumps a shooting star.
         const step = Math.min((timestamp - lastRender) / (1000 / 16), 2);
@@ -112,6 +125,24 @@ export const BackgroundPixelStars = memo(function BackgroundPixelStars() {
       draw(performance.now());
     }
 
+    function populate() {
+      density = skyDensity();
+      stars = Array.from({ length: Math.min(80, Math.floor(width * height * 0.000025 * density)) }, createStar);
+      surface.dataset.starCount = String(stars.length);
+    }
+
+    function onScroll() {
+      if (reducedMotion.matches || document.hidden || scrollFrame) return;
+      scrollFrame = requestAnimationFrame((timestamp) => { scrollFrame = 0; draw(timestamp); });
+    }
+
+    function onSkyOrTheme() {
+      updatePalette();
+      if (skyDensity() !== density) { populate(); draw(performance.now()); }
+      // --accent-text eases for 2s after a band change (ManilaClock); re-read once it settles.
+      if (document.documentElement.hasAttribute("data-sky-transition")) { clearTimeout(paletteTimer); paletteTimer = window.setTimeout(updatePalette, 2150); }
+    }
+
     function resize() {
       width = surface.clientWidth;
       height = surface.clientHeight;
@@ -119,7 +150,7 @@ export const BackgroundPixelStars = memo(function BackgroundPixelStars() {
       surface.width = Math.round(width * ratio);
       surface.height = Math.round(height * ratio);
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      stars = Array.from({ length: Math.min(80, Math.floor(width * height * 0.000025)) }, createStar);
+      populate();
       shootingStars = [];
       draw(performance.now());
       syncAnimation();
@@ -134,13 +165,17 @@ export const BackgroundPixelStars = memo(function BackgroundPixelStars() {
       syncAnimation();
     });
     visibilityObserver.observe(surface);
-    const themeObserver = new MutationObserver(updatePalette);
-    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    const themeObserver = new MutationObserver(onSkyOrTheme);
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class", "data-sky"] });
+    window.addEventListener("scroll", onScroll, { passive: true });
     reducedMotion.addEventListener("change", syncAnimation);
     document.addEventListener("visibilitychange", syncAnimation);
 
     return () => {
       cancelAnimationFrame(frame);
+      cancelAnimationFrame(scrollFrame);
+      clearTimeout(paletteTimer);
+      window.removeEventListener("scroll", onScroll);
       sizeObserver.disconnect();
       visibilityObserver.disconnect();
       themeObserver.disconnect();
@@ -149,7 +184,7 @@ export const BackgroundPixelStars = memo(function BackgroundPixelStars() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="pixel-stars pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true" />;
+  return <canvas ref={canvasRef} className="pixel-stars pointer-events-none absolute inset-0 h-full w-full" data-layers={DEPTHS.length} aria-hidden="true" />;
 });
 
 export default BackgroundPixelStars;

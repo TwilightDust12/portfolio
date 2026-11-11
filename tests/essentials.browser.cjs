@@ -48,6 +48,8 @@ test('the portfolio transforms, keeps its core content, and restores the workspa
     assert.equal(await page.locator('#github, #mood, .project-stage, .pixel-stars').count(), 0);
     assert.equal(await page.locator('.waybar-links a[href="#mood"]').count(), 0);
     assert.equal(await page.locator('.project-feature').count(), 4);
+    for (const chapter of await page.locator('.project-feature').all()) assert.equal(await chapter.locator('.chapter-beats dt').count(), 3, 'Each chapter keeps its three beats');
+    assert.equal(await page.locator('.project-feature :is(video, img)').count(), 0, 'Essentials chapters carry no media');
     assert.equal(await page.locator('.hero-portrait').evaluate((el) => el.getAnimations().length), 0);
     await page.screenshot({ path: '/tmp/portfolio-essentials-desktop.png' });
     const study = page.getByRole('button', { name: 'Read WebC case study' });
@@ -117,5 +119,24 @@ test('both compositions fit small screens and keep navigation and the theme usab
     await switchMode(page, true);
     assert.equal(await page.locator('html').evaluate((el) => el.classList.contains('dark')), false);
     await page.screenshot({ path: '/tmp/portfolio-essentials-light.png' });
+  } finally { await page.close(); }
+});
+
+test('workspace interlude sits between tools and about', async () => {
+  const page = await open();
+  try {
+    const order = await page.evaluate(() => [...document.querySelectorAll('main section[id]')].map((s) => s.id));
+    assert(order.indexOf('arsenal') < order.indexOf('workspace') && order.indexOf('workspace') < order.indexOf('about'), order.join());
+  } finally { await page.close(); }
+});
+
+test('essentials from workspace anchors to about', async () => {
+  const page = await open();
+  try {
+    await page.locator('#workspace').scrollIntoViewIfNeeded();
+    await switchMode(page, true);
+    assert.equal(await page.locator('#workspace').count(), 0);
+    const top = await page.locator('#about').evaluate((e) => e.getBoundingClientRect().top);
+    assert(top >= 0 && top < 400, `about near top, got ${top}`);
   } finally { await page.close(); }
 });

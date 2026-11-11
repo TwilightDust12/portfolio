@@ -298,7 +298,7 @@ test('essential copy clears contrast over the composited scene in both themes', 
       await page.setViewportSize({ width, height: 1000 });
       for (const theme of ['dark', 'light']) {
         await page.evaluate((mode) => document.documentElement.classList.toggle('dark', mode === 'dark'), theme);
-        for (const selector of ['.hero-name', '.hero-intro', '.hero-availability', '#project-webc .project-description', '#about .about-copy > p:first-child', '#comms .contact-email']) {
+        for (const selector of ['.hero-name', '.hero-intro', '.hero-availability', '#project-webc [data-beat=asked] dd', '#about .about-copy > p:first-child', '#comms .contact-email']) {
           const el = page.locator(selector);
           await el.scrollIntoViewIfNeeded();
           await page.waitForTimeout(200);
@@ -357,7 +357,7 @@ test('the page remains complete without JavaScript', async () => {
 });
 
 // Six positions per scene, including each project's intermediate reveal.
-const scenes = ['#hero', '#project-webc', '#project-owlset', '#project-sphere8', '#project-lily-chou-chou', '#github', '#arsenal', '#about', '#mood', '#comms'];
+const scenes = ['#hero', '#project-webc', '#project-owlset', '#project-sphere8', '#project-lily-chou-chou', '#github', '#arsenal', '#workspace', '#about', '#mood', '#comms'];
 const variants = process.env.SCROLLCRAFT_VARIANT ? [process.env.SCROLLCRAFT_VARIANT] : ['desktop', 'phone', 'compact', 'reduced'];
 for (const variant of variants) {
   test(`${variant}: inspect every scene at six scroll positions`, async () => {

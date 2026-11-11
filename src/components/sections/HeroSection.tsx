@@ -1,6 +1,7 @@
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import { PortraitDeck } from "@/components/ui/PortraitDeck";
+import { SkyLine } from "@/components/ui/SkyLine";
 
 export default function HeroSection() {
   return (
@@ -9,7 +10,7 @@ export default function HeroSection() {
         <span className="hero-watermark">twilight</span>
         <span className="hero-orbit" />
       </div>
-      <div className="hero-kicker"><span>Jose’s corner of the internet</span><span lang="ja">黄昏 / twilight</span></div>
+      <div className="hero-kicker"><span>Jose’s corner of the internet</span><SkyLine /><span lang="ja">黄昏 / twilight</span></div>
       <div className="hero-grid">
         <div className="hero-copy">
           <h1 className="hero-name">Jose Raphael<br />{" "}<span className="hero-surname">Jaro<span className="hero-period">.</span></span><span className="hero-alias">Developer. Linux tinkerer. A little curious.</span></h1>

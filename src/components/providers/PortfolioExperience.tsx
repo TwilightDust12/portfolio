@@ -26,7 +26,7 @@ export function PortfolioExperience({ children, personal, contact, footer }: {
       const rect = element.getBoundingClientRect();
       return rect.top <= Math.max(readingLine, window.innerHeight * .35) && rect.bottom > readingLine;
     }).at(-1) ?? sections.find((element) => element.getBoundingClientRect().top > readingLine);
-    const anchorId = current && ["github", "mood"].includes(current.id) ? "about" : current?.id;
+    const anchorId = current && ["github", "mood", "workspace"].includes(current.id) ? "about" : current?.id;
     const previousTop = current?.getBoundingClientRect().top ?? 0;
 
     const update = () => {

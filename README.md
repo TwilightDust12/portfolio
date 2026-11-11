@@ -5,11 +5,12 @@ A personal portfolio at [twilightdust.me](https://twilightdust.me), primarily fo
 ## Page structure
 
 1. **Introduction:** a shuffling portrait deck with a pixel color reveal on hover, consistent internship availability, project and email actions.
-2. **Selected projects:** WebC, OwlSet, Sphere8, and The Ether film tribute; Wayland rice as supporting work. WebC presents both implementation and project leadership/QA responsibilities. OwlSet’s app demo appears directly in the gallery and its case study, with on-demand playback. Case studies open directly from each project.
-3. **Skills:** readable categories with links to relevant project evidence.
-4. **About:** background and concise education.
-5. **Personal interests:** music, cinema, anime, and games in one section.
-6. **Contact:** email, working clipboard feedback, and social profiles.
+2. **Selected projects:** WebC, OwlSet, Sphere8, and The Ether film tribute, each told as a three-beat chapter (what it asked of me, what I had to figure out, what shipped) with its own layout: media-left, phone, media-right, and full-bleed. Role stays on one line under the title, and media sits with “What shipped”. In essentials mode the media is omitted and each chapter keeps its three beats. OwlSet’s app demo plays on demand, and case studies open directly from each project. The Wayland rice moves to the workspace interlude.
+3. **Picked up along the way:** tools grouped by the project chapter that first used them, each linking back to its chapter, plus an “Also worked with” group for the rest.
+4. **Workspace interlude:** a short break with the Wayland rice video and a GitHub profile link; omitted in essentials mode.
+5. **About:** background and concise education.
+6. **Personal interests:** music, cinema, anime, and games in one section.
+7. **Contact:** email, working clipboard feedback, and social profiles.
 
 The real one-page résumé is available from the introduction's download action at `public/cv.pdf`.
 
@@ -45,9 +46,13 @@ Copy `.env.example` to `.env.local` and supply your own Last.fm and Letterboxd s
 
 The existing Motion library drives layered portrait parallax, orbiting artwork, a drifting typographic interlude, project reveals, quiet section entrances, and reading progress, with a JavaScript fallback in browsers without native scroll timelines. The scroll-craft direction is recorded in `scrollcraft/builds/twilight-workspace/BRIEF.md` and `SCORE.md`. The mobile portrait sits beside the name so projects remain early. A sticky project index follows the current project on desktop. Content remains readable without JavaScript. Portraits and screenshot previews crossfade without blocking repeated clicks. Screenshots open in a full-size, scrollable viewer. Reduced-motion users get a complete static scene and short interaction fades; keyboard-triggered switches and dialogs skip motion. Native anchor navigation, visible keyboard focus, 44px controls, dialog focus return, and system-aware theme switching are supported.
 
+`src/lib/sky.ts` colors the site by the current time in Lucena City (Asia/Manila), whatever the visitor's timezone. Seven bands (dawn 05:00, morning 07:00, midday 11:00, afternoon 15:00, sunset 17:30, evening 19:00, night 22:00) each set an accent for Mocha and Latte. An inline head script sets `<html data-sky>` before first paint; `ManilaClock` updates it while the page is open, fading the accent over 2s unless reduced motion is requested. Without JS the default accent applies.
+
 ## Verification
 
-The page uses UI Capsule's MIT-licensed [Background Pixel Stars](https://21st.dev/@uicapsule/components/background-pixel-stars), adapted to the Catppuccin palette. A single fixed, viewport-sized canvas stays behind all sections as visitors scroll. Stars twinkle at up to 16 FPS with occasional shooting stars; rendering pauses in a hidden tab. Reduced-motion users receive a still starfield. The component and a standalone demo are in `src/components/ui/background-pixel-stars.tsx` and `background-pixel-stars-demo.tsx`; no additional dependencies or assets are needed. The existing skyline demo remains separate.
+Run `node tests/sky.cjs` for the band logic and `node tests/sky.browser.cjs` (against a running production server) for pre-paint colouring, live band changes, themes and the no-JS fallback.
+
+The page uses UI Capsule's MIT-licensed [Background Pixel Stars](https://21st.dev/@uicapsule/components/background-pixel-stars), adapted to the Catppuccin palette. A single fixed, viewport-sized canvas stays behind all sections as visitors scroll. Stars sit in three layers that drift at different speeds as the page scrolls (still under reduced motion), and thin out to 35–60% by day according to the Lucena time band. Stars twinkle at up to 16 FPS with occasional shooting stars; rendering pauses in a hidden tab. Reduced-motion users receive a still starfield. The component and a standalone demo are in `src/components/ui/background-pixel-stars.tsx` and `background-pixel-stars-demo.tsx`; no additional dependencies or assets are needed. The existing skyline demo remains separate.
 
 Run `node tests/pixel-stars.browser.cjs` after a production build to verify animation, theme switching, reduced motion, and responsive sizing. It uses the same `PLAYWRIGHT_MODULE` and `CHROMIUM_PATH` overrides as the GitHub browser check.
 

@@ -6,14 +6,15 @@ import { portfolioData } from "@/data/portfolio";
 import type { Project } from "@/types/portfolio";
 import { ProjectMedia } from "@/components/ui/ProjectMedia";
 import { ProjectModal } from "@/components/ui/ProjectModal";
+import { DISPLAY_NAMES } from "@/data/display-names";
 import { useEssentials } from "@/components/providers/PortfolioExperience";
 
-const DISPLAY_NAMES: Record<string, string> = {
-  webc: "WebC",
-  owlset: "OwlSet",
-  "lily-chou-chou": "All About Lily Chou-Chou",
-  sphere8: "Sphere8 Construction",
-  "wayland-rice": "Wayland rice & dotfiles",
+// Each chapter shares the three beats but gets its own composition (see globals.css).
+const CHAPTER_LAYOUTS: Record<string, string> = {
+  webc: "media-left",
+  owlset: "phone",
+  sphere8: "media-right",
+  "lily-chou-chou": "full-bleed",
 };
 
 export function ProjectsSection() {
@@ -23,7 +24,6 @@ export function ProjectsSection() {
   const [animate, setAnimate] = useState(true);
   const trigger = useRef<HTMLButtonElement | null>(null);
   const featured = portfolioData.projects.filter((project) => project.featured);
-  const supporting = portfolioData.projects.filter((project) => !project.featured);
   const [activeProject, setActiveProject] = useState(featured[0]?.id);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -47,7 +47,7 @@ export function ProjectsSection() {
     return (
       <div className="project-actions">
         <button type="button" className="secondary-button" onClick={(event) => { setAnimate(event.detail !== 0); openProject(project, event.currentTarget); }} aria-label={`Read ${DISPLAY_NAMES[project.id] ?? project.title} case study`}>Case study <ArrowUpRight size={16} aria-hidden="true" /></button>
-        {project.githubUrl && <a className="inline-link" href={project.githubUrl} target="_blank" rel="noopener noreferrer">{project.id === "wayland-rice" ? "GitHub profile" : "GitHub"} <ArrowUpRight size={14} aria-hidden="true" /></a>}
+        {project.githubUrl && <a className="inline-link" href={project.githubUrl} target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={14} aria-hidden="true" /></a>}
         {project.demoUrl && <a className="inline-link" href={project.demoUrl} target="_blank" rel="noopener noreferrer">Live demo <ArrowUpRight size={14} aria-hidden="true" /></a>}
       </div>
     );
@@ -57,8 +57,8 @@ export function ProjectsSection() {
     <section ref={sectionRef} id="works" className="portfolio-section projects-gallery content-width">
       <span id="projects" className="anchor-alias" aria-hidden="true" />
       <div className="section-heading">
-        <div><p className="section-eyebrow">01 / From the workspace</p><h2 className="section-title">Selected projects.</h2></div>
-        <p className="section-note">Campus workflows, client work, a hackathon app, and creative experiments.</p>
+        <div><p className="section-eyebrow">01 / Four chapters</p><h2 className="section-title">Selected projects.</h2></div>
+        <p className="section-note">What each one asked of me, what I had to figure out, and what shipped.</p>
       </div>
       <nav className="project-index" aria-label="Selected project index">
         {featured.map((project, index) => (
@@ -70,36 +70,31 @@ export function ProjectsSection() {
         ))}
       </nav>
       {featured.map((project, index) => (
-        <article key={project.id} className="project-feature" id={`project-${project.id}`}>
-          {!essentials && <div className="project-stage">
-            <div className="project-reveal">
-              <div className="project-scene-label" aria-hidden="true"><span className="project-ordinal">{String(index + 1).padStart(2, "0")}</span><span>{project.id === "webc" ? "A clearer path through campus" : project.id === "owlset" ? "A little clarity for freelancers" : project.id === "sphere8" ? "Built for the real world" : "Somewhere inside the ether"}</span></div>
-              <ProjectMedia project={project} showVideo />
-            </div>
-          </div>}
-          <div className="project-copy" style={{ viewTransitionName: `copy-${project.id}` }}>
-            <p className="project-kind">{project.subtitle}</p>
+        <article key={project.id} className="project-feature" id={`project-${project.id}`} data-layout={CHAPTER_LAYOUTS[project.id]}>
+          <header className="chapter-head" style={{ viewTransitionName: `copy-${project.id}` }}>
+            <p className="chapter-mark"><span className="project-ordinal">{String(index + 1).padStart(2, "0")}</span><span className="project-kind">{project.subtitle}</span></p>
             <h3 className="project-title">{DISPLAY_NAMES[project.id]}</h3>
-            <p className="project-description">{project.description}</p>
-            <dl className="project-facts">
-              <dt>My role</dt><dd>{project.role}</dd>
-              <dt>What it does</dt><dd>{project.outcome}</dd>
-            </dl>
-            <div className="project-stack" aria-label="Project technologies">{project.stack.slice(0, 4).map((tech) => <span key={tech}>{tech}</span>)}</div>
-            {actions(project)}
-          </div>
+            <p className="chapter-role">{project.role}</p>
+          </header>
+          {project.chapter && <dl className="chapter-beats">
+            <div className="chapter-beat" data-beat="asked"><dt>What it asked of me</dt><dd>{project.chapter.asked}</dd></div>
+            <div className="chapter-beat" data-beat="figured-out"><dt>What I had to figure out</dt><dd>{project.chapter.figuredOut}</dd></div>
+            <div className="chapter-beat" data-beat="shipped">
+              <dt>What shipped</dt>
+              <dd className="chapter-shipped">
+                <p className="chapter-shipped-text">{project.chapter.shipped}</p>
+                {!essentials && <div className="project-stage">
+                  <div className="project-reveal">
+                    <ProjectMedia project={project} showVideo sizes={CHAPTER_LAYOUTS[project.id] === "full-bleed" ? "100vw" : undefined} />
+                  </div>
+                </div>}
+                <div className="project-stack" aria-label="Project technologies">{project.stack.slice(0, 4).map((tech) => <span key={tech}>{tech}</span>)}</div>
+                {actions(project)}
+              </dd>
+            </div>
+          </dl>}
         </article>
       ))}
-      <div className="supporting-projects">
-        {supporting.map((project) => (
-          <article key={project.id} className="supporting-project" id={`project-${project.id}`}>
-            <p className="project-status"><span className="status-dot" aria-hidden="true" />{project.subtitle}</p>
-            <h3>{DISPLAY_NAMES[project.id] ?? project.title}</h3>
-            <p className="project-description">{project.description}</p>
-            {actions(project)}
-          </article>
-        ))}
-      </div>
       <ProjectModal
         animate={animate}
         project={selectedProject}
