@@ -42,6 +42,11 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
     const image = await canvas.evaluate((el) => el.toDataURL());
     await page.waitForTimeout(700);
     assert.notEqual(await canvas.evaluate((el) => el.toDataURL()), image, 'Stars remain animated');
+    assert.equal(await canvas.getAttribute('data-layers'), '3', 'Three parallax layers');
+    await page.mouse.wheel(0, 1200);
+    await page.waitForFunction(() => Number(document.querySelector('.pixel-stars').dataset.scrollOffset) > 0);
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await page.waitForFunction(() => document.querySelector('.pixel-stars').dataset.scrollOffset === '0');
     await page.waitForFunction(() => document.querySelector('.pixel-stars').shootingFrames > 0, null, { timeout: 10000 });
     await page.screenshot({ path: '/tmp/pixel-stars-dark.png' });
     await page.getByRole('button', { name: 'Switch to Latte light theme' }).click();
@@ -52,6 +57,10 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
 
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.waitForTimeout(200);
+    await page.mouse.wheel(0, 800);
+    await page.waitForTimeout(200);
+    assert.equal(await canvas.getAttribute('data-scroll-offset'), '0', 'Reduced motion keeps the sky still while scrolling');
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
     const still = await canvas.evaluate((el) => ({ image: el.toDataURL(), frames: el.starFrames }));
     await page.waitForTimeout(400);
     assert.equal(await canvas.evaluate((el) => el.starFrames), still.frames, 'Reduced motion stops canvas updates');
@@ -92,8 +101,21 @@ const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'star
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `No page overflow at ${width}px`);
     }
     await page.screenshot({ path: '/tmp/pixel-stars-mobile.png' });
+    const starCount = async (iso) => {
+      const timed = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+      try {
+        await timed.clock.install({ time: new Date(iso) });
+        await timed.route('**/api/**', (route) => route.fulfill({ json: {} }));
+        await timed.goto('http://localhost:3112/', { waitUntil: 'domcontentloaded' });
+        await timed.waitForFunction(() => document.querySelector('.pixel-stars')?.dataset.starCount);
+        return Number(await timed.locator('.pixel-stars').getAttribute('data-star-count'));
+      } finally { await timed.close(); }
+    };
+    const dayCount = await starCount('2026-11-12T04:00:00Z');
+    const nightCount = await starCount('2026-11-12T15:00:00Z');
+    assert(dayCount > 0 && dayCount <= Math.ceil(nightCount * 0.35), `Fewer stars by day: ${dayCount} vs ${nightCount}`);
     assert.deepEqual(errors, []);
-    console.log('Pixel stars: full-page animation, shooting stars, themes, portrait interaction, reduced motion, visibility pause/resume, retina sizing, and mobile layout passed.');
+    console.log('Pixel stars: full-page animation, shooting stars, themes, portrait interaction, parallax layers, daytime density, reduced motion, visibility pause/resume, retina sizing, and mobile layout passed.');
   } finally {
     if (browser) await browser.close();
     server.kill('SIGTERM');
